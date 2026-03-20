@@ -6,6 +6,8 @@ resource:
   nnodes: 1
   n_gpus_per_node: 8
   trust_remote_code: true
+lora_rank: 16
+lora_alpha: 32
 env:
   name: math_env
   dataset: polaris
@@ -71,8 +73,8 @@ training:
   val_freq: 10
   max_prompt_length: 4096
   max_response_length: 2048
-  lora_rank: 16
-  lora_alpha: 32
+  lora_rank: ${lora_rank}
+  lora_alpha: ${lora_alpha}
 models:
   model_0:
     path: ${base_models.policy_0.path}

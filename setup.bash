@@ -176,7 +176,7 @@ print_completion() {
     log_success "Environment setup completed successfully!"
     echo ""
     echo "To activate the virtual environment, run:"
-    echo "  source ${VENV_NAME}/bin/activate"
+    echo "  source ${WORKDIR}/${VENV_NAME}/bin/activate"
     echo ""
     echo "To verify the installation, run:"
     echo "  python -c 'import torch; print(torch.__version__)'"

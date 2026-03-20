@@ -37,6 +37,5 @@ python3 -m pettingllms.trainer.train --config-path ../config/math --config-name 
     training.max_prompt_length=2048\
     training.max_response_length=4096\
     training.val_freq=10\
-    training.resample_freq=3\
     env.dataset=polaris\
     env.benchmark=AIME24\
