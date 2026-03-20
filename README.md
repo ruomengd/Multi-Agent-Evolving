@@ -2,8 +2,6 @@
 ## Installation
 
 ```bash
-git clone https://github.com/pettingllms-ai/PettingLLMs.git
-cd PettingLLMs
 bash setup.bash
 ```
 
