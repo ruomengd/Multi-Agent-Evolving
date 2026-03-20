@@ -1,0 +1,143 @@
+mode: validate
+sample_mode: tree
+defaults:
+- ppo_trainer@models.model_0.ppo_trainer_config: eval
+- _self_
+benchmark: MATH500
+data:
+  filter_method: mean
+  filter_ratio: 0.2
+  gen_batch_size: 64
+  gen_n_samples: 5
+  sample_temperature: 1
+  val_freq: 10
+  train_batch_size: 64
+  val_batch_size: 32
+  max_prompt_length: 16384
+  max_response_length: 8192
+resource:
+  nnodes: 1
+  n_gpus_per_node: 8
+  trust_remote_code: true
+env:
+  name: math_aggretion_env
+  benchmark: CodeForces
+  max_turns: 3
+  resolve: false
+  multi_modal: false
+  batched_init: true
+if_dapo: true
+multi_agent_interaction:
+  turn_order:
+  - sample_reasoning_agent
+  - sample_tool_agent
+  - aggreted_agent
+  shared_observation: true
+models:
+  model_0:
+    path: /home/lah003/models/Qwen3-4B-Instruct-2507
+    name: reasoning_agent_model
+    ppo_trainer_config:
+      data:
+        max_prompt_length: ${data.max_prompt_length}
+        max_response_length: ${data.max_response_length}
+      actor_rollout_ref:
+        model:
+          path: ${models.model_0.path}
+        rollout:
+          n: ${data.gen_n_samples}
+          temperature: ${data.sample_temperature}
+          prompt_length: ${data.max_prompt_length}
+          response_length: ${data.max_response_length}
+          tensor_model_parallel_size: ${resource.n_gpus_per_node}
+        trainer:
+          n_gpus_per_node: ${resource.n_gpus_per_node}
+          n_training_gpus_per_node: ${resource.n_gpus_per_node}
+          default_local_dir: ${trainer.default_local_dir}
+project_name: pettingllms
+experiment_name: math_single_policy
+logger:
+- console
+- wandb
+agent_policy_configs:
+  agent_configs:
+    agent_0:
+      name: sample_reasoning_agent
+      policy_name: reasoning_agent_model
+      sample_num: 1
+      train_llm_config:
+        enable_thinking: false
+        temperature: 1.0
+        top_p: 0.9
+        top_k: 20
+        min_p: 0.0
+      val_llm_config:
+        enable_thinking: false
+        temperature: 0.6
+        top_p: 0.95
+        top_k: 20
+        min_p: 0.0
+    agent_1:
+      name: sample_tool_agent
+      policy_name: reasoning_agent_model
+      sample_num: 1
+      train_llm_config:
+        enable_thinking: false
+        temperature: 1.0
+        top_p: 0.9
+        top_k: 20
+        min_p: 0.0
+      val_llm_config:
+        enable_thinking: false
+        temperature: 0.6
+        top_p: 0.95
+        top_k: 20
+        min_p: 0.0
+    agent_2:
+      name: aggreted_agent
+      policy_name: reasoning_agent_model
+      sample_num: 1
+      train_llm_config:
+        enable_thinking: false
+        temperature: 1.0
+        top_p: 0.9
+        top_k: 20
+        min_p: 0.0
+      val_llm_config:
+        enable_thinking: false
+        temperature: 0.6
+        top_p: 0.95
+        top_k: 20
+        min_p: 0.0
+trainer:
+  device: cuda
+  n_gpus_per_node: ${resource.n_gpus_per_node}
+  nnodes: 1
+  balance_batch: true
+  total_epochs: 1
+  total_training_steps: 200
+  project_name: pettingllms
+  experiment_name: math_single_policy
+  logger:
+  - console
+  - wandb
+  log_val_generations: 0
+  rollout_data_dir: null
+  validation_data_dir: null
+  save_freq: 40
+  resume_mode: auto
+  resume_from_path: null
+  val_before_train: true
+  test_freq: -1
+  critic_warmup: 0
+  default_hdfs_dir: null
+  del_local_ckpt_after_load: false
+  default_local_dir: checkpoints
+  max_actor_ckpt_to_keep: 3
+  max_critic_ckpt_to_keep: null
+  ray_wait_register_center_timeout: 300
+  npu_profile:
+    options: {}
+  rejection_sample: false
+  rejection_sample_multiplier: 2
+  n_training_gpus_per_node: ${resource.n_gpus_per_node}
