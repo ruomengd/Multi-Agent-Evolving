@@ -229,7 +229,7 @@ training.txt
 
 
 # Machine Learning and AI specific
-models/
+# models/
 *.model
 *.pkl
 *.pickle
