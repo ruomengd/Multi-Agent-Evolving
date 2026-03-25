@@ -1,0 +1,43 @@
+[2026-03-25 21:31:21] [ROLLOUT:GLOBAL] {
+  "event_type": "concurrent_batch_complete",
+  "message": "Concurrent execution completed",
+  "timestamp": "2026-03-25T21:31:21.342017",
+  "extra_data": {
+    "successfully_processed": 32,
+    "total_env_groups": 32,
+    "total_rollouts": 256,
+    "failed": 0,
+    "success_rate": "32/32",
+    "aggregated_policies": [
+      "shared_model"
+    ]
+  }
+}
+[2026-03-25 21:31:21] [ROLLOUT:N/A] {
+  "event_type": "ray_status_check",
+  "context": "after_concurrent_batch",
+  "timestamp": "2026-03-25T21:31:21.345076",
+  "ray_status": {
+    "ray_available": true,
+    "ray_initialized": true,
+    "ray_address": "10.137.132.121:54776",
+    "ray_namespace": "24a072e3-1976-4fff-bd6e-6f7b2ee6844a",
+    "ray_cluster_resources": {
+      "bundle_group_0_ef82da0fcd6c80b82de1ecbc5df101000000": 1000.0,
+      "node:__internal_head__": 1.0,
+      "CPU_group_ef82da0fcd6c80b82de1ecbc5df101000000": 1.0,
+      "accelerator_type:H200": 1.0,
+      "CPU_group_0_ef82da0fcd6c80b82de1ecbc5df101000000": 1.0,
+      "GPU_group_ef82da0fcd6c80b82de1ecbc5df101000000": 1.0,
+      "CPU": 192.0,
+      "object_store_memory": 200000000000.0,
+      "memory": 1923150434304.0,
+      "node:10.137.132.121": 1.0,
+      "GPU": 1.0,
+      "bundle_group_ef82da0fcd6c80b82de1ecbc5df101000000": 1000.0,
+      "GPU_group_0_ef82da0fcd6c80b82de1ecbc5df101000000": 1.0
+    },
+    "ray_nodes": 1,
+    "ray_error": null
+  }
+}

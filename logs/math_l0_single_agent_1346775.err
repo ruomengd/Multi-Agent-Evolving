@@ -1,0 +1,1106 @@
+2026-03-25 20:36:22,440	WARNING node.py:1882 -- The object spilling config is specified from an unstable API - system config or environment variable. This is subject to change in the future. You can use the stable API - --object-spilling-directory in ray start or object_spilling_directory in ray.init() to specify the object spilling directory instead. If you need more advanced settings, please open a github issue with the Ray team.
+2026-03-25 20:36:24,372	INFO worker.py:1927 -- Started a local Ray instance.
+[36m(train_multi_agents pid=2663868)[0m DeprecationWarning: `ray.state.available_resources_per_node` is a private attribute and access will be removed in a future Ray version.
+[36m(train_multi_agents pid=2663868)[0m WARNING:2026-03-25 20:36:40,652:Waiting for register center actor KnGXt0_register_center to be ready. Elapsed time: 0 seconds out of 300 seconds.
+[36m(pid=2665173)[0m Using blocking ray.get inside async actor. This blocks the event loop. Please use `await` on object ref with asyncio.gather if you want to yield execution to the event loop instead.
+[36m(WorkerDict pid=2665173)[0m Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 34.77it/s]
+[36m(WorkerDict pid=2665173)[0m /home/bsunmiracle/miniforge3/envs/mas/lib/python3.12/site-packages/torch/distributed/fsdp/_init_utils.py:430: UserWarning: FSDP is switching to use `NO_SHARD` instead of ShardingStrategy.FULL_SHARD since the world size is 1.
+[36m(WorkerDict pid=2665173)[0m   warnings.warn(
+[36m(WorkerDict pid=2665173)[0m /home/bsunmiracle/miniforge3/envs/mas/lib/python3.12/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:680: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+[36m(WorkerDict pid=2665173)[0m   warnings.warn(
+[36m(AsyncvLLMServer pid=2665534)[0m 2026-03-25 20:37:22,545	INFO worker.py:1606 -- Using address 10.137.132.121:54776 set in the environment variable RAY_ADDRESS
+[36m(AsyncvLLMServer pid=2665534)[0m 2026-03-25 20:37:22,553	INFO worker.py:1747 -- Connecting to existing Ray cluster at address: 10.137.132.121:54776...
+[36m(AsyncvLLMServer pid=2665534)[0m 2026-03-25 20:37:22,564	INFO worker.py:1927 -- Connected to Ray cluster.
+[36m(WorkerDict pid=2665173)[0m Loading safetensors checkpoint shards:   0% Completed | 0/2 [00:00<?, ?it/s]
+[36m(WorkerDict pid=2665173)[0m Loading safetensors checkpoint shards:  50% Completed | 1/2 [00:00<00:00,  1.74it/s]
+[36m(WorkerDict pid=2665173)[0m Loading safetensors checkpoint shards: 100% Completed | 2/2 [00:00<00:00,  3.47it/s]
+[36m(WorkerDict pid=2665173)[0m 
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:   0%|          | 0/67 [00:00<?, ?it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:   1%|▏         | 1/67 [00:00<00:09,  7.18it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:   3%|▎         | 2/67 [00:00<00:11,  5.65it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:   4%|▍         | 3/67 [00:00<00:09,  6.54it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:   6%|▌         | 4/67 [00:00<00:08,  7.13it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:   7%|▋         | 5/67 [00:00<00:08,  7.41it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:   9%|▉         | 6/67 [00:00<00:07,  7.65it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  10%|█         | 7/67 [00:00<00:07,  7.86it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  12%|█▏        | 8/67 [00:01<00:07,  7.94it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  13%|█▎        | 9/67 [00:01<00:07,  7.91it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  15%|█▍        | 10/67 [00:01<00:07,  7.93it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  16%|█▋        | 11/67 [00:01<00:06,  8.05it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  18%|█▊        | 12/67 [00:01<00:06,  8.04it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  19%|█▉        | 13/67 [00:01<00:06,  8.05it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  21%|██        | 14/67 [00:01<00:06,  8.03it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  22%|██▏       | 15/67 [00:01<00:06,  7.87it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  24%|██▍       | 16/67 [00:02<00:06,  7.94it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  25%|██▌       | 17/67 [00:02<00:06,  7.94it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  27%|██▋       | 18/67 [00:02<00:06,  8.02it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  28%|██▊       | 19/67 [00:02<00:05,  8.08it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  30%|██▉       | 20/67 [00:02<00:05,  8.15it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  31%|███▏      | 21/67 [00:02<00:05,  8.11it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  33%|███▎      | 22/67 [00:02<00:05,  8.10it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  34%|███▍      | 23/67 [00:02<00:05,  8.12it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  36%|███▌      | 24/67 [00:03<00:05,  8.14it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  37%|███▋      | 25/67 [00:03<00:05,  8.08it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  39%|███▉      | 26/67 [00:03<00:05,  8.09it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  40%|████      | 27/67 [00:03<00:04,  8.10it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  42%|████▏     | 28/67 [00:03<00:04,  8.15it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  43%|████▎     | 29/67 [00:03<00:04,  8.06it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  45%|████▍     | 30/67 [00:03<00:04,  8.00it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  46%|████▋     | 31/67 [00:03<00:04,  8.04it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  48%|████▊     | 32/67 [00:04<00:04,  8.07it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  49%|████▉     | 33/67 [00:04<00:04,  7.97it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  51%|█████     | 34/67 [00:04<00:04,  7.79it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  52%|█████▏    | 35/67 [00:04<00:04,  7.80it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  54%|█████▎    | 36/67 [00:04<00:03,  7.86it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  55%|█████▌    | 37/67 [00:04<00:03,  7.86it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  57%|█████▋    | 38/67 [00:04<00:03,  7.88it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  58%|█████▊    | 39/67 [00:04<00:03,  7.71it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  60%|█████▉    | 40/67 [00:05<00:03,  7.80it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  61%|██████    | 41/67 [00:05<00:03,  7.78it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  63%|██████▎   | 42/67 [00:05<00:03,  7.87it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  64%|██████▍   | 43/67 [00:05<00:03,  7.88it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  66%|██████▌   | 44/67 [00:05<00:02,  7.91it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  67%|██████▋   | 45/67 [00:05<00:02,  7.87it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  69%|██████▊   | 46/67 [00:05<00:02,  7.86it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  70%|███████   | 47/67 [00:05<00:02,  7.79it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  72%|███████▏  | 48/67 [00:06<00:02,  7.87it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  73%|███████▎  | 49/67 [00:06<00:02,  7.71it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  75%|███████▍  | 50/67 [00:06<00:02,  6.98it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  76%|███████▌  | 51/67 [00:06<00:02,  6.51it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  78%|███████▊  | 52/67 [00:06<00:02,  6.79it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  79%|███████▉  | 53/67 [00:06<00:02,  6.94it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  81%|████████  | 54/67 [00:06<00:01,  7.11it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  82%|████████▏ | 55/67 [00:07<00:01,  7.21it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  84%|████████▎ | 56/67 [00:07<00:01,  7.26it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  85%|████████▌ | 57/67 [00:07<00:01,  7.15it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  87%|████████▋ | 58/67 [00:07<00:01,  7.28it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  88%|████████▊ | 59/67 [00:07<00:01,  7.36it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  90%|████████▉ | 60/67 [00:07<00:00,  7.48it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  91%|█████████ | 61/67 [00:07<00:00,  7.51it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  93%|█████████▎| 62/67 [00:08<00:00,  7.54it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  94%|█████████▍| 63/67 [00:08<00:00,  7.54it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  96%|█████████▌| 64/67 [00:08<00:00,  7.62it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  97%|█████████▋| 65/67 [00:08<00:00,  7.74it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes:  99%|█████████▊| 66/67 [00:08<00:00,  7.83it/s]
+[36m(WorkerDict pid=2665173)[0m Capturing CUDA graph shapes: 100%|██████████| 67/67 [00:08<00:00,  6.55it/s]Capturing CUDA graph shapes: 100%|██████████| 67/67 [00:08<00:00,  7.62it/s]
+[36m(train_multi_agents pid=2663868)[0m wandb: Tracking run with wandb version 0.21.1
+[36m(train_multi_agents pid=2663868)[0m wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+[36m(train_multi_agents pid=2663868)[0m wandb: Run data is saved locally in /storage/home/bsunmiracle/repos/Multi-Agent-Evolving/wandb/offline-run-20260325_203803-g7exqa6u
+[36m(train_multi_agents pid=2663868)[0m Training Progress:   0%|          | 0/10 [00:00<?, ?it/s]Step 0:  10%|█         | 1/10 [00:00<00:00, 99864.38it/s]
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Generating train split: 0 examples [00:00, ? examples/s][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Generating train split: 52000 examples [00:00, 490594.97 examples/s][AGenerating train split: 53291 examples [00:00, 473493.27 examples/s]
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts:   0%|          | 0/32 [00:00<?, ?it/s][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts:   3%|▎         | 1/32 [02:29<1:17:21, 149.71s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (1/32):   3%|▎         | 1/32 [02:29<1:17:21, 149.71s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (1/32):   6%|▋         | 2/32 [02:36<32:41, 65.39s/it]   [A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (2/32):   6%|▋         | 2/32 [02:36<32:41, 65.39s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (2/32):   9%|▉         | 3/32 [02:37<17:35, 36.40s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (3/32):   9%|▉         | 3/32 [02:37<17:35, 36.40s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (3/32):  12%|█▎        | 4/32 [02:40<10:40, 22.87s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (4/32):  12%|█▎        | 4/32 [02:40<10:40, 22.87s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (4/32):  16%|█▌        | 5/32 [02:42<06:53, 15.32s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (5/32):  16%|█▌        | 5/32 [02:42<06:53, 15.32s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (6/32):  19%|█▉        | 6/32 [02:42<06:38, 15.32s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (6/32):  22%|██▏       | 7/32 [02:43<03:14,  7.80s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (7/32):  22%|██▏       | 7/32 [02:43<03:14,  7.80s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (7/32):  25%|██▌       | 8/32 [02:46<02:37,  6.56s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (8/32):  25%|██▌       | 8/32 [02:46<02:37,  6.56s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (8/32):  28%|██▊       | 9/32 [02:56<02:57,  7.71s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (9/32):  28%|██▊       | 9/32 [02:56<02:57,  7.71s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (9/32):  31%|███▏      | 10/32 [02:58<02:10,  5.93s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (10/32):  31%|███▏      | 10/32 [02:58<02:10,  5.93s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (10/32):  34%|███▍      | 11/32 [02:58<01:31,  4.34s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (11/32):  34%|███▍      | 11/32 [02:58<01:31,  4.34s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (11/32):  38%|███▊      | 12/32 [03:05<01:38,  4.92s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (12/32):  38%|███▊      | 12/32 [03:05<01:38,  4.92s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (12/32):  41%|████      | 13/32 [03:05<01:10,  3.73s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (13/32):  41%|████      | 13/32 [03:05<01:10,  3.73s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (13/32):  44%|████▍     | 14/32 [03:06<00:51,  2.84s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (14/32):  44%|████▍     | 14/32 [03:06<00:51,  2.84s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (14/32):  47%|████▋     | 15/32 [03:07<00:40,  2.38s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (15/32):  47%|████▋     | 15/32 [03:07<00:40,  2.38s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (15/32):  50%|█████     | 16/32 [03:09<00:34,  2.18s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (16/32):  50%|█████     | 16/32 [03:09<00:34,  2.18s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (16/32):  53%|█████▎    | 17/32 [03:11<00:29,  1.96s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (17/32):  53%|█████▎    | 17/32 [03:11<00:29,  1.96s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (17/32):  56%|█████▋    | 18/32 [03:13<00:28,  2.02s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (18/32):  56%|█████▋    | 18/32 [03:13<00:28,  2.02s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (18/32):  59%|█████▉    | 19/32 [03:16<00:32,  2.48s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (19/32):  59%|█████▉    | 19/32 [03:16<00:32,  2.48s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (19/32):  62%|██████▎   | 20/32 [03:18<00:27,  2.31s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (20/32):  62%|██████▎   | 20/32 [03:18<00:27,  2.31s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (20/32):  66%|██████▌   | 21/32 [03:19<00:19,  1.73s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (21/32):  66%|██████▌   | 21/32 [03:19<00:19,  1.73s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (21/32):  69%|██████▉   | 22/32 [03:19<00:14,  1.41s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (22/32):  69%|██████▉   | 22/32 [03:19<00:14,  1.41s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (22/32):  72%|███████▏  | 23/32 [03:22<00:17,  1.90s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (23/32):  72%|███████▏  | 23/32 [03:22<00:17,  1.90s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (23/32):  75%|███████▌  | 24/32 [03:24<00:15,  1.90s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (24/32):  75%|███████▌  | 24/32 [03:24<00:15,  1.90s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (24/32):  78%|███████▊  | 25/32 [03:25<00:11,  1.70s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (25/32):  78%|███████▊  | 25/32 [03:25<00:11,  1.70s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (25/32):  81%|████████▏ | 26/32 [03:30<00:14,  2.46s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (26/32):  81%|████████▏ | 26/32 [03:30<00:14,  2.46s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (26/32):  84%|████████▍ | 27/32 [03:31<00:10,  2.13s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (27/32):  84%|████████▍ | 27/32 [03:31<00:10,  2.13s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (27/32):  88%|████████▊ | 28/32 [03:32<00:06,  1.65s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (28/32):  88%|████████▊ | 28/32 [03:32<00:06,  1.65s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (28/32):  91%|█████████ | 29/32 [03:44<00:14,  4.83s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (29/32):  91%|█████████ | 29/32 [03:44<00:14,  4.83s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (29/32):  94%|█████████▍| 30/32 [03:46<00:08,  4.02s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (30/32):  94%|█████████▍| 30/32 [03:46<00:08,  4.02s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (30/32):  97%|█████████▋| 31/32 [03:47<00:03,  3.25s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (31/32):  97%|█████████▋| 31/32 [03:47<00:03,  3.25s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (31/32): 100%|██████████| 32/32 [03:50<00:00,  3.11s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (32/32): 100%|██████████| 32/32 [03:50<00:00,  3.11s/it][A
+[36m(train_multi_agents pid=2663868)[0m                                                                  [A
+[36m(train_multi_agents pid=2663868)[0m Step 0:  20%|██        | 2/10 [06:45<27:01, 202.67s/it]  Step 1:  20%|██        | 2/10 [06:45<27:01, 202.67s/it]
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts:   0%|          | 0/32 [00:00<?, ?it/s][AERROR:2026-03-25 20:44:51,727:Unclosed client session
+[36m(train_multi_agents pid=2663868)[0m client_session: <aiohttp.client.ClientSession object at 0x7f3fc6abecc0>
+[36m(train_multi_agents pid=2663868)[0m ERROR:2026-03-25 20:44:51,727:Unclosed connector
+[36m(train_multi_agents pid=2663868)[0m connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x7f3f92671730>, 2596513.115358957), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f92671370>, 2596514.561896059), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f93ff0590>, 2596517.004931804), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f92670ef0>, 2596517.101744451), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f92670530>, 2596517.301084683)])']
+[36m(train_multi_agents pid=2663868)[0m connector: <aiohttp.connector.TCPConnector object at 0x7f3f93f9d1f0>
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts:   3%|▎         | 1/32 [02:13<1:09:08, 133.82s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (1/32):   3%|▎         | 1/32 [02:13<1:09:08, 133.82s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (1/32):   6%|▋         | 2/32 [02:19<29:15, 58.53s/it]   [A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (2/32):   6%|▋         | 2/32 [02:19<29:15, 58.53s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (2/32):   9%|▉         | 3/32 [02:20<15:31, 32.13s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (3/32):   9%|▉         | 3/32 [02:20<15:31, 32.13s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (3/32):  12%|█▎        | 4/32 [02:23<09:39, 20.71s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (4/32):  12%|█▎        | 4/32 [02:23<09:39, 20.71s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (4/32):  16%|█▌        | 5/32 [02:24<06:10, 13.73s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (5/32):  16%|█▌        | 5/32 [02:24<06:10, 13.73s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (5/32):  19%|█▉        | 6/32 [02:26<04:11,  9.67s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (6/32):  19%|█▉        | 6/32 [02:26<04:11,  9.67s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (6/32):  22%|██▏       | 7/32 [02:29<03:03,  7.32s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (7/32):  22%|██▏       | 7/32 [02:29<03:03,  7.32s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (7/32):  25%|██▌       | 8/32 [02:31<02:18,  5.75s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (8/32):  25%|██▌       | 8/32 [02:31<02:18,  5.75s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (9/32):  28%|██▊       | 9/32 [02:31<02:12,  5.75s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (9/32):  31%|███▏      | 10/32 [02:31<01:07,  3.07s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (10/32):  31%|███▏      | 10/32 [02:31<01:07,  3.07s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (10/32):  34%|███▍      | 11/32 [02:33<00:55,  2.65s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (11/32):  34%|███▍      | 11/32 [02:33<00:55,  2.65s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (11/32):  38%|███▊      | 12/32 [02:33<00:42,  2.14s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (12/32):  38%|███▊      | 12/32 [02:33<00:42,  2.14s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (12/32):  41%|████      | 13/32 [02:36<00:40,  2.13s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (13/32):  41%|████      | 13/32 [02:36<00:40,  2.13s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (13/32):  44%|████▍     | 14/32 [02:36<00:29,  1.63s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (14/32):  44%|████▍     | 14/32 [02:36<00:29,  1.63s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (14/32):  47%|████▋     | 15/32 [02:38<00:29,  1.72s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (15/32):  47%|████▋     | 15/32 [02:38<00:29,  1.72s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (15/32):  50%|█████     | 16/32 [02:40<00:28,  1.76s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (16/32):  50%|█████     | 16/32 [02:40<00:28,  1.76s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (16/32):  53%|█████▎    | 17/32 [02:42<00:26,  1.79s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (17/32):  53%|█████▎    | 17/32 [02:42<00:26,  1.79s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (17/32):  56%|█████▋    | 18/32 [02:42<00:19,  1.37s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (18/32):  56%|█████▋    | 18/32 [02:42<00:19,  1.37s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (18/32):  59%|█████▉    | 19/32 [02:45<00:22,  1.72s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (19/32):  59%|█████▉    | 19/32 [02:45<00:22,  1.72s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (19/32):  62%|██████▎   | 20/32 [02:45<00:16,  1.37s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (20/32):  62%|██████▎   | 20/32 [02:45<00:16,  1.37s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (20/32):  66%|██████▌   | 21/32 [02:49<00:22,  2.06s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (21/32):  66%|██████▌   | 21/32 [02:49<00:22,  2.06s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (21/32):  69%|██████▉   | 22/32 [02:50<00:18,  1.87s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (22/32):  69%|██████▉   | 22/32 [02:50<00:18,  1.87s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (23/32):  72%|███████▏  | 23/32 [02:50<00:16,  1.87s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (23/32):  75%|███████▌  | 24/32 [02:52<00:11,  1.46s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (24/32):  75%|███████▌  | 24/32 [02:52<00:11,  1.46s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (24/32):  78%|███████▊  | 25/32 [02:52<00:08,  1.15s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (25/32):  78%|███████▊  | 25/32 [02:52<00:08,  1.15s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (25/32):  81%|████████▏ | 26/32 [02:53<00:05,  1.01it/s][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (26/32):  81%|████████▏ | 26/32 [02:53<00:05,  1.01it/s][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (26/32):  84%|████████▍ | 27/32 [02:54<00:05,  1.12s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (27/32):  84%|████████▍ | 27/32 [02:54<00:05,  1.12s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (27/32):  88%|████████▊ | 28/32 [02:55<00:04,  1.05s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (28/32):  88%|████████▊ | 28/32 [02:55<00:04,  1.05s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (28/32):  91%|█████████ | 29/32 [02:57<00:03,  1.32s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (29/32):  91%|█████████ | 29/32 [02:57<00:03,  1.32s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (29/32):  94%|█████████▍| 30/32 [03:02<00:04,  2.35s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (30/32):  94%|█████████▍| 30/32 [03:02<00:04,  2.35s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (30/32):  97%|█████████▋| 31/32 [03:04<00:02,  2.11s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (31/32):  97%|█████████▋| 31/32 [03:04<00:02,  2.11s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (31/32): 100%|██████████| 32/32 [03:14<00:00,  4.51s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (32/32): 100%|██████████| 32/32 [03:14<00:00,  4.51s/it][A
+[36m(train_multi_agents pid=2663868)[0m                                                                  [A
+[36m(train_multi_agents pid=2663868)[0m Step 1:  30%|███       | 3/10 [12:39<30:59, 265.62s/it]Step 2:  30%|███       | 3/10 [12:39<30:59, 265.62s/it]
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts:   0%|          | 0/32 [00:00<?, ?it/s][AERROR:2026-03-25 20:50:45,444:Unclosed client session
+[36m(train_multi_agents pid=2663868)[0m client_session: <aiohttp.client.ClientSession object at 0x7f3f9023e8d0>
+[36m(train_multi_agents pid=2663868)[0m ERROR:2026-03-25 20:50:45,444:Unclosed connector
+[36m(train_multi_agents pid=2663868)[0m connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x7f3f905c7f50>, 2596881.59303956), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f93f1bbf0>, 2596881.624453851), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f9055e810>, 2596882.094127002), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f903ccc50>, 2596883.719652116), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f905c5250>, 2596883.927549105), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f904aaf90>, 2596884.15804669), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f93f1a6f0>, 2596884.581786135), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f903ccfb0>, 2596886.717964179)])']
+[36m(train_multi_agents pid=2663868)[0m connector: <aiohttp.connector.TCPConnector object at 0x7f3f9023f410>
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts:   3%|▎         | 1/32 [01:52<58:01, 112.30s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (1/32):   3%|▎         | 1/32 [01:52<58:01, 112.30s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (1/32):   6%|▋         | 2/32 [01:57<24:40, 49.36s/it] [A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (2/32):   6%|▋         | 2/32 [01:57<24:40, 49.36s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (2/32):   9%|▉         | 3/32 [01:59<13:27, 27.83s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (3/32):   9%|▉         | 3/32 [01:59<13:27, 27.83s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (3/32):  12%|█▎        | 4/32 [02:00<08:00, 17.17s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (4/32):  12%|█▎        | 4/32 [02:00<08:00, 17.17s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (4/32):  16%|█▌        | 5/32 [02:03<05:23, 11.98s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (5/32):  16%|█▌        | 5/32 [02:03<05:23, 11.98s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (5/32):  19%|█▉        | 6/32 [02:05<03:42,  8.57s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (6/32):  19%|█▉        | 6/32 [02:05<03:42,  8.57s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (6/32):  22%|██▏       | 7/32 [02:05<02:28,  5.93s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (7/32):  22%|██▏       | 7/32 [02:05<02:28,  5.93s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (7/32):  25%|██▌       | 8/32 [02:07<01:45,  4.41s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (8/32):  25%|██▌       | 8/32 [02:07<01:45,  4.41s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (8/32):  28%|██▊       | 9/32 [02:07<01:14,  3.24s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (9/32):  28%|██▊       | 9/32 [02:07<01:14,  3.24s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (9/32):  31%|███▏      | 10/32 [02:09<00:59,  2.71s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (10/32):  31%|███▏      | 10/32 [02:09<00:59,  2.71s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (10/32):  34%|███▍      | 11/32 [02:09<00:43,  2.07s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (11/32):  34%|███▍      | 11/32 [02:09<00:43,  2.07s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (11/32):  38%|███▊      | 12/32 [02:11<00:38,  1.91s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (12/32):  38%|███▊      | 12/32 [02:11<00:38,  1.91s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (12/32):  41%|████      | 13/32 [02:11<00:26,  1.42s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (13/32):  41%|████      | 13/32 [02:11<00:26,  1.42s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (14/32):  44%|████▍     | 14/32 [02:11<00:25,  1.42s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (14/32):  47%|████▋     | 15/32 [02:14<00:24,  1.44s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (15/32):  47%|████▋     | 15/32 [02:14<00:24,  1.44s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (15/32):  50%|█████     | 16/32 [02:16<00:24,  1.56s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (16/32):  50%|█████     | 16/32 [02:16<00:24,  1.56s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (16/32):  53%|█████▎    | 17/32 [02:18<00:23,  1.57s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (17/32):  53%|█████▎    | 17/32 [02:18<00:23,  1.57s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (17/32):  56%|█████▋    | 18/32 [02:20<00:26,  1.88s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (18/32):  56%|█████▋    | 18/32 [02:20<00:26,  1.88s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (18/32):  59%|█████▉    | 19/32 [02:21<00:19,  1.49s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (19/32):  59%|█████▉    | 19/32 [02:21<00:19,  1.49s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (19/32):  62%|██████▎   | 20/32 [02:21<00:14,  1.18s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (20/32):  62%|██████▎   | 20/32 [02:21<00:14,  1.18s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (20/32):  66%|██████▌   | 21/32 [02:22<00:11,  1.03s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (21/32):  66%|██████▌   | 21/32 [02:22<00:11,  1.03s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (21/32):  69%|██████▉   | 22/32 [02:24<00:12,  1.25s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (22/32):  69%|██████▉   | 22/32 [02:24<00:12,  1.25s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (22/32):  72%|███████▏  | 23/32 [02:26<00:14,  1.61s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (23/32):  72%|███████▏  | 23/32 [02:26<00:14,  1.61s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (23/32):  75%|███████▌  | 24/32 [02:27<00:10,  1.30s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (24/32):  75%|███████▌  | 24/32 [02:27<00:10,  1.30s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (24/32):  78%|███████▊  | 25/32 [02:27<00:06,  1.03it/s][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (25/32):  78%|███████▊  | 25/32 [02:27<00:06,  1.03it/s][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (25/32):  81%|████████▏ | 26/32 [02:31<00:10,  1.80s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (26/32):  81%|████████▏ | 26/32 [02:31<00:10,  1.80s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (26/32):  84%|████████▍ | 27/32 [02:31<00:06,  1.40s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (27/32):  84%|████████▍ | 27/32 [02:31<00:06,  1.40s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (27/32):  88%|████████▊ | 28/32 [02:33<00:06,  1.56s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (28/32):  88%|████████▊ | 28/32 [02:33<00:06,  1.56s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (28/32):  91%|█████████ | 29/32 [02:34<00:03,  1.28s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (29/32):  91%|█████████ | 29/32 [02:34<00:03,  1.28s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (29/32):  94%|█████████▍| 30/32 [02:35<00:02,  1.21s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (30/32):  94%|█████████▍| 30/32 [02:35<00:02,  1.21s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (30/32):  97%|█████████▋| 31/32 [02:38<00:01,  1.81s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (31/32):  97%|█████████▋| 31/32 [02:38<00:01,  1.81s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (31/32): 100%|██████████| 32/32 [03:21<00:00, 14.20s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (32/32): 100%|██████████| 32/32 [03:21<00:00, 14.20s/it][A
+[36m(train_multi_agents pid=2663868)[0m                                                                  [A
+[36m(train_multi_agents pid=2663868)[0m Step 2:  40%|████      | 4/10 [18:32<29:50, 298.43s/it]Step 3:  40%|████      | 4/10 [18:32<29:50, 298.43s/it]
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts:   0%|          | 0/32 [00:00<?, ?it/s][AERROR:2026-03-25 20:56:38,947:Unclosed client session
+[36m(train_multi_agents pid=2663868)[0m client_session: <aiohttp.client.ClientSession object at 0x7f3fc410d8b0>
+[36m(train_multi_agents pid=2663868)[0m ERROR:2026-03-25 20:56:38,947:Unclosed connector
+[36m(train_multi_agents pid=2663868)[0m connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x7f3fc6a77830>, 2597237.179494385), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f90216db0>, 2597237.984698858), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f501e48f0>, 2597238.087733231), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f44607e30>, 2597239.556220429), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f501e6a50>, 2597247.613381859)])']
+[36m(train_multi_agents pid=2663868)[0m connector: <aiohttp.connector.TCPConnector object at 0x7f3fc410e450>
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts:   3%|▎         | 1/32 [02:11<1:07:55, 131.48s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (1/32):   3%|▎         | 1/32 [02:11<1:07:55, 131.48s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (1/32):   6%|▋         | 2/32 [02:12<27:17, 54.58s/it]   [A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (2/32):   6%|▋         | 2/32 [02:12<27:17, 54.58s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (2/32):   9%|▉         | 3/32 [02:14<14:51, 30.74s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (3/32):   9%|▉         | 3/32 [02:14<14:51, 30.74s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (3/32):  12%|█▎        | 4/32 [02:15<08:46, 18.82s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (4/32):  12%|█▎        | 4/32 [02:15<08:46, 18.82s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (4/32):  16%|█▌        | 5/32 [02:17<05:44, 12.76s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (5/32):  16%|█▌        | 5/32 [02:17<05:44, 12.76s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (6/32):  19%|█▉        | 6/32 [02:17<05:31, 12.76s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (6/32):  22%|██▏       | 7/32 [02:19<02:51,  6.85s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (7/32):  22%|██▏       | 7/32 [02:19<02:51,  6.85s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (7/32):  25%|██▌       | 8/32 [02:22<02:17,  5.73s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (8/32):  25%|██▌       | 8/32 [02:22<02:17,  5.73s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (8/32):  28%|██▊       | 9/32 [02:23<01:41,  4.43s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (9/32):  28%|██▊       | 9/32 [02:23<01:41,  4.43s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (9/32):  31%|███▏      | 10/32 [02:28<01:46,  4.83s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (10/32):  31%|███▏      | 10/32 [02:28<01:46,  4.83s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (10/32):  34%|███▍      | 11/32 [02:30<01:24,  4.02s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (11/32):  34%|███▍      | 11/32 [02:30<01:24,  4.02s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (11/32):  38%|███▊      | 12/32 [02:31<00:58,  2.92s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (12/32):  38%|███▊      | 12/32 [02:31<00:58,  2.92s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (12/32):  41%|████      | 13/32 [02:31<00:39,  2.10s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (13/32):  41%|████      | 13/32 [02:31<00:39,  2.10s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (13/32):  44%|████▍     | 14/32 [02:32<00:34,  1.93s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (14/32):  44%|████▍     | 14/32 [02:32<00:34,  1.93s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (14/32):  47%|████▋     | 15/32 [02:33<00:28,  1.68s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (15/32):  47%|████▋     | 15/32 [02:33<00:28,  1.68s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (15/32):  50%|█████     | 16/32 [02:34<00:20,  1.31s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (16/32):  50%|█████     | 16/32 [02:34<00:20,  1.31s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (16/32):  53%|█████▎    | 17/32 [02:39<00:38,  2.56s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (17/32):  53%|█████▎    | 17/32 [02:39<00:38,  2.56s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (17/32):  56%|█████▋    | 18/32 [02:40<00:26,  1.90s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (18/32):  56%|█████▋    | 18/32 [02:40<00:26,  1.90s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (18/32):  59%|█████▉    | 19/32 [02:41<00:22,  1.71s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (19/32):  59%|█████▉    | 19/32 [02:41<00:22,  1.71s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (19/32):  62%|██████▎   | 20/32 [02:41<00:15,  1.32s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (20/32):  62%|██████▎   | 20/32 [02:41<00:15,  1.32s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (20/32):  66%|██████▌   | 21/32 [02:42<00:10,  1.02it/s][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (21/32):  66%|██████▌   | 21/32 [02:42<00:10,  1.02it/s][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (21/32):  69%|██████▉   | 22/32 [02:42<00:09,  1.04it/s][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (22/32):  69%|██████▉   | 22/32 [02:42<00:09,  1.04it/s][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (22/32):  72%|███████▏  | 23/32 [02:46<00:14,  1.62s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (23/32):  72%|███████▏  | 23/32 [02:46<00:14,  1.62s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (23/32):  75%|███████▌  | 24/32 [02:47<00:12,  1.58s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (24/32):  75%|███████▌  | 24/32 [02:47<00:12,  1.58s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (25/32):  78%|███████▊  | 25/32 [02:47<00:11,  1.58s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (25/32):  81%|████████▏ | 26/32 [02:48<00:06,  1.04s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (26/32):  81%|████████▏ | 26/32 [02:48<00:06,  1.04s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (26/32):  84%|████████▍ | 27/32 [02:50<00:06,  1.34s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (27/32):  84%|████████▍ | 27/32 [02:50<00:06,  1.34s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (27/32):  88%|████████▊ | 28/32 [02:51<00:04,  1.16s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (28/32):  88%|████████▊ | 28/32 [02:51<00:04,  1.16s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (28/32):  91%|█████████ | 29/32 [02:51<00:03,  1.00s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (29/32):  91%|█████████ | 29/32 [02:51<00:03,  1.00s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (29/32):  94%|█████████▍| 30/32 [02:53<00:02,  1.22s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (30/32):  94%|█████████▍| 30/32 [02:53<00:02,  1.22s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (30/32):  97%|█████████▋| 31/32 [02:57<00:01,  1.95s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (31/32):  97%|█████████▋| 31/32 [02:57<00:01,  1.95s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (31/32): 100%|██████████| 32/32 [03:06<00:00,  3.94s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (32/32): 100%|██████████| 32/32 [03:06<00:00,  3.94s/it][A
+[36m(train_multi_agents pid=2663868)[0m                                                                  [A
+[36m(train_multi_agents pid=2663868)[0m Step 3:  50%|█████     | 5/10 [24:16<26:10, 314.07s/it]Step 4:  50%|█████     | 5/10 [24:16<26:10, 314.07s/it]
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts:   0%|          | 0/32 [00:00<?, ?it/s][A
+[36m(train_multi_agents pid=2663868)[0m ERROR:2026-03-25 21:02:22,401:Unclosed client session
+[36m(train_multi_agents pid=2663868)[0m client_session: <aiohttp.client.ClientSession object at 0x7f3f44746540>
+[36m(train_multi_agents pid=2663868)[0m ERROR:2026-03-25 21:02:22,401:Unclosed connector
+[36m(train_multi_agents pid=2663868)[0m connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x7f3f44762330>, 2597573.20757756), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f50263dd0>, 2597573.334801477), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f903ed7f0>, 2597574.408450773), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f50186cf0>, 2597574.595548679), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f903eda30>, 2597574.764432987), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f50262570>, 2597575.453577606), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f902c8950>, 2597576.135949961), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f902cba10>, 2597576.341579917), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f903ee0f0>, 2597576.97847469), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f502627b0>, 2597585.817990871)])']
+[36m(train_multi_agents pid=2663868)[0m connector: <aiohttp.connector.TCPConnector object at 0x7f3fb4153a40>
+[36m(train_multi_agents pid=2663868)[0m WARNING:2026-03-25 21:03:17,726:Timeout during comparison
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts:   3%|▎         | 1/32 [02:15<1:09:58, 135.44s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (1/32):   3%|▎         | 1/32 [02:15<1:09:58, 135.44s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (1/32):   6%|▋         | 2/32 [02:21<29:48, 59.62s/it]   [A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (2/32):   6%|▋         | 2/32 [02:21<29:48, 59.62s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (2/32):   9%|▉         | 3/32 [02:26<16:34, 34.28s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (3/32):   9%|▉         | 3/32 [02:26<16:34, 34.28s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (4/32):  12%|█▎        | 4/32 [02:26<15:59, 34.28s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (4/32):  16%|█▌        | 5/32 [02:27<06:54, 15.37s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (5/32):  16%|█▌        | 5/32 [02:27<06:54, 15.37s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (6/32):  19%|█▉        | 6/32 [02:27<06:39, 15.37s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (6/32):  22%|██▏       | 7/32 [02:33<04:04,  9.79s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (7/32):  22%|██▏       | 7/32 [02:33<04:04,  9.79s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (8/32):  25%|██▌       | 8/32 [02:33<03:54,  9.79s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (8/32):  28%|██▊       | 9/32 [02:34<02:20,  6.10s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (9/32):  28%|██▊       | 9/32 [02:34<02:20,  6.10s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (9/32):  31%|███▏      | 10/32 [02:36<01:53,  5.16s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (10/32):  31%|███▏      | 10/32 [02:36<01:53,  5.16s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (10/32):  34%|███▍      | 11/32 [02:36<01:25,  4.08s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (11/32):  34%|███▍      | 11/32 [02:36<01:25,  4.08s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (11/32):  38%|███▊      | 12/32 [02:38<01:09,  3.48s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (12/32):  38%|███▊      | 12/32 [02:38<01:09,  3.48s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (12/32):  41%|████      | 13/32 [02:40<00:57,  3.02s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (13/32):  41%|████      | 13/32 [02:40<00:57,  3.02s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (13/32):  44%|████▍     | 14/32 [02:40<00:42,  2.39s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (14/32):  44%|████▍     | 14/32 [02:40<00:42,  2.39s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (14/32):  47%|████▋     | 15/32 [02:41<00:30,  1.78s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (15/32):  47%|████▋     | 15/32 [02:41<00:30,  1.78s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (15/32):  50%|█████     | 16/32 [02:41<00:21,  1.35s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (16/32):  50%|█████     | 16/32 [02:41<00:21,  1.35s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (16/32):  53%|█████▎    | 17/32 [02:44<00:27,  1.83s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (17/32):  53%|█████▎    | 17/32 [02:44<00:27,  1.83s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (18/32):  56%|█████▋    | 18/32 [02:44<00:25,  1.83s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (18/32):  59%|█████▉    | 19/32 [02:44<00:14,  1.12s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (19/32):  59%|█████▉    | 19/32 [02:44<00:14,  1.12s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (19/32):  62%|██████▎   | 20/32 [02:46<00:13,  1.14s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (20/32):  62%|██████▎   | 20/32 [02:46<00:13,  1.14s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (20/32):  66%|██████▌   | 21/32 [02:47<00:13,  1.22s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (21/32):  66%|██████▌   | 21/32 [02:47<00:13,  1.22s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (21/32):  69%|██████▉   | 22/32 [02:49<00:14,  1.43s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (22/32):  69%|██████▉   | 22/32 [02:49<00:14,  1.43s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (22/32):  72%|███████▏  | 23/32 [02:51<00:13,  1.56s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (23/32):  72%|███████▏  | 23/32 [02:51<00:13,  1.56s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (23/32):  75%|███████▌  | 24/32 [02:55<00:17,  2.18s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (24/32):  75%|███████▌  | 24/32 [02:55<00:17,  2.18s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (24/32):  78%|███████▊  | 25/32 [02:57<00:14,  2.10s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (25/32):  78%|███████▊  | 25/32 [02:57<00:14,  2.10s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (25/32):  81%|████████▏ | 26/32 [02:59<00:13,  2.28s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (26/32):  81%|████████▏ | 26/32 [02:59<00:13,  2.28s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (26/32):  84%|████████▍ | 27/32 [02:59<00:08,  1.65s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (27/32):  84%|████████▍ | 27/32 [02:59<00:08,  1.65s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (27/32):  88%|████████▊ | 28/32 [03:00<00:04,  1.23s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (28/32):  88%|████████▊ | 28/32 [03:00<00:04,  1.23s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (28/32):  91%|█████████ | 29/32 [03:02<00:04,  1.46s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (29/32):  91%|█████████ | 29/32 [03:02<00:04,  1.46s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (29/32):  94%|█████████▍| 30/32 [03:03<00:02,  1.41s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (30/32):  94%|█████████▍| 30/32 [03:03<00:02,  1.41s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (30/32):  97%|█████████▋| 31/32 [03:04<00:01,  1.40s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (31/32):  97%|█████████▋| 31/32 [03:04<00:01,  1.40s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (31/32): 100%|██████████| 32/32 [03:28<00:00,  7.95s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (32/32): 100%|██████████| 32/32 [03:28<00:00,  7.95s/it][A
+[36m(train_multi_agents pid=2663868)[0m                                                                  [A
+[36m(train_multi_agents pid=2663868)[0m Step 4:  60%|██████    | 6/10 [30:24<22:08, 332.10s/it]Step 5:  60%|██████    | 6/10 [30:24<22:08, 332.10s/it]
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts:   0%|          | 0/32 [00:00<?, ?it/s][AERROR:2026-03-25 21:08:30,779:Unclosed client session
+[36m(train_multi_agents pid=2663868)[0m client_session: <aiohttp.client.ClientSession object at 0x7f3f5037d790>
+[36m(train_multi_agents pid=2663868)[0m ERROR:2026-03-25 21:08:30,780:Unclosed connector
+[36m(train_multi_agents pid=2663868)[0m connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x7f3f446c6090>, 2597941.576778203), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f446c5910>, 2597944.492268266), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f446c60f0>, 2597947.868226115), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f92670a70>, 2597951.122357041)])']
+[36m(train_multi_agents pid=2663868)[0m connector: <aiohttp.connector.TCPConnector object at 0x7f3f5037c470>
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts:   3%|▎         | 1/32 [02:13<1:08:43, 133.02s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (1/32):   3%|▎         | 1/32 [02:13<1:08:43, 133.02s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (1/32):   6%|▋         | 2/32 [02:17<28:46, 57.56s/it]   [A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (2/32):   6%|▋         | 2/32 [02:17<28:46, 57.56s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (2/32):   9%|▉         | 3/32 [02:20<15:46, 32.64s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (3/32):   9%|▉         | 3/32 [02:20<15:46, 32.64s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (3/32):  12%|█▎        | 4/32 [02:21<09:16, 19.86s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (4/32):  12%|█▎        | 4/32 [02:21<09:16, 19.86s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (4/32):  16%|█▌        | 5/32 [02:22<05:54, 13.14s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (5/32):  16%|█▌        | 5/32 [02:22<05:54, 13.14s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (5/32):  19%|█▉        | 6/32 [02:22<03:49,  8.82s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (6/32):  19%|█▉        | 6/32 [02:22<03:49,  8.82s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (6/32):  22%|██▏       | 7/32 [02:29<03:23,  8.15s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (7/32):  22%|██▏       | 7/32 [02:29<03:23,  8.15s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (7/32):  25%|██▌       | 8/32 [02:30<02:24,  6.02s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (8/32):  25%|██▌       | 8/32 [02:30<02:24,  6.02s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (8/32):  28%|██▊       | 9/32 [02:34<02:03,  5.36s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (9/32):  28%|██▊       | 9/32 [02:34<02:03,  5.36s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (10/32):  31%|███▏      | 10/32 [02:34<01:57,  5.36s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (10/32):  34%|███▍      | 11/32 [02:35<01:00,  2.90s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (11/32):  34%|███▍      | 11/32 [02:35<01:00,  2.90s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (11/32):  38%|███▊      | 12/32 [02:35<00:47,  2.38s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (12/32):  38%|███▊      | 12/32 [02:35<00:47,  2.38s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (12/32):  41%|████      | 13/32 [02:36<00:36,  1.94s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (13/32):  41%|████      | 13/32 [02:36<00:36,  1.94s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (13/32):  44%|████▍     | 14/32 [02:37<00:28,  1.61s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (14/32):  44%|████▍     | 14/32 [02:37<00:28,  1.61s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (14/32):  47%|████▋     | 15/32 [02:37<00:21,  1.25s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (15/32):  47%|████▋     | 15/32 [02:37<00:21,  1.25s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (15/32):  50%|█████     | 16/32 [02:40<00:28,  1.77s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (16/32):  50%|█████     | 16/32 [02:40<00:28,  1.77s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (16/32):  53%|█████▎    | 17/32 [02:43<00:31,  2.11s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (17/32):  53%|█████▎    | 17/32 [02:43<00:31,  2.11s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (17/32):  56%|█████▋    | 18/32 [02:44<00:22,  1.64s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (18/32):  56%|█████▋    | 18/32 [02:44<00:22,  1.64s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (18/32):  59%|█████▉    | 19/32 [02:47<00:26,  2.06s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (19/32):  59%|█████▉    | 19/32 [02:47<00:26,  2.06s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (19/32):  62%|██████▎   | 20/32 [02:48<00:19,  1.66s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (20/32):  62%|██████▎   | 20/32 [02:48<00:19,  1.66s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (20/32):  66%|██████▌   | 21/32 [02:49<00:19,  1.73s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (21/32):  66%|██████▌   | 21/32 [02:49<00:19,  1.73s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (21/32):  69%|██████▉   | 22/32 [02:51<00:17,  1.75s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (22/32):  69%|██████▉   | 22/32 [02:51<00:17,  1.75s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (22/32):  72%|███████▏  | 23/32 [02:53<00:16,  1.86s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (23/32):  72%|███████▏  | 23/32 [02:53<00:16,  1.86s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (23/32):  75%|███████▌  | 24/32 [02:54<00:11,  1.39s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (24/32):  75%|███████▌  | 24/32 [02:54<00:11,  1.39s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (24/32):  78%|███████▊  | 25/32 [02:54<00:07,  1.12s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (25/32):  78%|███████▊  | 25/32 [02:54<00:07,  1.12s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (25/32):  81%|████████▏ | 26/32 [02:55<00:07,  1.19s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (26/32):  81%|████████▏ | 26/32 [02:55<00:07,  1.19s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (26/32):  84%|████████▍ | 27/32 [02:59<00:09,  1.91s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (27/32):  84%|████████▍ | 27/32 [02:59<00:09,  1.91s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (27/32):  88%|████████▊ | 28/32 [02:59<00:05,  1.45s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (28/32):  88%|████████▊ | 28/32 [02:59<00:05,  1.45s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (28/32):  91%|█████████ | 29/32 [03:20<00:21,  7.14s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (29/32):  91%|█████████ | 29/32 [03:20<00:21,  7.14s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (29/32):  94%|█████████▍| 30/32 [03:26<00:13,  6.98s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (30/32):  94%|█████████▍| 30/32 [03:26<00:13,  6.98s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (30/32):  97%|█████████▋| 31/32 [03:37<00:08,  8.04s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (31/32):  97%|█████████▋| 31/32 [03:37<00:08,  8.04s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (31/32): 100%|██████████| 32/32 [03:44<00:00,  7.66s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (32/32): 100%|██████████| 32/32 [03:44<00:00,  7.66s/it][A
+[36m(train_multi_agents pid=2663868)[0m                                                                  [A
+[36m(train_multi_agents pid=2663868)[0m Step 5:  70%|███████   | 7/10 [36:46<17:24, 348.22s/it]Step 6:  70%|███████   | 7/10 [36:46<17:24, 348.22s/it]
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts:   0%|          | 0/32 [00:00<?, ?it/s][AERROR:2026-03-25 21:14:52,974:Unclosed client session
+[36m(train_multi_agents pid=2663868)[0m client_session: <aiohttp.client.ClientSession object at 0x7f3f903c75c0>
+[36m(train_multi_agents pid=2663868)[0m ERROR:2026-03-25 21:14:52,974:Unclosed connector
+[36m(train_multi_agents pid=2663868)[0m connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x7f3f27db7710>, 2598317.957987442), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f9262f470>, 2598318.327655388), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f446c58b0>, 2598318.336695987), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f272a4830>, 2598318.792464628), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f27db75f0>, 2598319.059624464), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f27db7650>, 2598320.978904755), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f272a4590>, 2598323.938654178), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f272a65d0>, 2598328.803648611), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f447628d0>, 2598335.623707705), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f27db7c50>, 2598335.630912572)])']
+[36m(train_multi_agents pid=2663868)[0m connector: <aiohttp.connector.TCPConnector object at 0x7f3fc410f950>
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts:   3%|▎         | 1/32 [02:05<1:05:03, 125.91s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (1/32):   3%|▎         | 1/32 [02:05<1:05:03, 125.91s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (1/32):   6%|▋         | 2/32 [02:07<26:19, 52.66s/it]   [A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (2/32):   6%|▋         | 2/32 [02:07<26:19, 52.66s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (2/32):   9%|▉         | 3/32 [02:07<13:58, 28.90s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (3/32):   9%|▉         | 3/32 [02:07<13:58, 28.90s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (3/32):  12%|█▎        | 4/32 [02:11<08:45, 18.78s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (4/32):  12%|█▎        | 4/32 [02:11<08:45, 18.78s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (4/32):  16%|█▌        | 5/32 [02:19<06:45, 15.01s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (5/32):  16%|█▌        | 5/32 [02:19<06:45, 15.01s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (5/32):  19%|█▉        | 6/32 [02:20<04:25, 10.21s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (6/32):  19%|█▉        | 6/32 [02:20<04:25, 10.21s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (7/32):  22%|██▏       | 7/32 [02:20<04:15, 10.21s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (7/32):  25%|██▌       | 8/32 [02:20<02:05,  5.22s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (8/32):  25%|██▌       | 8/32 [02:20<02:05,  5.22s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (8/32):  28%|██▊       | 9/32 [02:21<01:34,  4.09s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (9/32):  28%|██▊       | 9/32 [02:21<01:34,  4.09s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (9/32):  31%|███▏      | 10/32 [02:22<01:12,  3.32s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (10/32):  31%|███▏      | 10/32 [02:22<01:12,  3.32s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (10/32):  34%|███▍      | 11/32 [02:23<00:53,  2.55s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (11/32):  34%|███▍      | 11/32 [02:23<00:53,  2.55s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (11/32):  38%|███▊      | 12/32 [02:23<00:37,  1.87s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (12/32):  38%|███▊      | 12/32 [02:23<00:37,  1.87s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (12/32):  41%|████      | 13/32 [02:24<00:30,  1.59s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (13/32):  41%|████      | 13/32 [02:24<00:30,  1.59s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (14/32):  44%|████▍     | 14/32 [02:24<00:28,  1.59s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (14/32):  47%|████▋     | 15/32 [02:24<00:15,  1.09it/s][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (15/32):  47%|████▋     | 15/32 [02:24<00:15,  1.09it/s][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (15/32):  50%|█████     | 16/32 [02:27<00:20,  1.31s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (16/32):  50%|█████     | 16/32 [02:27<00:20,  1.31s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (16/32):  53%|█████▎    | 17/32 [02:27<00:16,  1.13s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (17/32):  53%|█████▎    | 17/32 [02:27<00:16,  1.13s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (17/32):  56%|█████▋    | 18/32 [02:27<00:12,  1.09it/s][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (18/32):  56%|█████▋    | 18/32 [02:27<00:12,  1.09it/s][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (18/32):  59%|█████▉    | 19/32 [02:28<00:09,  1.42it/s][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (19/32):  59%|█████▉    | 19/32 [02:28<00:09,  1.42it/s][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (19/32):  62%|██████▎   | 20/32 [02:31<00:16,  1.41s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (20/32):  62%|██████▎   | 20/32 [02:31<00:16,  1.41s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (20/32):  66%|██████▌   | 21/32 [02:31<00:11,  1.08s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (21/32):  66%|██████▌   | 21/32 [02:31<00:11,  1.08s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (21/32):  69%|██████▉   | 22/32 [02:37<00:24,  2.43s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (22/32):  69%|██████▉   | 22/32 [02:37<00:24,  2.43s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (22/32):  72%|███████▏  | 23/32 [02:38<00:17,  1.99s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (23/32):  72%|███████▏  | 23/32 [02:38<00:17,  1.99s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (23/32):  75%|███████▌  | 24/32 [02:38<00:12,  1.60s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (24/32):  75%|███████▌  | 24/32 [02:38<00:12,  1.60s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (24/32):  78%|███████▊  | 25/32 [02:39<00:08,  1.25s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (25/32):  78%|███████▊  | 25/32 [02:39<00:08,  1.25s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (25/32):  81%|████████▏ | 26/32 [02:39<00:05,  1.09it/s][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (26/32):  81%|████████▏ | 26/32 [02:39<00:05,  1.09it/s][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (26/32):  84%|████████▍ | 27/32 [02:39<00:03,  1.45it/s][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (27/32):  84%|████████▍ | 27/32 [02:39<00:03,  1.45it/s][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (27/32):  88%|████████▊ | 28/32 [02:39<00:02,  1.69it/s][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (28/32):  88%|████████▊ | 28/32 [02:39<00:02,  1.69it/s][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (28/32):  91%|█████████ | 29/32 [02:42<00:03,  1.14s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (29/32):  91%|█████████ | 29/32 [02:42<00:03,  1.14s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (29/32):  94%|█████████▍| 30/32 [02:44<00:02,  1.41s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (30/32):  94%|█████████▍| 30/32 [02:44<00:02,  1.41s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (30/32):  97%|█████████▋| 31/32 [03:20<00:11, 11.92s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (31/32):  97%|█████████▋| 31/32 [03:20<00:11, 11.92s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (31/32): 100%|██████████| 32/32 [03:26<00:00,  9.98s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (32/32): 100%|██████████| 32/32 [03:26<00:00,  9.98s/it][A
+[36m(train_multi_agents pid=2663868)[0m                                                                  [A
+[36m(train_multi_agents pid=2663868)[0m Step 6:  80%|████████  | 8/10 [42:48<11:44, 352.41s/it]Step 7:  80%|████████  | 8/10 [42:48<11:44, 352.41s/it]
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts:   0%|          | 0/32 [00:00<?, ?it/s][AERROR:2026-03-25 21:20:54,509:Unclosed client session
+[36m(train_multi_agents pid=2663868)[0m client_session: <aiohttp.client.ClientSession object at 0x7f3f27148d70>
+[36m(train_multi_agents pid=2663868)[0m ERROR:2026-03-25 21:20:54,509:Unclosed connector
+[36m(train_multi_agents pid=2663868)[0m connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x7f3f502cf9b0>, 2598694.541242581), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f502cf2f0>, 2598699.979490307)])']
+[36m(train_multi_agents pid=2663868)[0m connector: <aiohttp.connector.TCPConnector object at 0x7f3f2714a0f0>
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts:   3%|▎         | 1/32 [02:43<1:24:29, 163.52s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (1/32):   3%|▎         | 1/32 [02:43<1:24:29, 163.52s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (1/32):   6%|▋         | 2/32 [02:45<34:19, 68.65s/it]   [A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (2/32):   6%|▋         | 2/32 [02:45<34:19, 68.65s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (2/32):   9%|▉         | 3/32 [02:47<18:26, 38.15s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (3/32):   9%|▉         | 3/32 [02:47<18:26, 38.15s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (3/32):  12%|█▎        | 4/32 [02:49<11:05, 23.77s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (4/32):  12%|█▎        | 4/32 [02:49<11:05, 23.77s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (4/32):  16%|█▌        | 5/32 [02:50<06:59, 15.55s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (5/32):  16%|█▌        | 5/32 [02:50<06:59, 15.55s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (5/32):  19%|█▉        | 6/32 [02:52<04:42, 10.87s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (6/32):  19%|█▉        | 6/32 [02:52<04:42, 10.87s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (6/32):  22%|██▏       | 7/32 [02:56<03:35,  8.63s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (7/32):  22%|██▏       | 7/32 [02:56<03:35,  8.63s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (7/32):  25%|██▌       | 8/32 [02:56<02:22,  5.94s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (8/32):  25%|██▌       | 8/32 [02:56<02:22,  5.94s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (8/32):  28%|██▊       | 9/32 [02:57<01:39,  4.32s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (9/32):  28%|██▊       | 9/32 [02:57<01:39,  4.32s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (9/32):  31%|███▏      | 10/32 [03:00<01:30,  4.10s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (10/32):  31%|███▏      | 10/32 [03:00<01:30,  4.10s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (10/32):  34%|███▍      | 11/32 [03:03<01:20,  3.84s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (11/32):  34%|███▍      | 11/32 [03:03<01:20,  3.84s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (11/32):  38%|███▊      | 12/32 [03:05<01:00,  3.02s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (12/32):  38%|███▊      | 12/32 [03:05<01:00,  3.02s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (12/32):  41%|████      | 13/32 [03:08<00:59,  3.12s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (13/32):  41%|████      | 13/32 [03:08<00:59,  3.12s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (13/32):  44%|████▍     | 14/32 [03:09<00:45,  2.50s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (14/32):  44%|████▍     | 14/32 [03:09<00:45,  2.50s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (14/32):  47%|████▋     | 15/32 [03:09<00:30,  1.80s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (15/32):  47%|████▋     | 15/32 [03:09<00:30,  1.80s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (15/32):  50%|█████     | 16/32 [03:09<00:21,  1.36s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (16/32):  50%|█████     | 16/32 [03:09<00:21,  1.36s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (16/32):  53%|█████▎    | 17/32 [03:11<00:23,  1.56s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (17/32):  53%|█████▎    | 17/32 [03:11<00:23,  1.56s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (17/32):  56%|█████▋    | 18/32 [03:13<00:21,  1.52s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (18/32):  56%|█████▋    | 18/32 [03:13<00:21,  1.52s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (18/32):  59%|█████▉    | 19/32 [03:15<00:22,  1.70s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (19/32):  59%|█████▉    | 19/32 [03:15<00:22,  1.70s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (20/32):  62%|██████▎   | 20/32 [03:15<00:20,  1.70s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (20/32):  66%|██████▌   | 21/32 [03:16<00:11,  1.06s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (21/32):  66%|██████▌   | 21/32 [03:16<00:11,  1.06s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (21/32):  69%|██████▉   | 22/32 [03:19<00:16,  1.68s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (22/32):  69%|██████▉   | 22/32 [03:19<00:16,  1.68s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (22/32):  72%|███████▏  | 23/32 [03:21<00:14,  1.57s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (23/32):  72%|███████▏  | 23/32 [03:21<00:14,  1.57s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (23/32):  75%|███████▌  | 24/32 [03:22<00:11,  1.47s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (24/32):  75%|███████▌  | 24/32 [03:22<00:11,  1.47s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (24/32):  78%|███████▊  | 25/32 [03:22<00:08,  1.28s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (25/32):  78%|███████▊  | 25/32 [03:22<00:08,  1.28s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (25/32):  81%|████████▏ | 26/32 [03:25<00:10,  1.72s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (26/32):  81%|████████▏ | 26/32 [03:25<00:10,  1.72s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (26/32):  84%|████████▍ | 27/32 [03:30<00:12,  2.44s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (27/32):  84%|████████▍ | 27/32 [03:30<00:12,  2.44s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (27/32):  88%|████████▊ | 28/32 [03:32<00:09,  2.45s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (28/32):  88%|████████▊ | 28/32 [03:32<00:09,  2.45s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (28/32):  91%|█████████ | 29/32 [03:42<00:13,  4.58s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (29/32):  91%|█████████ | 29/32 [03:42<00:13,  4.58s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (29/32):  94%|█████████▍| 30/32 [03:47<00:09,  4.79s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (30/32):  94%|█████████▍| 30/32 [03:47<00:09,  4.79s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (30/32):  97%|█████████▋| 31/32 [03:53<00:05,  5.05s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (31/32):  97%|█████████▋| 31/32 [03:53<00:05,  5.05s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (31/32): 100%|██████████| 32/32 [03:58<00:00,  5.15s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (32/32): 100%|██████████| 32/32 [03:58<00:00,  5.15s/it][A
+[36m(train_multi_agents pid=2663868)[0m                                                                  [A
+[36m(train_multi_agents pid=2663868)[0m Step 7:  90%|█████████ | 9/10 [49:34<06:09, 369.25s/it]Step 8:  90%|█████████ | 9/10 [49:34<06:09, 369.25s/it]
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts:   0%|          | 0/32 [00:00<?, ?it/s][AERROR:2026-03-25 21:27:41,202:Unclosed client session
+[36m(train_multi_agents pid=2663868)[0m client_session: <aiohttp.client.ClientSession object at 0x7f3f2514c8f0>
+[36m(train_multi_agents pid=2663868)[0m ERROR:2026-03-25 21:27:41,202:Unclosed connector
+[36m(train_multi_agents pid=2663868)[0m connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x7f3f44618830>, 2599082.58461815), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f9262f470>, 2599085.221253752), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f9262d5b0>, 2599085.361188337), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f4461a630>, 2599086.47098552), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f9262f950>, 2599086.502231214), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f9262e090>, 2599087.653098683), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f4461b650>, 2599088.246538588), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f9262fe30>, 2599088.843537373), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f44619d90>, 2599088.945565368), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f9262f830>, 2599093.653120475)])']
+[36m(train_multi_agents pid=2663868)[0m connector: <aiohttp.connector.TCPConnector object at 0x7f3f2514f770>
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts:   3%|▎         | 1/32 [02:14<1:09:21, 134.24s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (1/32):   3%|▎         | 1/32 [02:14<1:09:21, 134.24s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (1/32):   6%|▋         | 2/32 [02:19<29:03, 58.10s/it]   [A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (2/32):   6%|▋         | 2/32 [02:19<29:03, 58.10s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (2/32):   9%|▉         | 3/32 [02:24<16:31, 34.21s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (3/32):   9%|▉         | 3/32 [02:24<16:31, 34.21s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (3/32):  12%|█▎        | 4/32 [02:27<10:12, 21.86s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (4/32):  12%|█▎        | 4/32 [02:27<10:12, 21.86s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (5/32):  16%|█▌        | 5/32 [02:27<09:50, 21.86s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (5/32):  19%|█▉        | 6/32 [02:31<04:55, 11.37s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (6/32):  19%|█▉        | 6/32 [02:31<04:55, 11.37s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (6/32):  22%|██▏       | 7/32 [02:33<03:37,  8.68s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (7/32):  22%|██▏       | 7/32 [02:33<03:37,  8.68s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (7/32):  25%|██▌       | 8/32 [02:34<02:34,  6.43s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (8/32):  25%|██▌       | 8/32 [02:34<02:34,  6.43s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (8/32):  28%|██▊       | 9/32 [02:34<01:48,  4.70s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (9/32):  28%|██▊       | 9/32 [02:34<01:48,  4.70s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (9/32):  31%|███▏      | 10/32 [02:36<01:24,  3.86s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (10/32):  31%|███▏      | 10/32 [02:36<01:24,  3.86s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (10/32):  34%|███▍      | 11/32 [02:37<01:03,  3.05s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (11/32):  34%|███▍      | 11/32 [02:37<01:03,  3.05s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (11/32):  38%|███▊      | 12/32 [02:39<00:57,  2.87s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (12/32):  38%|███▊      | 12/32 [02:39<00:57,  2.87s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (12/32):  41%|████      | 13/32 [02:40<00:39,  2.09s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (13/32):  41%|████      | 13/32 [02:40<00:39,  2.09s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (13/32):  44%|████▍     | 14/32 [02:40<00:30,  1.68s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (14/32):  44%|████▍     | 14/32 [02:40<00:30,  1.68s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (14/32):  47%|████▋     | 15/32 [02:42<00:30,  1.78s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (15/32):  47%|████▋     | 15/32 [02:42<00:30,  1.78s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (15/32):  50%|█████     | 16/32 [02:43<00:24,  1.54s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (16/32):  50%|█████     | 16/32 [02:43<00:24,  1.54s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (16/32):  53%|█████▎    | 17/32 [02:44<00:17,  1.14s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (17/32):  53%|█████▎    | 17/32 [02:44<00:17,  1.14s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (17/32):  56%|█████▋    | 18/32 [02:44<00:13,  1.00it/s][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (18/32):  56%|█████▋    | 18/32 [02:44<00:13,  1.00it/s][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (18/32):  59%|█████▉    | 19/32 [02:45<00:13,  1.04s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (19/32):  59%|█████▉    | 19/32 [02:45<00:13,  1.04s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (19/32):  62%|██████▎   | 20/32 [02:47<00:13,  1.13s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (20/32):  62%|██████▎   | 20/32 [02:47<00:13,  1.13s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (20/32):  66%|██████▌   | 21/32 [02:50<00:20,  1.89s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (21/32):  66%|██████▌   | 21/32 [02:50<00:20,  1.89s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (21/32):  69%|██████▉   | 22/32 [02:51<00:16,  1.66s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (22/32):  69%|██████▉   | 22/32 [02:51<00:16,  1.66s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (22/32):  72%|███████▏  | 23/32 [02:53<00:15,  1.71s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (23/32):  72%|███████▏  | 23/32 [02:53<00:15,  1.71s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (23/32):  75%|███████▌  | 24/32 [02:54<00:10,  1.33s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (24/32):  75%|███████▌  | 24/32 [02:54<00:10,  1.33s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (24/32):  78%|███████▊  | 25/32 [02:58<00:16,  2.30s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (25/32):  78%|███████▊  | 25/32 [02:58<00:16,  2.30s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (25/32):  81%|████████▏ | 26/32 [02:59<00:10,  1.80s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (26/32):  81%|████████▏ | 26/32 [02:59<00:10,  1.80s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (26/32):  84%|████████▍ | 27/32 [03:09<00:21,  4.21s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (27/32):  84%|████████▍ | 27/32 [03:09<00:21,  4.21s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (27/32):  88%|████████▊ | 28/32 [03:12<00:15,  3.88s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (28/32):  88%|████████▊ | 28/32 [03:12<00:15,  3.88s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (28/32):  91%|█████████ | 29/32 [03:12<00:08,  2.76s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (29/32):  91%|█████████ | 29/32 [03:12<00:08,  2.76s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (29/32):  94%|█████████▍| 30/32 [03:13<00:04,  2.30s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (30/32):  94%|█████████▍| 30/32 [03:13<00:04,  2.30s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (30/32):  97%|█████████▋| 31/32 [03:26<00:05,  5.35s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (31/32):  97%|█████████▋| 31/32 [03:26<00:05,  5.35s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (31/32): 100%|██████████| 32/32 [03:40<00:00,  7.92s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (32/32): 100%|██████████| 32/32 [03:40<00:00,  7.92s/it][A
+[36m(train_multi_agents pid=2663868)[0m                                                                  [A
+[36m(train_multi_agents pid=2663868)[0m Step 8: 100%|██████████| 10/10 [55:55<00:00, 372.80s/it]Step 9: 100%|██████████| 10/10 [55:55<00:00, 372.80s/it]
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts:   0%|          | 0/32 [00:00<?, ?it/s][AERROR:2026-03-25 21:34:02,081:Unclosed client session
+[36m(train_multi_agents pid=2663868)[0m client_session: <aiohttp.client.ClientSession object at 0x7f3f9269f410>
+[36m(train_multi_agents pid=2663868)[0m ERROR:2026-03-25 21:34:02,082:Unclosed connector
+[36m(train_multi_agents pid=2663868)[0m connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x7f3f903a3dd0>, 2599465.848354303), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f93fb1eb0>, 2599466.222211443), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f27b27710>, 2599467.968276427), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f93f18cb0>, 2599467.980516333), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f93fb3d70>, 2599468.056885905), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f4471d190>, 2599469.747789705), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f9055fd10>, 2599471.862967155), (<aiohttp.client_proto.ResponseHandler object at 0x7f3f4471c650>, 2599481.972447101)])']
+[36m(train_multi_agents pid=2663868)[0m connector: <aiohttp.connector.TCPConnector object at 0x7f3f443da480>
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts:   3%|▎         | 1/32 [02:24<1:14:43, 144.62s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (1/32):   3%|▎         | 1/32 [02:24<1:14:43, 144.62s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (1/32):   6%|▋         | 2/32 [02:32<32:11, 64.39s/it]   [A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (2/32):   6%|▋         | 2/32 [02:32<32:11, 64.39s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (2/32):   9%|▉         | 3/32 [02:33<16:58, 35.13s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (3/32):   9%|▉         | 3/32 [02:33<16:58, 35.13s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (3/32):  12%|█▎        | 4/32 [02:36<10:28, 22.44s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (4/32):  12%|█▎        | 4/32 [02:36<10:28, 22.44s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (4/32):  16%|█▌        | 5/32 [02:38<06:47, 15.09s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (5/32):  16%|█▌        | 5/32 [02:38<06:47, 15.09s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (5/32):  19%|█▉        | 6/32 [02:38<04:25, 10.21s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (6/32):  19%|█▉        | 6/32 [02:38<04:25, 10.21s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (6/32):  22%|██▏       | 7/32 [02:39<02:54,  7.00s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (7/32):  22%|██▏       | 7/32 [02:39<02:54,  7.00s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (7/32):  25%|██▌       | 8/32 [02:40<02:01,  5.05s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (8/32):  25%|██▌       | 8/32 [02:40<02:01,  5.05s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (8/32):  28%|██▊       | 9/32 [02:41<01:32,  4.02s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (9/32):  28%|██▊       | 9/32 [02:41<01:32,  4.02s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (9/32):  31%|███▏      | 10/32 [02:44<01:18,  3.57s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (10/32):  31%|███▏      | 10/32 [02:44<01:18,  3.57s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (10/32):  34%|███▍      | 11/32 [02:45<00:58,  2.79s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (11/32):  34%|███▍      | 11/32 [02:45<00:58,  2.79s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (11/32):  38%|███▊      | 12/32 [02:46<00:43,  2.19s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (12/32):  38%|███▊      | 12/32 [02:46<00:43,  2.19s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (13/32):  41%|████      | 13/32 [02:46<00:41,  2.19s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (13/32):  44%|████▍     | 14/32 [02:47<00:24,  1.35s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (14/32):  44%|████▍     | 14/32 [02:47<00:24,  1.35s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (14/32):  47%|████▋     | 15/32 [02:48<00:24,  1.44s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (15/32):  47%|████▋     | 15/32 [02:48<00:24,  1.44s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (15/32):  50%|█████     | 16/32 [02:50<00:25,  1.62s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (16/32):  50%|█████     | 16/32 [02:50<00:25,  1.62s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (16/32):  53%|█████▎    | 17/32 [02:51<00:19,  1.31s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (17/32):  53%|█████▎    | 17/32 [02:51<00:19,  1.31s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (17/32):  56%|█████▋    | 18/32 [02:53<00:21,  1.51s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (18/32):  56%|█████▋    | 18/32 [02:53<00:21,  1.51s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (18/32):  59%|█████▉    | 19/32 [02:57<00:27,  2.14s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (19/32):  59%|█████▉    | 19/32 [02:57<00:27,  2.14s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (19/32):  62%|██████▎   | 20/32 [03:01<00:34,  2.90s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (20/32):  62%|██████▎   | 20/32 [03:01<00:34,  2.90s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (20/32):  66%|██████▌   | 21/32 [03:03<00:29,  2.64s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (21/32):  66%|██████▌   | 21/32 [03:03<00:29,  2.64s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (21/32):  69%|██████▉   | 22/32 [03:05<00:22,  2.24s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (22/32):  69%|██████▉   | 22/32 [03:05<00:22,  2.24s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (22/32):  72%|███████▏  | 23/32 [03:05<00:15,  1.75s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (23/32):  72%|███████▏  | 23/32 [03:05<00:15,  1.75s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (24/32):  75%|███████▌  | 24/32 [03:05<00:14,  1.75s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (24/32):  78%|███████▊  | 25/32 [03:07<00:09,  1.37s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (25/32):  78%|███████▊  | 25/32 [03:07<00:09,  1.37s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (25/32):  81%|████████▏ | 26/32 [03:14<00:16,  2.70s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (26/32):  81%|████████▏ | 26/32 [03:14<00:16,  2.70s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (26/32):  84%|████████▍ | 27/32 [03:15<00:10,  2.15s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (27/32):  84%|████████▍ | 27/32 [03:15<00:10,  2.15s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (27/32):  88%|████████▊ | 28/32 [03:24<00:16,  4.21s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (28/32):  88%|████████▊ | 28/32 [03:24<00:16,  4.21s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (28/32):  91%|█████████ | 29/32 [03:31<00:14,  4.88s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (29/32):  91%|█████████ | 29/32 [03:31<00:14,  4.88s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (29/32):  94%|█████████▍| 30/32 [03:36<00:09,  4.89s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (30/32):  94%|█████████▍| 30/32 [03:36<00:09,  4.89s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (30/32):  97%|█████████▋| 31/32 [03:41<00:05,  5.01s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (31/32):  97%|█████████▋| 31/32 [03:41<00:05,  5.01s/it][A
+[36m(train_multi_agents pid=2663868)[0m 
+[36m(train_multi_agents pid=2663868)[0m Rollouts (31/32): 100%|██████████| 32/32 [03:47<00:00,  5.33s/it][A
+[36m(train_multi_agents pid=2663868)[0m Rollouts (32/32): 100%|██████████| 32/32 [03:47<00:00,  5.33s/it][A
+[36m(train_multi_agents pid=2663868)[0m                                                                  [A
