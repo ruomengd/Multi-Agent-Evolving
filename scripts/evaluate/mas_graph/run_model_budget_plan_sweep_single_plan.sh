@@ -7,9 +7,8 @@ EVAL_SCRIPT="${SCRIPT_DIR}/evaluate_L1.sh"
 BASE_MODELS=(
     "Qwen/Qwen3-1.7B"
     "Qwen/Qwen3-4B"
-    "Qwen/Qwen3-7B"
+    "Qwen/Qwen3-8B"
     "Qwen/Qwen3-14B"
-    "Qwen/Qwen3-32B"
 )
 
 TOTAL_ROLE_TOKEN_BUDGETS=(
