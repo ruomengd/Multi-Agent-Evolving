@@ -35,25 +35,25 @@ export LD_LIBRARY_PATH=$CUDA_HOME/targets/x86_64-linux/lib:$CUDA_HOME/lib64:$LD_
 # Configuration - Edit these parameters
 # ============================================
 MODEL_PATHS=(
-    "your model path"
+    "Qwen/Qwen3-1.7B"
 )
 
 # Assuming execution from repository root
 REPO_ROOT="$(pwd)"
-CONFIG_PATH="${REPO_ROOT}/pettingllms/config/math"
-CONFIG_NAME="math_L1_prompt"
+CONFIG_PATH="${REPO_ROOT}/pettingllms/config/mas_graph"
+CONFIG_NAME="math_graph_L1_prompt"
 BENCHMARK="AIME24"
 MAX_TURNS=5
 EVAL_TEMPERATURE=0
+VALIDATE_SAMPLE_NUM=1
 BASE_VLLM_PORT=8001
 BASE_PROXY_PORT=8020
 MAX_PROMPT_LENGTH=8192
 MAX_RESPONSE_LENGTH=8192
-eval_temperature=0.6
 GPU_START_ID=0
 ENABLE_THINKING=false
 HOST="127.0.0.1"
-GPU_MEM=0.8
+GPU_MEM=0.85
 TP_SIZE=1  # Tensor parallel size (number of GPUs per model)
            # This value will be used for:
            # - vLLM tensor_parallel_size
@@ -309,6 +309,7 @@ echo "Starting evaluation..."
 echo "GPU Configuration for evaluation:"
 echo "  resource.n_gpus_per_node: $TP_SIZE"
 echo "  tensor_model_parallel_size: $TP_SIZE"
+echo "  validate_sample_num: $VALIDATE_SAMPLE_NUM"
 echo "======================================"
 VLLM_ADDRESS="${HOST}:${BASE_PROXY_PORT}"
 
@@ -319,15 +320,16 @@ python3 -m pettingllms.evaluate.evaluate \
     +parallel=true \
     +vllm_address="$VLLM_ADDRESS" \
     env.max_turns=$MAX_TURNS \
+    training.validate_sample_num=$VALIDATE_SAMPLE_NUM \
     $MODEL_ARGS \
     training.max_prompt_length=$MAX_PROMPT_LENGTH \
     training.max_response_length=$MAX_RESPONSE_LENGTH \
     env.benchmark="$BENCHMARK" \
     resource.n_gpus_per_node=$TP_SIZE \
-    agent_policy_configs.agent_configs.agent_0.val_temperature=$EVAL_TEMPERATURE \
-    agent_policy_configs.agent_configs.agent_1.val_temperature=$EVAL_TEMPERATURE \
-    agent_policy_configs.agent_configs.agent_0.enable_thinking=$ENABLE_THINKING \
-    agent_policy_configs.agent_configs.agent_1.enable_thinking=$ENABLE_THINKING \
+    agent_policy_configs.agent_configs.agent_0.val_llm_config.temperature=$EVAL_TEMPERATURE \
+    agent_policy_configs.agent_configs.agent_1.val_llm_config.temperature=$EVAL_TEMPERATURE \
+    agent_policy_configs.agent_configs.agent_0.val_llm_config.enable_thinking=$ENABLE_THINKING \
+    agent_policy_configs.agent_configs.agent_1.val_llm_config.enable_thinking=$ENABLE_THINKING \
     resource.nnodes=1 \
     models.model_0.ppo_trainer_config.actor_rollout_ref.rollout.tensor_model_parallel_size=$TP_SIZE \
     models.model_0.ppo_trainer_config.actor_rollout_ref.trainer.n_gpus_per_node=$TP_SIZE \

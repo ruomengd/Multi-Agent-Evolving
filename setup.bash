@@ -28,7 +28,7 @@ readonly NC='\033[0m' # No Color
 
 # Configuration
 readonly PYTHON_BIN="/usr/bin/python3.12"
-readonly VENV_NAME="mas"
+readonly VENV_NAME="agent"
 readonly PYTORCH_VERSION="2.7.1"
 readonly TORCHVISION_VERSION="0.22.1"
 readonly TORCHAUDIO_VERSION="2.7.1"

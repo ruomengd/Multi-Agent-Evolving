@@ -42,13 +42,152 @@ _current_loop_id = None
 _llm_request_semaphore = None
 _semaphore_lock = None
 
-_DEBUG_API_CALLS = False
+_DEBUG_API_CALLS = os.environ.get("PETTINGLLMS_DEBUG_API_CALLS", "0") == "1"
 
 
 def set_debug_api_calls(enabled: bool):
     """Enable or disable debug output for API calls"""
     global _DEBUG_API_CALLS
     _DEBUG_API_CALLS = enabled
+
+
+def _truncate_debug_text(text: Any, max_len: int = 200) -> str:
+    """Keep debug payloads readable in logs."""
+    if text is None:
+        return ""
+    text = str(text)
+    if len(text) <= max_len:
+        return text
+    return text[:max_len] + "...<truncated>"
+
+
+def _extract_choice_token_ids(choice: dict) -> list[int]:
+    """Parse token ids from vLLM/OpenAI-compatible completion logprobs."""
+    raw_tokens = choice.get("logprobs", {}).get("tokens", []) or []
+    token_ids = []
+    for raw_token in raw_tokens:
+        try:
+            if isinstance(raw_token, int):
+                token_ids.append(raw_token)
+            elif isinstance(raw_token, str) and ":" in raw_token:
+                token_ids.append(int(raw_token.split(":")[-1]))
+        except (TypeError, ValueError):
+            continue
+    return token_ids
+
+
+def _truncate_prompt_for_continuation(
+    prompt_text: str,
+    tokenizer: Optional[AutoTokenizer],
+    max_prompt_length: int,
+) -> str:
+    """Keep continuation prompts within the configured prompt window."""
+    if tokenizer is None:
+        return prompt_text
+
+    try:
+        prompt_ids = tokenizer.encode(prompt_text, add_special_tokens=False)
+        if len(prompt_ids) <= max_prompt_length:
+            return prompt_text
+        truncated_ids = prompt_ids[-max_prompt_length:]
+        return tokenizer.decode(truncated_ids, skip_special_tokens=False)
+    except Exception:
+        return prompt_text
+
+
+async def _continue_choice_to_budget(
+    *,
+    initial_choice: dict,
+    base_prompt: str,
+    address: str,
+    model: str,
+    timeout: Optional[float],
+    request_kwargs: dict,
+    target_tokens: int,
+    continue_until_max_tokens: bool,
+    continuation_wait_token: str,
+    max_continuation_rounds: int,
+    tokenizer: Optional[AutoTokenizer],
+    max_prompt_length: int,
+) -> tuple[list[int], str, list[dict]]:
+    """Optionally keep generating by appending a wait token until the token budget is reached."""
+    token_ids = _extract_choice_token_ids(initial_choice)[:target_tokens]
+    text = initial_choice.get("text", "") or ""
+    debug_steps = [
+        {
+            "phase": "initial",
+            "finish_reason": initial_choice.get("finish_reason", ""),
+            "generated_tokens": len(token_ids),
+            "text_preview": _truncate_debug_text(text),
+        }
+    ]
+
+    if not continue_until_max_tokens:
+        return token_ids, text, debug_steps
+
+    continuation_round = 0
+    while len(token_ids) < target_tokens and continuation_round < max_continuation_rounds:
+        remaining_tokens = target_tokens - len(token_ids)
+        continuation_prompt = f"{base_prompt}{text}\n{continuation_wait_token}\n"
+        continuation_prompt = _truncate_prompt_for_continuation(
+            continuation_prompt, tokenizer, max_prompt_length
+        )
+
+        continuation_request_kwargs = {
+            **request_kwargs,
+            "prompt": continuation_prompt,
+            "n": 1,
+            "max_tokens": remaining_tokens,
+        }
+
+        try:
+            continuation_result = await submit_completions(
+                address=address,
+                model=model,
+                timeout=timeout,
+                **continuation_request_kwargs,
+            )
+        except Exception as exc:
+            debug_steps.append(
+                {
+                    "phase": f"continuation_{continuation_round + 1}",
+                    "error": str(exc),
+                    "generated_tokens": 0,
+                }
+            )
+            break
+
+        continuation_choices = continuation_result.get("choices", []) if continuation_result else []
+        if not continuation_choices:
+            debug_steps.append(
+                {
+                    "phase": f"continuation_{continuation_round + 1}",
+                    "finish_reason": "empty",
+                    "generated_tokens": 0,
+                }
+            )
+            break
+
+        continuation_choice = continuation_choices[0]
+        continuation_token_ids = _extract_choice_token_ids(continuation_choice)
+        continuation_text = continuation_choice.get("text", "") or ""
+        debug_steps.append(
+            {
+                "phase": f"continuation_{continuation_round + 1}",
+                "finish_reason": continuation_choice.get("finish_reason", ""),
+                "generated_tokens": len(continuation_token_ids),
+                "text_preview": _truncate_debug_text(continuation_text),
+            }
+        )
+
+        if not continuation_token_ids and not continuation_text:
+            break
+
+        token_ids.extend(continuation_token_ids[:remaining_tokens])
+        text += continuation_text
+        continuation_round += 1
+
+    return token_ids[:target_tokens], text, debug_steps
 
 
 def reset_event_loop_resources():
@@ -408,13 +547,18 @@ async def llm_async_generate(
     ignore_eos = config['ignore_eos']
     skip_special_tokens = config['skip_special_tokens']
     spaces_between_special_tokens = config['spaces_between_special_tokens']
+    role_max_tokens = int(config.get('token_num', ppo_trainer_config.data.max_response_length))
+    continue_until_max_tokens = bool(config.get('continue_until_max_tokens', False))
+    continuation_wait_token = str(config.get('continuation_wait_token', '<wait>'))
+    max_continuation_rounds = int(config.get('max_continuation_rounds', 8))
+    max_prompt_length = ppo_trainer_config.data.max_prompt_length
     
 
     kwargs={
         "n": sample_num,
         "temperature":temp,
         "top_p":top_p,
-        "max_tokens":ppo_trainer_config.data.max_response_length,
+        "max_tokens":role_max_tokens,
         "top_k":top_k,
         "min_p":min_p,
         "logprobs":1,
@@ -439,6 +583,7 @@ async def llm_async_generate(
     batch_size = len(prompt_dpr.non_tensor_batch["formatted_prompts"])
     batch_response_ids: list[list[int]] = [[] for _ in range(batch_size)]
     text_list = []  # Initialize text list for multiple samples
+    all_debug_choice_summaries = []
 
     # vLLM uses the 'model' parameter to specify which LoRA adapter to use
     # If lora_id is provided, use it as the model name (e.g., "lora_0", "lora_1")
@@ -490,9 +635,26 @@ async def llm_async_generate(
     for batch_index, completions in enumerate(completions_list):
         comps = []
         batch_texts = []
+        debug_choice_summaries = []
         
         # Handle exceptions from API calls
         if isinstance(completions, Exception):
+            logging.warning(
+                "[async_generate] completion exception | "
+                "rollout=%s env=%s turn=%s agent_idx=%s batch_index=%s "
+                "policy=%s model=%s mode=%s "
+                "exception_type=%s exception=%r",
+                rollout_idx,
+                env_idx,
+                turn_idx,
+                agent_idx,
+                batch_index,
+                policy_name,
+                actual_model,
+                mode,
+                type(completions).__name__,
+                str(completions),
+            )
             # Return empty token list as fallback for each sample
             for _ in range(sample_num):
                 comps.append([tokenizer.eos_token_id])
@@ -519,10 +681,53 @@ async def llm_async_generate(
                     batch_texts.append("")
             else:
                 for choice in choices:
-                    token_ids = choice.get("logprobs", {}).get("tokens", [])
-                    text = choice.get("text", "")
+                    token_ids, text, continuation_debug = await _continue_choice_to_budget(
+                        initial_choice=choice,
+                        base_prompt=prompt_dpr.non_tensor_batch["formatted_prompts"][batch_index],
+                        address=address,
+                        model=actual_model,
+                        timeout=timeout,
+                        request_kwargs=kwargs,
+                        target_tokens=role_max_tokens,
+                        continue_until_max_tokens=continue_until_max_tokens,
+                        continuation_wait_token=continuation_wait_token,
+                        max_continuation_rounds=max_continuation_rounds,
+                        tokenizer=tokenizer,
+                        max_prompt_length=max_prompt_length,
+                    )
+                    initial_generated_tokens = (
+                        continuation_debug[0].get("generated_tokens", 0) if continuation_debug else len(token_ids)
+                    )
+                    final_generated_tokens = len(token_ids)
+                    continuation_rounds_used = max(len(continuation_debug) - 1, 0)
+                    if continue_until_max_tokens and (_DEBUG_API_CALLS or continuation_rounds_used > 0):
+                        logging.warning(
+                            "[async_generate] token fill | "
+                            "rollout=%s env=%s turn=%s agent_idx=%s batch_index=%s "
+                            "policy=%s model=%s mode=%s "
+                            "target_tokens=%s initial_tokens=%s final_tokens=%s continuation_rounds=%s",
+                            rollout_idx,
+                            env_idx,
+                            turn_idx,
+                            agent_idx,
+                            batch_index,
+                            policy_name,
+                            actual_model,
+                            mode,
+                            role_max_tokens,
+                            initial_generated_tokens,
+                            final_generated_tokens,
+                            continuation_rounds_used,
+                        )
                     batch_texts.append(text)
-                    token_ids = [int(t.split(":")[1]) for t in token_ids]
+                    debug_choice_summaries.append(
+                        {
+                            "finish_reason": choice.get("finish_reason", ""),
+                            "text_preview": _truncate_debug_text(text),
+                            "token_preview": _truncate_debug_text(token_ids[:10]),
+                            "continuation": continuation_debug,
+                        }
+                    )
                     comps.append(token_ids)
                     
         except Exception as e:
@@ -532,10 +737,18 @@ async def llm_async_generate(
             
         batch_response_ids[batch_index] = comps
         text_list.extend(batch_texts)
+        all_debug_choice_summaries.append(
+            {
+                "batch_index": batch_index,
+                "choices": debug_choice_summaries,
+                "texts_empty": all(not t for t in batch_texts),
+            }
+        )
     pad_token_id = tokenizer.pad_token_id
     eos_token_id = tokenizer.eos_token_id
+    # Keep storage width consistent across roles sharing the same policy so
+    # DataProto.concat can stack their tensors later.
     max_response_length=ppo_trainer_config.data.max_response_length
-    max_prompt_length=ppo_trainer_config.data.max_prompt_length
     output_dpr = postprocess_batch(prompt_dpr, batch_response_ids, kwargs["n"], pad_token_id, eos_token_id,max_response_length,max_prompt_length)
     batch_size = len(output_dpr)
     output_dpr.non_tensor_batch["rollout_idx"] = np.array([rollout_idx] * batch_size, dtype=object)
@@ -554,6 +767,41 @@ async def llm_async_generate(
                 valid_ids = [int(t) for t in resp_ids_tensor.tolist() if int(t) not in (pad_token_id, eos_token_id)]
                 decoded = tokenizer.decode(valid_ids, skip_special_tokens=True)
                 text_list.append(decoded or "")
+
+    if _DEBUG_API_CALLS or (sample_num == 1 and (not text_list or not any(text_list))):
+        prompt_preview = ""
+        try:
+            prompt_preview = _truncate_debug_text(
+                prompt_dpr.non_tensor_batch["formatted_prompts"][0]
+            )
+        except Exception:
+            prompt_preview = ""
+
+        decode_preview = _truncate_debug_text(text_list[0] if text_list else "")
+        logging.warning(
+            "[async_generate] completion debug | "
+            "rollout=%s env=%s turn=%s agent_idx=%s "
+            "policy=%s model=%s mode=%s "
+            "enable_thinking=%s sample_num=%s "
+            "successes=%s errors=%s elapsed=%.2fs "
+            "choice_summaries=%s "
+            "decoded_preview=%r prompt_preview=%r",
+            rollout_idx,
+            env_idx,
+            turn_idx,
+            agent_idx,
+            policy_name,
+            actual_model,
+            mode,
+            enable_thinking,
+            sample_num,
+            success_count,
+            error_count,
+            elapsed_time,
+            _truncate_debug_text(all_debug_choice_summaries, 600),
+            decode_preview,
+            prompt_preview,
+        )
 
     # Return format depends on sample_num:
     # - sample_num=1: return single string (backward compatible)

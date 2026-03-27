@@ -1,6 +1,7 @@
 import argparse
 import asyncio
 import json
+import logging
 import os
 import sys
 import time
@@ -72,6 +73,18 @@ from pathlib import Path
 from typing import Optional
 
 
+def _configure_quiet_evaluation_logging() -> None:
+    logging.getLogger().setLevel(logging.WARNING)
+    noisy_loggers = [
+        "autogen_core",
+        "autogen_core.events",
+        "httpx",
+        "openai",
+    ]
+    for logger_name in noisy_loggers:
+        logging.getLogger(logger_name).setLevel(logging.WARNING)
+
+
 def init_agent_execution_engine(config: DictConfig, address: str):
     """Initialize agent execution engine based on workflow_type in config."""
     # Initialize basic dictionaries
@@ -122,9 +135,6 @@ def init_agent_execution_engine(config: DictConfig, address: str):
     agent_lora_mapping = {}
 
     if hasattr(config, 'specialization') and config.specialization == "lora":
-        print("=" * 60)
-        print("LoRA Specialization Detected")
-        print("=" * 60)
 
         # Check if lora_paths is provided (from command line)
         if hasattr(config, 'lora_paths') and config.lora_paths:
@@ -142,10 +152,6 @@ def init_agent_execution_engine(config: DictConfig, address: str):
                 )
 
             lora_differ_mode = True
-            print("LoRA Differ Mode ENABLED for Evaluation")
-            print("Each agent will use a different LoRA adapter")
-            print(f"Number of agents: {num_agents}")
-            print(f"Number of LoRA adapters: {len(lora_paths_list)}")
 
             # Map agents to LoRA adapters based on agent_configs order (agent_0, agent_1, ...)
             # This ensures consistent mapping regardless of dictionary iteration order
@@ -153,16 +159,10 @@ def init_agent_execution_engine(config: DictConfig, address: str):
                 config.agent_policy_configs.agent_configs.items(),
                 key=lambda x: int(x[0].split('_')[1])  # Sort by agent number: agent_0, agent_1, ...
             )
-            print(f"Agent config order: {[item[0] for item in agent_config_items]}")
-
             for agent_idx, (agent_key, agent_config) in enumerate(agent_config_items):
                 agent_name = agent_config.name
                 lora_id = agent_idx+1
                 agent_lora_mapping[agent_name] = lora_id
-                print(f"  Agent '{agent_name}' (from {agent_key}) -> LoRA adapter 'lora_{lora_id}' (ID: {lora_id})")
-
-            print(f"Total {len(agent_lora_mapping)} agent-specific LoRA adapters")
-            print("=" * 60)
         else:
             raise ValueError(
                 "LoRA speciaslization is set, but no lora_paths provided in config. "
@@ -170,14 +170,12 @@ def init_agent_execution_engine(config: DictConfig, address: str):
             )
     # Get workflow_type from config, default to "turn"
     workflow_type = getattr(config, 'workflow_type', 'turn')
-    print(f"Using workflow_type: {workflow_type}")
 
     # In evaluation mode with LoRA, we want to use the LoRA adapters for generation
     use_lora_for_generation = lora_differ_mode
 
     # Select the appropriate execution engine based on workflow_type
     if workflow_type == "graph":
-        print("Initializing MultiAgentsExecutionEngineGraph")
         from pettingllms.trainer.multi_agents_execution_engine_graph import MultiAgentsExecutionEngineGraph
         agent_execution_engine = MultiAgentsExecutionEngineGraph(
             config=config,
@@ -191,7 +189,6 @@ def init_agent_execution_engine(config: DictConfig, address: str):
             use_lora_for_generation=use_lora_for_generation,
         )
     elif workflow_type == "autoevol":
-        print("Initializing MultiAgentsExecutionEngineAutoEvol")
         from pettingllms.trainer.multi_agents_execution_engine_autoevol import MultiAgentsExecutionEngineAutoEvol
         agent_execution_engine = MultiAgentsExecutionEngineAutoEvol(
             config=config,
@@ -206,7 +203,6 @@ def init_agent_execution_engine(config: DictConfig, address: str):
         )
     else:
         # Default to "turn" workflow
-        print("Initializing MultiAgentsExecutionEngine (turn-based)")
         agent_execution_engine = MultiAgentsExecutionEngine(
             config=config,
             ppo_trainer_config_dict=ppo_trainer_config_dict,
@@ -222,6 +218,7 @@ def init_agent_execution_engine(config: DictConfig, address: str):
     return agent_execution_engine
 
 def validate(config: DictConfig, address: str):
+    _configure_quiet_evaluation_logging()
     agent_execution_engine = init_agent_execution_engine(config, address)
     agent_execution_engine.init_agents_and_envs(mode="validate")
     batch_per_trainer: Dict[str,DataProto]={}
@@ -240,45 +237,82 @@ def validate(config: DictConfig, address: str):
     total_rollout_num = len(agent_execution_engine.rollout_idx_list)
 
     # Check success based on workflow type
-    # For autoevol workflow: check final_reward == 1.0
-    # For other workflows: check env.success attribute
+    # For graph/autoevol workflows: check final_reward == 1.0
+    # For turn-based workflows: check env.success attribute
     workflow_type = getattr(config, 'workflow_type', 'turn')
 
-    if workflow_type == "autoevol":
-        # AutoEvol: success is when final_reward == 1.0
+    def _is_success(env) -> bool:
+        final_reward = getattr(env, "final_reward", None)
+        if final_reward is None and hasattr(env, "state"):
+            final_reward = getattr(env.state, "final_reward", None)
+        if final_reward is not None:
+            try:
+                return float(final_reward) >= 1.0
+            except (TypeError, ValueError):
+                pass
+        return hasattr(env, "success") and env.success
+
+    if workflow_type in {"autoevol", "graph"}:
+        # Graph-style workflows report success through final_reward.
         env_success_rollout_idxs = [
             rollout_idx
             for rollout_idx, env in zip(agent_execution_engine.rollout_idx_list, agent_execution_engine.envs)
-            if hasattr(env, "success") and env.success
+            if _is_success(env)
         ]
     else:
-        # Traditional turn-based or graph workflow: check env.success
+        # Traditional turn-based workflow: check env.success
         env_success_rollout_idxs = [
             rollout_idx
             for rollout_idx, env in zip(agent_execution_engine.rollout_idx_list, agent_execution_engine.envs)
-            if hasattr(env, "success") and env.success
+            if _is_success(env)
         ]
 
-    env_success_rate = (
+    sample_success_rate = (
         len(env_success_rollout_idxs) / total_rollout_num if total_rollout_num > 0 else 0.0
     )
-    return agent_execution_engine, env_success_rollout_idxs, env_success_rate
+
+    success_env_idxs = {
+        getattr(env, "env_idx", rollout_idx)
+        for rollout_idx, env in zip(agent_execution_engine.rollout_idx_list, agent_execution_engine.envs)
+        if _is_success(env)
+    }
+    total_env_num = len(agent_execution_engine.env_idx_list)
+    env_pass_at_k = len(success_env_idxs) / total_env_num if total_env_num > 0 else 0.0
+
+    return (
+        agent_execution_engine,
+        env_success_rollout_idxs,
+        sample_success_rate,
+        sorted(success_env_idxs),
+        env_pass_at_k,
+    )
 
 
 
 @hydra.main(config_path="../config/math", config_name="math_L1_prompt", version_base=None)
 def main(config: DictConfig):
+    _configure_quiet_evaluation_logging()
     address = getattr(config, 'vllm_address', '127.0.0.1:8220')
-    print(f"Using vLLM service address: {address}")
+    print(f"[eval] address={address} workflow={getattr(config, 'workflow_type', 'turn')}")
    
-    agent_execution_engine, env_success_rollout_idxs, env_success_rate = validate(config, address)
+    (
+        agent_execution_engine,
+        env_success_rollout_idxs,
+        sample_success_rate,
+        success_env_idxs,
+        env_pass_at_k,
+    ) = validate(config, address)
     
     # Log success_rollout information to summary logger
     evaluation_summary = {
         "model_path": config.models.model_0.path,
         "benchmark": config.env.benchmark,
         "env_success_rollout_idxs": env_success_rollout_idxs,
-        "env_success_rate": env_success_rate,
+        "env_success_rate": sample_success_rate,
+        "sample_success_rate": sample_success_rate,
+        "success_env_idxs": success_env_idxs,
+        "env_pass_at_k": env_pass_at_k,
+        "pass_at_k_k": getattr(config.training, "validate_sample_num", None),
         "agent_enable_thinking": {}
     }
     
@@ -286,14 +320,14 @@ def main(config: DictConfig):
     for agent_key, agent_config in config.agent_policy_configs.agent_configs.items():
         agent_name = agent_config.name
         enable_thinking = False
-    if agent_config:
-        # Read from train_llm_config (enable_thinking is same for train and val)
-        train_llm_config = getattr(agent_config, 'train_llm_config', None)
-        if train_llm_config:
-            enable_thinking = train_llm_config.get('enable_thinking', False)
-        else:
-            # Fallback to old format
-            enable_thinking = getattr(agent_config, 'enable_thinking', False)
+        if agent_config:
+            # Read from train_llm_config (enable_thinking is same for train and val)
+            train_llm_config = getattr(agent_config, 'train_llm_config', None)
+            if train_llm_config:
+                enable_thinking = train_llm_config.get('enable_thinking', False)
+            else:
+                # Fallback to old format
+                enable_thinking = getattr(agent_config, 'enable_thinking', False)
         evaluation_summary["agent_enable_thinking"][agent_name] = enable_thinking
     
     # Log to summary via multi_logger
@@ -302,12 +336,12 @@ def main(config: DictConfig):
         evaluation_summary=evaluation_summary
     )
     
-    print("Evaluation Summary:")
-    print(f"  Model path: {evaluation_summary['model_path']}")
-    print(f"  Benchmark: {evaluation_summary['benchmark']}")
     print(
-        f"    env: {env_success_rate:.4f} "
-        f"({len(env_success_rollout_idxs)}/{len(agent_execution_engine.rollout_idx_list)})"
+        f"[eval] model={evaluation_summary['model_path']} benchmark={evaluation_summary['benchmark']} "
+        f"sample_success_rate={sample_success_rate:.4f} "
+        f"({len(env_success_rollout_idxs)}/{len(agent_execution_engine.rollout_idx_list)}) "
+        f"env_pass_at_k={env_pass_at_k:.4f} "
+        f"({len(success_env_idxs)}/{len(agent_execution_engine.env_idx_list)})"
     )
 
 if __name__ == "__main__":

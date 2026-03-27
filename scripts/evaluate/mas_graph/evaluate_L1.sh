@@ -16,28 +16,36 @@ export LD_LIBRARY_PATH=$CUDA_HOME/targets/x86_64-linux/lib:$CUDA_HOME/lib64:$LD_
 
 # ============================================
 # Configuration - Edit these parameters
+# Environment variable overrides are supported for sweep scripts.
 # ============================================
+BASE_MODEL="${BASE_MODEL:-Qwen/Qwen3-1.7B}"
 MODEL_PATHS=(
-    "/home/lah003/models/Qwen3-1.7B"
+    "$BASE_MODEL"
+    # "Qwen/Qwen3-4B"
 )
-EXPERIMENT_NAME="mas_graph_test"
+EXPERIMENT_NAME="${EXPERIMENT_NAME:-mas_graph_inference}"
 # Assuming execution from repository root
 REPO_ROOT="$(pwd)"
 CONFIG_PATH="${REPO_ROOT}/pettingllms/config/mas_graph"
-CONFIG_NAME="math_graph_L1_prompt"
-BENCHMARK="AIME24"
-BASE_VLLM_PORT=8601
-BASE_PROXY_PORT=8620
-GPU_START_ID=7
-HOST="127.0.0.1"
-GPU_MEM=0.15  # Reduced from 0.8 to fit in available memory (33.38 GiB available)
-VLLM_SHUTDOWN=false  # If true, vLLM will be shut down when script exits; if false, vLLM will remain running
-TP_SIZE=1
-MAX_PROMPT_LENGTH=8192
-MAX_RESPONSE_LENGTH=1024
-MAX_LEN=32768
-MAX_WAIT=180  # Maximum wait time in seconds
-CHECK_INTERVAL=2  # Check interval in seconds
+CONFIG_NAME="${CONFIG_NAME:-math_graph_multi_L1_prompt}"
+BENCHMARK="${BENCHMARK:-AIME25}"
+BASE_VLLM_PORT="${BASE_VLLM_PORT:-8601}"
+BASE_PROXY_PORT="${BASE_PROXY_PORT:-8620}"
+GPU_START_ID="${GPU_START_ID:-0}"
+HOST="${HOST:-127.0.0.1}"
+GPU_MEM="${GPU_MEM:-0.85}"  # Reduced from 0.8 to fit in available memory (33.38 GiB available)
+VLLM_SHUTDOWN="${VLLM_SHUTDOWN:-true}"  # If true, vLLM will be shut down when script exits; if false, vLLM will remain running
+TP_SIZE="${TP_SIZE:-1}"
+MAX_PROMPT_LENGTH="${MAX_PROMPT_LENGTH:-4096}"
+TOTAL_ROLE_TOKEN_BUDGET="${TOTAL_ROLE_TOKEN_BUDGET:-4096}"
+VERIFIER_TOKEN_NUM="${VERIFIER_TOKEN_NUM:-128}"
+ROLE_TOKEN_PLAN="${ROLE_TOKEN_PLAN:-0.25/0.25/0.25/0.25}"  # planner / solver / revise / critique
+FORCE_GENERATE="${FORCE_GENERATE:-false}"
+CONTINUATION_WAIT_TOKEN="${CONTINUATION_WAIT_TOKEN:-<wait>}"
+MAX_CONTINUATION_ROUNDS="${MAX_CONTINUATION_ROUNDS:-8}"
+MAX_LEN="${MAX_LEN:-32768}"
+MAX_WAIT="${MAX_WAIT:-180}"  # Maximum wait time in seconds
+CHECK_INTERVAL="${CHECK_INTERVAL:-2}"  # Check interval in seconds
 
 # Multi-GPU configuration
 # If TP_SIZE > 1, each model will use TP_SIZE consecutive GPUs
@@ -107,6 +115,30 @@ wait_for_endpoint() {
     return 1
 }
 
+# Check whether a vLLM endpoint serves the expected model name
+endpoint_has_model() {
+    local host=$1
+    local port=$2
+    local expected_model=$3
+
+    local models_json
+    models_json=$(curl -s "http://$host:$port/v1/models" 2>/dev/null || true)
+
+    if [ -z "$models_json" ]; then
+        return 1
+    fi
+
+    if echo "$models_json" | grep -F "\"id\":\"$expected_model\"" >/dev/null 2>&1; then
+        return 0
+    fi
+
+    if echo "$models_json" | grep -F "\"id\": \"$expected_model\"" >/dev/null 2>&1; then
+        return 0
+    fi
+
+    return 1
+}
+
 # Kill existing proxy processes
 echo "Cleaning existing proxy processes..."
 for ((i=0; i<${#MODEL_PATHS[@]}; i++)); do
@@ -119,12 +151,20 @@ echo "Checking for existing vLLM services..."
 VLLM_ALREADY_RUNNING=false
 VLLM_CHECK_TIMEOUT=5
 for ((i=0; i<${#MODEL_PATHS[@]}; i++)); do
+    MODEL_PATH="${MODEL_PATHS[$i]}"
+    if [[ "$MODEL_PATH" == *"checkpoint"* ]]; then
+        SERVED_MODEL_NAME="$MODEL_PATH"
+    else
+        SERVED_MODEL_NAME="$(echo "$MODEL_PATH" | rev | cut -d'/' -f1-2 | rev)"
+    fi
+
     echo -n "Trying to connect to vLLM at port $((BASE_VLLM_PORT + i))..."
-    if timeout $VLLM_CHECK_TIMEOUT curl -s "http://$HOST:$((BASE_VLLM_PORT + i))/v1/models" >/dev/null 2>&1; then
-        echo " ✓ Connected"
+    if timeout $VLLM_CHECK_TIMEOUT curl -s "http://$HOST:$((BASE_VLLM_PORT + i))/v1/models" >/dev/null 2>&1 && \
+       endpoint_has_model "$HOST" "$((BASE_VLLM_PORT + i))" "$SERVED_MODEL_NAME"; then
+        echo " ✓ Connected with expected model ${SERVED_MODEL_NAME}"
         VLLM_ALREADY_RUNNING=true
     else
-        echo " ✗ Not available"
+        echo " ✗ Not available or missing expected model ${SERVED_MODEL_NAME}"
         VLLM_ALREADY_RUNNING=false
         break
     fi
@@ -213,12 +253,26 @@ if [ "$VLLM_ALREADY_RUNNING" = false ]; then
 else
     echo "Verifying existing vLLM services..."
     for ((i=0; i<${#MODEL_PATHS[@]}; i++)); do
+        MODEL_PATH="${MODEL_PATHS[$i]}"
+        if [[ "$MODEL_PATH" == *"checkpoint"* ]]; then
+            SERVED_MODEL_NAME="$MODEL_PATH"
+        else
+            SERVED_MODEL_NAME="$(echo "$MODEL_PATH" | rev | cut -d'/' -f1-2 | rev)"
+        fi
+
         if ! curl -s "http://$HOST:$((BASE_VLLM_PORT + i))/v1/models" >/dev/null 2>&1; then
             echo "Error: Expected vLLM at port $((BASE_VLLM_PORT + i)) but it's not responding"
             echo "Please check if vLLM is running or set VLLM_SHUTDOWN=true to restart"
             exit 1
         fi
-        echo "✓ vLLM model$((i+1)) at port $((BASE_VLLM_PORT + i)) is ready"
+
+        if ! endpoint_has_model "$HOST" "$((BASE_VLLM_PORT + i))" "$SERVED_MODEL_NAME"; then
+            echo "Error: Existing vLLM at port $((BASE_VLLM_PORT + i)) does not serve expected model ${SERVED_MODEL_NAME}"
+            echo "Please restart the server or let this script launch a fresh instance"
+            exit 1
+        fi
+
+        echo "✓ vLLM model$((i+1)) at port $((BASE_VLLM_PORT + i)) serves ${SERVED_MODEL_NAME}"
     done
 fi
 
@@ -255,6 +309,67 @@ done
 echo "✓ All proxy services ready"
 echo
 
+# Derive per-role token budgets from one total budget and an allocation plan.
+# Verifier is fixed, and the remaining budget is split across the other roles.
+# Supported formats:
+#   3 values: planner / solver+revise / critique
+#   4 values: planner / solver / revise / critique
+IFS='/' read -r -a ROLE_PLAN_PARTS <<< "$ROLE_TOKEN_PLAN"
+if [ "${#ROLE_PLAN_PARTS[@]}" -eq 3 ]; then
+    PLANNER_RATIO="${ROLE_PLAN_PARTS[0]}"
+    SOLVER_RATIO="${ROLE_PLAN_PARTS[1]}"
+    REVISE_RATIO="${ROLE_PLAN_PARTS[1]}"
+    CRITIQUE_RATIO="${ROLE_PLAN_PARTS[2]}"
+elif [ "${#ROLE_PLAN_PARTS[@]}" -eq 4 ]; then
+    PLANNER_RATIO="${ROLE_PLAN_PARTS[0]}"
+    SOLVER_RATIO="${ROLE_PLAN_PARTS[1]}"
+    REVISE_RATIO="${ROLE_PLAN_PARTS[2]}"
+    CRITIQUE_RATIO="${ROLE_PLAN_PARTS[3]}"
+else
+    echo "ERROR: ROLE_TOKEN_PLAN must have 3 or 4 '/'-separated values"
+    echo "  3-value format: planner / solver+revise / critique"
+    echo "  4-value format: planner / solver / revise / critique"
+    exit 1
+fi
+
+REMAINING_ROLE_TOKEN_BUDGET=$((TOTAL_ROLE_TOKEN_BUDGET - VERIFIER_TOKEN_NUM))
+if [ "$REMAINING_ROLE_TOKEN_BUDGET" -le 0 ]; then
+    echo "ERROR: TOTAL_ROLE_TOKEN_BUDGET must be greater than VERIFIER_TOKEN_NUM"
+    exit 1
+fi
+
+PLAN_SUM=$(awk -v a="$PLANNER_RATIO" -v b="$SOLVER_RATIO" -v c="$REVISE_RATIO" -v d="$CRITIQUE_RATIO" 'BEGIN { printf "%.8f", a + b + c + d }')
+if ! awk -v sum="$PLAN_SUM" 'BEGIN { exit !(sum > 0) }'; then
+    echo "ERROR: ROLE_TOKEN_PLAN must sum to a positive value"
+    exit 1
+fi
+
+calc_role_tokens() {
+    local ratio=$1
+    awk -v total="$REMAINING_ROLE_TOKEN_BUDGET" -v ratio="$ratio" -v sum="$PLAN_SUM" 'BEGIN {
+        tokens = int((total * ratio / sum) + 0.5)
+        if (tokens < 1) tokens = 1
+        print tokens
+    }'
+}
+
+PLANNER_TOKEN_NUM=$(calc_role_tokens "$PLANNER_RATIO")
+SOLVER_TOKEN_NUM=$(calc_role_tokens "$SOLVER_RATIO")
+CRITIQUE_TOKEN_NUM=$(calc_role_tokens "$CRITIQUE_RATIO")
+REVISE_TOKEN_NUM=$(calc_role_tokens "$REVISE_RATIO")
+MAX_RESPONSE_LENGTH=$(printf "%s\n%s\n%s\n%s\n%s\n" \
+    "$PLANNER_TOKEN_NUM" \
+    "$SOLVER_TOKEN_NUM" \
+    "$CRITIQUE_TOKEN_NUM" \
+    "$REVISE_TOKEN_NUM" \
+    "$VERIFIER_TOKEN_NUM" | sort -nr | head -n 1)
+
+echo "Role token budget: total=${TOTAL_ROLE_TOKEN_BUDGET}, verifier_fixed=${VERIFIER_TOKEN_NUM}, remaining=${REMAINING_ROLE_TOKEN_BUDGET}, plan=${ROLE_TOKEN_PLAN}"
+echo "  planner=${PLANNER_TOKEN_NUM}, solver=${SOLVER_TOKEN_NUM}, critique=${CRITIQUE_TOKEN_NUM}, revise=${REVISE_TOKEN_NUM}, verifier=${VERIFIER_TOKEN_NUM}"
+echo "Derived MAX_RESPONSE_LENGTH=${MAX_RESPONSE_LENGTH}"
+echo "Force generate: enabled=${FORCE_GENERATE}, wait_token=${CONTINUATION_WAIT_TOKEN}, max_rounds=${MAX_CONTINUATION_ROUNDS}"
+CONTINUATION_WAIT_TOKEN_OVERRIDE="'${CONTINUATION_WAIT_TOKEN}'"
+
 # Build model args for both base_models and models
 MODEL_ARGS=""
 for ((i=0; i<${#MODEL_PATHS[@]}; i++)); do
@@ -275,6 +390,46 @@ python3 -m pettingllms.evaluate.evaluate \
     $MODEL_ARGS \
     training.max_prompt_length=$MAX_PROMPT_LENGTH \
     training.max_response_length=$MAX_RESPONSE_LENGTH \
+    agent_policy_configs.agent_configs.agent_0.train_llm_config.token_num=$PLANNER_TOKEN_NUM \
+    agent_policy_configs.agent_configs.agent_0.val_llm_config.token_num=$PLANNER_TOKEN_NUM \
+    agent_policy_configs.agent_configs.agent_0.train_llm_config.continue_until_max_tokens=$FORCE_GENERATE \
+    agent_policy_configs.agent_configs.agent_0.val_llm_config.continue_until_max_tokens=$FORCE_GENERATE \
+    "agent_policy_configs.agent_configs.agent_0.train_llm_config.continuation_wait_token=${CONTINUATION_WAIT_TOKEN_OVERRIDE}" \
+    "agent_policy_configs.agent_configs.agent_0.val_llm_config.continuation_wait_token=${CONTINUATION_WAIT_TOKEN_OVERRIDE}" \
+    agent_policy_configs.agent_configs.agent_0.train_llm_config.max_continuation_rounds=$MAX_CONTINUATION_ROUNDS \
+    agent_policy_configs.agent_configs.agent_0.val_llm_config.max_continuation_rounds=$MAX_CONTINUATION_ROUNDS \
+    agent_policy_configs.agent_configs.agent_1.train_llm_config.token_num=$SOLVER_TOKEN_NUM \
+    agent_policy_configs.agent_configs.agent_1.val_llm_config.token_num=$SOLVER_TOKEN_NUM \
+    agent_policy_configs.agent_configs.agent_1.train_llm_config.continue_until_max_tokens=$FORCE_GENERATE \
+    agent_policy_configs.agent_configs.agent_1.val_llm_config.continue_until_max_tokens=$FORCE_GENERATE \
+    "agent_policy_configs.agent_configs.agent_1.train_llm_config.continuation_wait_token=${CONTINUATION_WAIT_TOKEN_OVERRIDE}" \
+    "agent_policy_configs.agent_configs.agent_1.val_llm_config.continuation_wait_token=${CONTINUATION_WAIT_TOKEN_OVERRIDE}" \
+    agent_policy_configs.agent_configs.agent_1.train_llm_config.max_continuation_rounds=$MAX_CONTINUATION_ROUNDS \
+    agent_policy_configs.agent_configs.agent_1.val_llm_config.max_continuation_rounds=$MAX_CONTINUATION_ROUNDS \
+    agent_policy_configs.agent_configs.agent_2.train_llm_config.token_num=$CRITIQUE_TOKEN_NUM \
+    agent_policy_configs.agent_configs.agent_2.val_llm_config.token_num=$CRITIQUE_TOKEN_NUM \
+    agent_policy_configs.agent_configs.agent_2.train_llm_config.continue_until_max_tokens=$FORCE_GENERATE \
+    agent_policy_configs.agent_configs.agent_2.val_llm_config.continue_until_max_tokens=$FORCE_GENERATE \
+    "agent_policy_configs.agent_configs.agent_2.train_llm_config.continuation_wait_token=${CONTINUATION_WAIT_TOKEN_OVERRIDE}" \
+    "agent_policy_configs.agent_configs.agent_2.val_llm_config.continuation_wait_token=${CONTINUATION_WAIT_TOKEN_OVERRIDE}" \
+    agent_policy_configs.agent_configs.agent_2.train_llm_config.max_continuation_rounds=$MAX_CONTINUATION_ROUNDS \
+    agent_policy_configs.agent_configs.agent_2.val_llm_config.max_continuation_rounds=$MAX_CONTINUATION_ROUNDS \
+    agent_policy_configs.agent_configs.agent_3.train_llm_config.token_num=$REVISE_TOKEN_NUM \
+    agent_policy_configs.agent_configs.agent_3.val_llm_config.token_num=$REVISE_TOKEN_NUM \
+    agent_policy_configs.agent_configs.agent_3.train_llm_config.continue_until_max_tokens=$FORCE_GENERATE \
+    agent_policy_configs.agent_configs.agent_3.val_llm_config.continue_until_max_tokens=$FORCE_GENERATE \
+    "agent_policy_configs.agent_configs.agent_3.train_llm_config.continuation_wait_token=${CONTINUATION_WAIT_TOKEN_OVERRIDE}" \
+    "agent_policy_configs.agent_configs.agent_3.val_llm_config.continuation_wait_token=${CONTINUATION_WAIT_TOKEN_OVERRIDE}" \
+    agent_policy_configs.agent_configs.agent_3.train_llm_config.max_continuation_rounds=$MAX_CONTINUATION_ROUNDS \
+    agent_policy_configs.agent_configs.agent_3.val_llm_config.max_continuation_rounds=$MAX_CONTINUATION_ROUNDS \
+    agent_policy_configs.agent_configs.agent_4.train_llm_config.token_num=$VERIFIER_TOKEN_NUM \
+    agent_policy_configs.agent_configs.agent_4.val_llm_config.token_num=$VERIFIER_TOKEN_NUM \
+    agent_policy_configs.agent_configs.agent_4.train_llm_config.continue_until_max_tokens=$FORCE_GENERATE \
+    agent_policy_configs.agent_configs.agent_4.val_llm_config.continue_until_max_tokens=$FORCE_GENERATE \
+    "agent_policy_configs.agent_configs.agent_4.train_llm_config.continuation_wait_token=${CONTINUATION_WAIT_TOKEN_OVERRIDE}" \
+    "agent_policy_configs.agent_configs.agent_4.val_llm_config.continuation_wait_token=${CONTINUATION_WAIT_TOKEN_OVERRIDE}" \
+    agent_policy_configs.agent_configs.agent_4.train_llm_config.max_continuation_rounds=$MAX_CONTINUATION_ROUNDS \
+    agent_policy_configs.agent_configs.agent_4.val_llm_config.max_continuation_rounds=$MAX_CONTINUATION_ROUNDS \
     training.experiment_name="$EXPERIMENT_NAME" \
     resource.n_gpus_per_node=$TP_SIZE \
     resource.nnodes=1 \

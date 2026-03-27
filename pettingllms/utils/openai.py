@@ -7,6 +7,7 @@ Patch autogen and langchain LLM engines to use llm_async_generate from async_gen
 import asyncio
 import contextvars
 import functools
+import os
 from typing import Dict, List, Optional, Union, Callable
 import random
 import numpy as np
@@ -97,6 +98,14 @@ MODEL_CLIENT_FACTORY: Dict[str, Callable] = {
 }
 
 
+_DEBUG_PATCH_LOGS = os.getenv("PETTINGLLMS_DEBUG_PATCH", "0") == "1"
+
+
+def _patch_log(*args, force: bool = False, **kwargs):
+    if force or _DEBUG_PATCH_LOGS:
+        print(*args, **kwargs)
+
+
 def create_model_client(agent_framework: str, policy_name: str, address: str, **kwargs):
     """
     Create a model client based on the agent framework.
@@ -162,24 +171,24 @@ def build_agent_address_mapping(
     Returns:
         Dict mapping agent_name to vLLM address
     """
-    print(f"[build_agent_address_mapping] agent_names: {agent_names}")
-    print(f"[build_agent_address_mapping] agent_policy_mapping: {agent_policy_mapping}")
-    print(f"[build_agent_address_mapping] server_address_dict: {server_address_dict}")
+    _patch_log(f"[build_agent_address_mapping] agent_names: {agent_names}")
+    _patch_log(f"[build_agent_address_mapping] agent_policy_mapping: {agent_policy_mapping}")
+    _patch_log(f"[build_agent_address_mapping] server_address_dict: {server_address_dict}")
 
     agent_address_mapping = {}
     for agent_name in agent_names:
         policy_name = agent_policy_mapping.get(agent_name)
-        print(f"[build_agent_address_mapping] agent_name={agent_name} -> policy_name={policy_name}")
+        _patch_log(f"[build_agent_address_mapping] agent_name={agent_name} -> policy_name={policy_name}")
 
         if policy_name is None:
-            print(f"[build_agent_address_mapping] WARNING: No policy_name found for agent '{agent_name}', skipping")
+            _patch_log(f"[build_agent_address_mapping] WARNING: No policy_name found for agent '{agent_name}', skipping")
             continue
 
         _addresses = server_address_dict.get(policy_name)
-        print(f"[build_agent_address_mapping] policy_name={policy_name} -> addresses={_addresses}")
+        _patch_log(f"[build_agent_address_mapping] policy_name={policy_name} -> addresses={_addresses}")
 
         if _addresses is None:
-            print(f"[build_agent_address_mapping] WARNING: No address found for policy '{policy_name}', skipping agent '{agent_name}'")
+            _patch_log(f"[build_agent_address_mapping] WARNING: No address found for policy '{policy_name}', skipping agent '{agent_name}'")
             continue
 
         if isinstance(_addresses, (list, tuple)):
@@ -188,9 +197,9 @@ def build_agent_address_mapping(
             _address = _addresses
 
         agent_address_mapping[agent_name] = _address
-        print(f"[build_agent_address_mapping] Mapped agent '{agent_name}' to address '{_address}'")
+        _patch_log(f"[build_agent_address_mapping] Mapped agent '{agent_name}' to address '{_address}'")
 
-    print(f"[build_agent_address_mapping] Final mapping: {agent_address_mapping}")
+    _patch_log(f"[build_agent_address_mapping] Final mapping: {agent_address_mapping}")
     return agent_address_mapping
 
 
@@ -244,9 +253,9 @@ def init_patch_context(
     _agent_lora_mapping = agent_lora_mapping or {}
     _agent_config_dict = agent_config_dict or {}
     _processor_dict = processor_dict or {}
-    print(f"[Patch] Initialized context with policies: {list(server_address_dict.keys())}")
-    print(f"[Patch] Agent address mapping: {agent_address_mapping}")
-    print(f"[Patch] Agent lora mapping: {agent_lora_mapping}")
+    _patch_log(f"[Patch] Initialized context with policies: {list(server_address_dict.keys())}")
+    _patch_log(f"[Patch] Agent address mapping: {agent_address_mapping}")
+    _patch_log(f"[Patch] Agent lora mapping: {agent_lora_mapping}")
 
 
 
@@ -272,7 +281,7 @@ def increment_hop_idx():
     next_idx = current_idx + 1
     _hop_idx_var.set(next_idx)
     rollout_idx = get_rollout_idx()
-    print(f"[Patch] Hop index incremented from {current_idx} to {next_idx} for rollout={rollout_idx}")
+    _patch_log(f"[Patch] Hop index incremented from {current_idx} to {next_idx} for rollout={rollout_idx}")
 
 
 def reset_hop_idx():
@@ -281,13 +290,13 @@ def reset_hop_idx():
     env_idx = get_env_idx()
     _hop_idx_var.set(0)
     _trajectory_store_var.set({})  # Clear trajectory store for new rollout
-    print(f"[Patch] Hop index reset to 0 for rollout={rollout_idx}, env={env_idx}, trajectory store cleared")
+    _patch_log(f"[Patch] Hop index reset to 0 for rollout={rollout_idx}, env={env_idx}, trajectory store cleared")
 
 
 def clear_trajectory_store():
     """Clear the trajectory store."""
     _trajectory_store_var.set({})
-    print(f"[Patch] Trajectory store cleared")
+    _patch_log(f"[Patch] Trajectory store cleared")
 
 
 def start_flow_context(rollout_idx: int, env_idx: int):
@@ -299,7 +308,7 @@ def start_flow_context(rollout_idx: int, env_idx: int):
     _env_idx_var.set(env_idx)
     _hop_idx_var.set(0)
     _trajectory_store_var.set({})
-    print(f"[Patch] New flow context started: rollout={rollout_idx}, env={env_idx}, hop=0")
+    _patch_log(f"[Patch] New flow context started: rollout={rollout_idx}, env={env_idx}, hop=0")
 
 
 
@@ -316,7 +325,9 @@ def get_trajectory_store() -> Dict[tuple, tuple]:
     Get collected trajectories for current rollout.
 
     Returns:
-        Dict mapping (rollout_idx, hop_idx, policy_name) to (output_dpr, response)
+        Dict mapping
+        (rollout_idx, hop_idx, policy_name, agent_name) to (output_dpr, response)
+        for new entries, while older callers may still observe legacy 3-tuples.
     """
     return _get_trajectory_store_ref().copy()
 
@@ -361,7 +372,7 @@ def _auto_init_from_env():
     _agent_policy_mapping = {}
     _agent_address_mapping = {}
     
-    print(f"[Patch] Auto-initialized from env: API_BASE={api_base}, CHAT_MODEL={chat_model}")
+    _patch_log(f"[Patch] Auto-initialized from env: API_BASE={api_base}, CHAT_MODEL={chat_model}")
 
 
 async def _patched_generate(
@@ -393,17 +404,17 @@ async def _patched_generate(
     if policy_name is None:
         # Fallback: use first available policy
         policy_name = list(_server_address_dict.keys())[0]
-        print(f"[Patch] Warning: agent_name '{agent_name}' not in agent_policy_mapping, using fallback policy '{policy_name}'")
+        _patch_log(f"[Patch] Warning: agent_name '{agent_name}' not in agent_policy_mapping, using fallback policy '{policy_name}'")
 
     address = _agent_address_mapping[agent_name]
-    print(f"[Patch] Using agent_address_mapping: agent={agent_name} -> address={address}")
+    _patch_log(f"[Patch] Using agent_address_mapping: agent={agent_name} -> address={address}")
 
     lora_id = None
     # Resolve lora_id from agent_lora_mapping
     if _agent_lora_mapping:
         lora_id = _agent_lora_mapping.get(agent_name)
     if lora_id is not None:
-        print(f"[Patch] Using lora_id={lora_id} for agent={agent_name}")
+        _patch_log(f"[Patch] Using lora_id={lora_id} for agent={agent_name}")
 
     # Resolve agent_config from agent_config_dict
     agent_config = _agent_config_dict.get(agent_name)
@@ -421,7 +432,7 @@ async def _patched_generate(
     rollout_idx = get_rollout_idx()
     env_idx = get_env_idx()
 
-    print(f"[Patch] Starting LLM request: rollout={rollout_idx}, env={env_idx}, hop={hop_idx}, agent={agent_name}")
+    _patch_log(f"[Patch] Starting LLM request: rollout={rollout_idx}, env={env_idx}, hop={hop_idx}, agent={agent_name}")
 
     # Convert messages to prompt
     if isinstance(messages, list) and len(messages) > 0:
@@ -521,11 +532,13 @@ async def _patched_generate(
 
         # Store in trajectory store
         _trajectory_store = _get_trajectory_store_ref()
-        key = (rollout_idx, hop_idx, policy_name)
+        # Include agent_name in the key so agents sharing the same policy do not
+        # overwrite each other's trajectories within a rollout.
+        key = (rollout_idx, hop_idx, policy_name, agent_name)
         _trajectory_store[key] = (output_dpr, response)
-        print(f"[Patch] Stored trajectory for key={key}, rollout={rollout_idx}, env={env_idx}, hop={hop_idx}, agent={agent_name}, prompt_tokens={prompt_tokens}, completion_tokens={completion_tokens}")
+        _patch_log(f"[Patch] Stored trajectory for key={key}, rollout={rollout_idx}, env={env_idx}, hop={hop_idx}, agent={agent_name}, prompt_tokens={prompt_tokens}, completion_tokens={completion_tokens}")
         client._dataproto_container['dataprotos'].append(output_dpr)
-        print(f"[Patch] Added dataproto to client container for agent={agent_name}, total dataprotos={len(client._dataproto_container['dataprotos'])}")
+        _patch_log(f"[Patch] Added dataproto to client container for agent={agent_name}, total dataprotos={len(client._dataproto_container['dataprotos'])}")
 
     return response, prompt_tokens, completion_tokens, token_ids
 
@@ -547,6 +560,14 @@ def patch_autogen():
     async def patched_create(self, messages, **kwargs):
         # Try to get agent_name directly from the client (set during model_client_dict creation)
         agent_name = getattr(self, '_agent_name', None)
+        _patch_log(
+            "[Patch] OpenAIChatCompletionClient.create intercepted",
+            {
+                "agent_name": agent_name,
+                "message_count": len(messages) if messages is not None else 0,
+                "client_type": type(self).__name__,
+            },
+        )
 
         # Call patched generate with messages, agent_name, and client
         response_text, prompt_tokens, completion_tokens, token_ids = await _patched_generate(
@@ -567,7 +588,7 @@ def patch_autogen():
     
     OpenAIChatCompletionClient.create = patched_create
     _patched = True
-    print("[Patch] Patched autogen OpenAIChatCompletionClient.create")
+    _patch_log("[Patch] Patched autogen OpenAIChatCompletionClient.create")
 
 
 def patch_langchain():
@@ -581,7 +602,7 @@ def patch_langchain():
     try:
         from langchain_openai import ChatOpenAI
     except ImportError:
-        print("[Patch] langchain_openai not available, skipping langchain patch")
+        _patch_log("[Patch] langchain_openai not available, skipping langchain patch")
         return
     
     original_agenerate = ChatOpenAI._agenerate
@@ -622,7 +643,7 @@ def patch_langchain():
     
     ChatOpenAI._agenerate = patched_agenerate
     _patched = True
-    print("[Patch] Patched langchain ChatOpenAI._agenerate")
+    _patch_log("[Patch] Patched langchain ChatOpenAI._agenerate")
 
 
 def patch_langgraph():
@@ -632,7 +653,7 @@ def patch_langgraph():
     """
     # LangGraph uses LangChain models, so just apply langchain patch
     patch_langchain()
-    print("[Patch] LangGraph uses LangChain models, applied langchain patch")
+    _patch_log("[Patch] LangGraph uses LangChain models, applied langchain patch")
 
 
 def patch_llamaindex():
@@ -646,7 +667,7 @@ def patch_llamaindex():
     try:
         from llama_index.llms.openai import OpenAI
     except ImportError:
-        print("[Patch] llama_index not available, skipping llamaindex patch")
+        _patch_log("[Patch] llama_index not available, skipping llamaindex patch")
         return
     
     original_achat = OpenAI.achat
@@ -688,7 +709,7 @@ def patch_llamaindex():
     
     OpenAI.achat = patched_achat
     _patched = True
-    print("[Patch] Patched llamaindex OpenAI.achat")
+    _patch_log("[Patch] Patched llamaindex OpenAI.achat")
 
 
 def patch_all(
@@ -726,11 +747,11 @@ def patch_all(
     _agent_config_dict = agent_config_dict or {}
     _processor_dict = processor_dict or {}
 
-    print(f"[Patch] Initialized context with policies: {list(server_address_dict.keys())}")
-    print(f"[Patch] Agent policy mapping: {agent_policy_mapping}")
-    print(f"[Patch] Agent address mapping: {agent_address_mapping}")
-    print(f"[Patch] Agent lora mapping: {agent_lora_mapping}")
-    print(f"[Patch] Agent framework: {agent_framework}")
+    _patch_log(f"[Patch] Initialized context with policies: {list(server_address_dict.keys())}")
+    _patch_log(f"[Patch] Agent policy mapping: {agent_policy_mapping}")
+    _patch_log(f"[Patch] Agent address mapping: {agent_address_mapping}")
+    _patch_log(f"[Patch] Agent lora mapping: {agent_lora_mapping}")
+    _patch_log(f"[Patch] Agent framework: {agent_framework}")
     
     # Reset patched flag to allow re-patching
     _patched = False
@@ -749,7 +770,7 @@ def patch_all(
         raise ValueError(f"Unsupported agent_framework: {agent_framework}. "
                         f"Supported: autogen, langchain, langgraph, llamaindex")
     
-    print(f"[Patch] All patches applied for framework: {agent_framework}")
+    _patch_log(f"[Patch] All patches applied for framework: {agent_framework}")
 
 
 def wrap_autogen_graph(graph_callable):
@@ -768,10 +789,10 @@ def wrap_autogen_graph(graph_callable):
         reset_hop_idx()
         rollout_idx = get_rollout_idx()
         env_idx = get_env_idx()
-        print(f"[Patch] Starting autogen graph execution for rollout={rollout_idx}, env={env_idx}")
+        _patch_log(f"[Patch] Starting autogen graph execution for rollout={rollout_idx}, env={env_idx}")
         result = await graph_callable(*args, **kwargs)
         final_hops = get_hop_idx()
-        print(f"[Patch] Graph completed after {final_hops} hops (LLM requests) for rollout={rollout_idx}, env={env_idx}")
+        _patch_log(f"[Patch] Graph completed after {final_hops} hops (LLM requests) for rollout={rollout_idx}, env={env_idx}")
         return result
 
     return wrapped_graph
@@ -817,9 +838,9 @@ def set_client_env_reward(client, reward: float):
     """
     if hasattr(client, '_dataproto_container'):
         client._dataproto_container['env_final_reward'] = reward
-        print(f"[Patch] Set env_final_reward={reward} for client")
+        _patch_log(f"[Patch] Set env_final_reward={reward} for client")
     else:
-        print(f"[Patch] Warning: Client does not have _dataproto_container")
+        _patch_log(f"[Patch] Warning: Client does not have _dataproto_container")
 
 
 def clear_client_dataprotos(client):
@@ -832,7 +853,7 @@ def clear_client_dataprotos(client):
     if hasattr(client, '_dataproto_container'):
         client._dataproto_container['dataprotos'] = []
         client._dataproto_container['env_final_reward'] = None
-        print(f"[Patch] Cleared dataproto container for client")
+        _patch_log(f"[Patch] Cleared dataproto container for client")
 
 
 def merge_dataprotos_with_reward(dataprotos: List, reward: float):

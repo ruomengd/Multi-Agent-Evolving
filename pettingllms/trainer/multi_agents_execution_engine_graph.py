@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import sys
 import time
 import json
 import traceback
@@ -28,12 +29,17 @@ from pettingllms.utils.openai import (
     create_dummy_model_client,
     init_patch_context,
     patch_all,
+    start_flow_context,
     wrap_autogen_graph,
     get_trajectory_store
 )
 from pettingllms.trainer.core_algo import calculate_reward
 
 logger = logging.getLogger(__name__)
+
+
+def _progress_stamp() -> str:
+    return time.strftime("%H:%M:%S", time.localtime())
 
 
 
@@ -65,7 +71,7 @@ class MultiAgentsExecutionEngineGraph:
     ):
         
         # Initialize timer for this engine
-        self.timer = create_timer("MultiAgentsExecutionEngine")
+        self.timer = create_timer("MultiAgentsExecutionEngine", enable=False)
         self.timer.start("Initializing MultiAgentsExecutionEngine")
 
         self.config = config
@@ -86,7 +92,6 @@ class MultiAgentsExecutionEngineGraph:
         if env_name is None:
             raise ValueError("env.name is not set in the config.env")
             
-        print(f"env_name: {env_name}")
         self.experiment_name = self.config.training.experiment_name
         self.env_name = env_name
         self.env_class = ENV_CLASS_MAPPING[env_name]
@@ -101,9 +106,6 @@ class MultiAgentsExecutionEngineGraph:
         # Calculate num_interacting_agents from agent_configs length
         self.num_interacting_agents = len(self.agent_names)
         self.step_timeout = getattr(self.config.training, 'step_timeout', 150.0)
-        print(f"agent_config_dict keys: {list(self.agent_config_dict.keys())}")
-        print(f"agent_names: {self.agent_names}")
-        print(f"num_interacting_agents: {self.num_interacting_agents}")
         self.server_address_dict = server_address_dict 
         self.chat_parser_dict={}
         self.rollout_latency_dict = {}
@@ -159,30 +161,6 @@ class MultiAgentsExecutionEngineGraph:
             rollout_tracking_dict: Dictionary containing tracking data for all rollouts
                 Structure: {rollout_idx: {'hops': [...], 'env_idx': int, 'rollout_idx': int}}
         """
-        print("\n" + "="*80)
-        print("ROLLOUT TRACKING SUMMARY")
-        print("="*80)
-
-        for rollout_idx, tracking_data in sorted(rollout_tracking_dict.items()):
-            env_idx = tracking_data['env_idx']
-            hops = tracking_data['hops']
-
-            print(f"\nRollout {rollout_idx} (Env {env_idx}):")
-            print(f"  Total hops: {len(hops)}")
-
-            for hop_data in hops:
-                hop_idx = hop_data['hop_idx']
-                agent_name = hop_data['agent_name']
-                policy_name = hop_data['policy_name']
-                dataproto_uuid = hop_data['dataproto_uuid']
-                response_preview = hop_data['response'][:100] if len(hop_data['response']) > 100 else hop_data['response']
-
-                print(f"    Hop {hop_idx}:")
-                print(f"      Agent: {agent_name}")
-                print(f"      Policy: {policy_name}")
-                print(f"      DataProto UUID: {dataproto_uuid}")
-                print(f"      Response preview: {response_preview}...")
-
         # Log to multi_logger for structured logging
         self.multi_logger.log_async_event(
             self.mode, -1, -1, "rollout_tracking_summary",
@@ -208,8 +186,6 @@ class MultiAgentsExecutionEngineGraph:
             }
         )
 
-        print("="*80 + "\n")
-
     def init_agents_and_envs(self,mode="train",step_idx=0):
         self.multi_logger = get_multi_logger(experiment_name=self.experiment_name)
         self.timer.checkpoint("Starting init_agents_and_envs")
@@ -225,19 +201,19 @@ class MultiAgentsExecutionEngineGraph:
             agent_config = self.agent_config_dict.get(agent_name, None)
             # Read enable_thinking from agent config, default to False
             enable_thinking = False
-    if agent_config:
-        # Read from train_llm_config (enable_thinking is same for train and val)
-        train_llm_config = getattr(agent_config, 'train_llm_config', None)
-        if train_llm_config:
-            enable_thinking = train_llm_config.get('enable_thinking', False)
-        else:
-            # Fallback to old format
-            enable_thinking = getattr(agent_config, 'enable_thinking', False)
-            self.agent_enable_thinking[agent_name] = enable_thinking
-            # Read enable_multimodal from agent config, fallback to global setting
-            enable_multimodal = getattr(agent_config, 'enable_multimodal', self.enable_multimodal) if agent_config else self.enable_multimodal
-            self.agent_enable_multimodal[agent_name] = enable_multimodal
-            print(f"Agent '{agent_name}' enable_thinking: {enable_thinking}, enable_multimodal: {enable_multimodal}")
+            if agent_config:
+                # Read from train_llm_config (enable_thinking is same for train and val)
+                train_llm_config = getattr(agent_config, 'train_llm_config', None)
+                if train_llm_config:
+                    enable_thinking = train_llm_config.get('enable_thinking', False)
+                else:
+                    # Fallback to old format
+                    enable_thinking = getattr(agent_config, 'enable_thinking', False)
+                self.agent_enable_thinking[agent_name] = enable_thinking
+
+                # Read enable_multimodal from agent config, fallback to global setting
+                enable_multimodal = getattr(agent_config, 'enable_multimodal', self.enable_multimodal)
+                self.agent_enable_multimodal[agent_name] = enable_multimodal
         
         if mode=="validate":
             self.sample_num=self.config.training.validate_sample_num
@@ -289,6 +265,9 @@ class MultiAgentsExecutionEngineGraph:
         env_idx = rollout_idx // self.sample_num
         env = self.envs[rollout_idx]
 
+        # Bind a fresh per-rollout context for hop counting and trajectory collection.
+        start_flow_context(rollout_idx=rollout_idx, env_idx=env_idx)
+
         # Initialize tracking for this rollout
         if rollout_idx not in rollout_tracking_dict:
             rollout_tracking_dict[rollout_idx] = {
@@ -308,7 +287,14 @@ class MultiAgentsExecutionEngineGraph:
         # and route them to llm_async_generate, collecting trajectories
 
         # Wrap and run the graph with CPU resource hint
-        result_env = await wrapped_graph(env=env, model_client_dict=model_client_dict)
+        result_env = await wrapped_graph(
+            env=env,
+            model_client_dict=model_client_dict,
+            multi_logger=self.multi_logger,
+            mode=self.mode,
+            env_idx=env_idx,
+            rollout_idx=rollout_idx,
+        )
         # After graph execution, collect trajectories from the patch context
         trajectory_store = get_trajectory_store()
 
@@ -319,7 +305,13 @@ class MultiAgentsExecutionEngineGraph:
 
         # First, collect all output_dpr and mark env_final_reward
         collected_trajectories = []
-        for (r_idx, h_idx, policy_name), (output_dpr, response) in trajectory_store.items():
+        for trajectory_key, (output_dpr, response) in trajectory_store.items():
+            if len(trajectory_key) == 4:
+                r_idx, h_idx, policy_name, stored_agent_name = trajectory_key
+            else:
+                r_idx, h_idx, policy_name = trajectory_key
+                stored_agent_name = None
+
             if r_idx != rollout_idx:
                 continue  # Skip trajectories from other rollouts
 
@@ -327,7 +319,7 @@ class MultiAgentsExecutionEngineGraph:
             output_dpr.non_tensor_batch["env_final_reward"] = np.array([final_reward])
 
             # Handle LoRA if enabled
-            agent_name = output_dpr.non_tensor_batch.get("agent_name", [None])[0]
+            agent_name = output_dpr.non_tensor_batch.get("agent_name", [stored_agent_name])[0]
             if self.lora_differ_mode and agent_name in self.agent_lora_mapping:
                 batch_size = output_dpr.batch.batch_size[0] if hasattr(output_dpr.batch, 'batch_size') else len(output_dpr.batch)
                 output_dpr.non_tensor_batch["lora_ids"] = np.array(
@@ -382,7 +374,7 @@ class MultiAgentsExecutionEngineGraph:
         rollout_indices=[]
         for env_idx in env_idx_list:
             rollout_indices.extend(self.env_rollout_mapping[env_idx])
-        concurrent_timer = create_timer("ConcurrentRollouts")
+        concurrent_timer = create_timer("ConcurrentRollouts", enable=False)
         concurrent_timer.start(f"Starting concurrent rollouts for {len(rollout_indices)} rollouts")
 
         concurrent_timer.checkpoint("Building agent address mapping")
@@ -393,9 +385,6 @@ class MultiAgentsExecutionEngineGraph:
             agent_policy_mapping=self.agent_policy_mapping,
             server_address_dict=self.server_address_dict
         )
-
-        for agent_name, address in agent_address_mapping.items():
-            print(f"[Engine] Agent '{agent_name}' mapped to address: {address}")
 
         concurrent_timer.checkpoint("Creating model clients")
 
@@ -460,7 +449,19 @@ class MultiAgentsExecutionEngineGraph:
         completed_count = 0
         failed_count = 0
   
-        task_pbar = tqdm(total=len(tasks), desc="Rollouts", position=1, leave=False)
+        batch_start_time = time.time()
+        progress_stream = sys.stdout
+        progress_is_tty = hasattr(progress_stream, "isatty") and progress_stream.isatty()
+        task_pbar = tqdm(
+            total=len(tasks),
+            desc=f"[{_progress_stamp()}] rollouts",
+            position=0,
+            leave=True,
+            dynamic_ncols=progress_is_tty,
+            disable=False,
+            file=progress_stream,
+            bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}] {postfix}",
+        )
         
         try:
             concurrent_timer.checkpoint("Starting task execution")
@@ -480,12 +481,18 @@ class MultiAgentsExecutionEngineGraph:
                     
                     completed_count += 1
                     task_pbar.update(1)
-                    task_pbar.set_description(f"Rollouts ({completed_count}/{len(tasks)}, {failed_count} failed)")
+                    task_pbar.set_description_str(f"[{_progress_stamp()}] rollouts")
+                    task_pbar.set_postfix_str(
+                        f"ok={completed_count} fail={failed_count} total={time.time() - batch_start_time:.1f}s"
+                    )
                     
                 except Exception as e:
                     failed_count += 1
                     task_pbar.update(1)
-                    task_pbar.set_description(f"Rollouts ({completed_count}/{len(tasks)}, {failed_count} failed)")
+                    task_pbar.set_description_str(f"[{_progress_stamp()}] rollouts")
+                    task_pbar.set_postfix_str(
+                        f"ok={completed_count} fail={failed_count} total={time.time() - batch_start_time:.1f}s"
+                    )
                     
                     self.multi_logger.log_async_event(
                         self.mode, -1, -1, "task_error",
@@ -559,4 +566,3 @@ class MultiAgentsExecutionEngineGraph:
         self.rollout_tracking_dict = rollout_tracking_dict
 
         return aggregated_results
-
