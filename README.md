@@ -55,6 +55,7 @@ bash scripts/evaluate/mas_graph/evaluate_L1.sh
 Key knobs in `scripts/evaluate/mas_graph/evaluate_L1.sh`:
 
 - `BASE_MODEL`: base model path, for example `Qwen/Qwen3-7B`
+- `TP_SIZE`: tensor parallel size used when launching vLLM and passed into rollout config
 - `TOTAL_ROLE_TOKEN_BUDGET`: total generation budget shared across roles
 - `VERIFIER_TOKEN_NUM`: fixed verifier budget
 - `ROLE_TOKEN_PLAN`: planner / solver / revise / critique allocation plan
@@ -98,30 +99,30 @@ For convenience, there are also one-plan wrapper scripts:
 - `scripts/evaluate/mas_graph/run_model_budget_plan_sweep_cr_dominant.sh`
 
 ```bash
-bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_no_planner.sh
-bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_no_critique.sh
-bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_no_revise.sh
-bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_no_cr.sh
-bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_only_solver.sh
-bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_uniform.sh
-bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_planner_dominant.sh
-bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_solver_dominant.sh
-bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_cr_dominant.sh
+TP_SIZE=1 bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_no_planner.sh
+TP_SIZE=1 bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_no_critique.sh
+TP_SIZE=1 bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_no_revise.sh
+TP_SIZE=1 bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_no_cr.sh
+TP_SIZE=1 bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_only_solver.sh
+TP_SIZE=1 bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_uniform.sh
+TP_SIZE=1 bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_planner_dominant.sh
+TP_SIZE=1 bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_solver_dominant.sh
+TP_SIZE=1 bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_cr_dominant.sh
 ```
 
 
 Demo commands to quickly test each wrapper with `Qwen/Qwen3-1.7B` on `AIME24`:
 
 ```bash
-BASE_MODELS_CSV="Qwen/Qwen3-1.7B" BENCHMARKS_CSV="AIME24" bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_no_planner.sh
-BASE_MODELS_CSV="Qwen/Qwen3-1.7B" BENCHMARKS_CSV="AIME24" bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_no_critique.sh
-BASE_MODELS_CSV="Qwen/Qwen3-1.7B" BENCHMARKS_CSV="AIME24" bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_no_revise.sh
-BASE_MODELS_CSV="Qwen/Qwen3-1.7B" BENCHMARKS_CSV="AIME24" bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_no_cr.sh
-BASE_MODELS_CSV="Qwen/Qwen3-1.7B" BENCHMARKS_CSV="AIME24" bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_only_solver.sh
-BASE_MODELS_CSV="Qwen/Qwen3-1.7B" BENCHMARKS_CSV="AIME24" bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_uniform.sh
-BASE_MODELS_CSV="Qwen/Qwen3-1.7B" BENCHMARKS_CSV="AIME24" bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_planner_dominant.sh
-BASE_MODELS_CSV="Qwen/Qwen3-1.7B" BENCHMARKS_CSV="AIME24" bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_solver_dominant.sh
-BASE_MODELS_CSV="Qwen/Qwen3-1.7B" BENCHMARKS_CSV="AIME24" bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_cr_dominant.sh
+TP_SIZE=1 BASE_MODELS_CSV="Qwen/Qwen3-1.7B" BENCHMARKS_CSV="AIME24" bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_no_planner.sh
+TP_SIZE=1 BASE_MODELS_CSV="Qwen/Qwen3-1.7B" BENCHMARKS_CSV="AIME24" bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_no_critique.sh
+TP_SIZE=1 BASE_MODELS_CSV="Qwen/Qwen3-1.7B" BENCHMARKS_CSV="AIME24" bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_no_revise.sh
+TP_SIZE=1 BASE_MODELS_CSV="Qwen/Qwen3-1.7B" BENCHMARKS_CSV="AIME24" bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_no_cr.sh
+TP_SIZE=1 BASE_MODELS_CSV="Qwen/Qwen3-1.7B" BENCHMARKS_CSV="AIME24" bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_only_solver.sh
+TP_SIZE=1 BASE_MODELS_CSV="Qwen/Qwen3-1.7B" BENCHMARKS_CSV="AIME24" bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_uniform.sh
+TP_SIZE=1 BASE_MODELS_CSV="Qwen/Qwen3-1.7B" BENCHMARKS_CSV="AIME24" bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_planner_dominant.sh
+TP_SIZE=1 BASE_MODELS_CSV="Qwen/Qwen3-1.7B" BENCHMARKS_CSV="AIME24" bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_solver_dominant.sh
+TP_SIZE=1 BASE_MODELS_CSV="Qwen/Qwen3-1.7B" BENCHMARKS_CSV="AIME24" bash scripts/evaluate/mas_graph/run_model_budget_plan_sweep_cr_dominant.sh
 ```
 
 Each wrapper fixes one `ROLE_TOKEN_PLAN` and still sweeps:
