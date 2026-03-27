@@ -87,7 +87,7 @@ for base_model in "${BASE_MODELS[@]}"; do
             log_msg "=================================================="
 
             (
-                cd /home/ruomeng/PettingLLMs
+                # cd /home/ruomeng/PettingLLMs
                 BASE_MODEL="${base_model}" \
                 TOTAL_ROLE_TOKEN_BUDGET="${total_budget}" \
                 ROLE_TOKEN_PLAN="${ROLE_TOKEN_PLAN}" \
