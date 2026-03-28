@@ -1,0 +1,304 @@
+Sweep script: /storage/home/bsunmiracle/repos/Multi-Agent-Evolving/scripts/evaluate/mas_graph/evaluate_L1.sh
+Sweep log: /storage/home/bsunmiracle/repos/Multi-Agent-Evolving/scripts/evaluate/mas_graph/../../../logs/mas_graph_sweeps/mas_graph_sweep_only_solver_03-28_10-51-43.log
+Plan name: only_solver
+ROLE_TOKEN_PLAN=0/1.0/0/0
+TP_SIZE=1
+Total runs: 3
+
+==================================================
+Run 1/3
+  BENCHMARK=AIME24
+  BASE_MODEL=Qwen/Qwen3-1.7B
+  TOTAL_ROLE_TOKEN_BUDGET=4096
+  ROLE_TOKEN_PLAN=0/1.0/0/0
+  PLAN_NAME=only_solver
+  EXPERIMENT_NAME=mas_graph_sweep_only_solver_AIME24_Qwen_Qwen3-1_7B_b4096_p0_1_0_0_0
+  FORCE_GENERATE=false
+  TP_SIZE=1
+==================================================
+[10:52:48] rollouts:   0%|          | 0/30 [00:00<?] ---------- TextMessage (user) ----------
+[10:52:48] rollouts:   3%|▎         | 1/30 [00:01<00:42] 
+[10:52:49] rollouts:   3%|▎         | 1/30 [00:01<00:42] 
+[10:52:49] rollouts:   3%|▎         | 1/30 [00:01<00:42] , ok=1 fail=0 total=1.5s
+[10:52:50] rollouts:   7%|▋         | 2/30 [00:01<00:40] , ok=1 fail=0 total=1.5s
+[10:52:50] rollouts:   7%|▋         | 2/30 [00:01<00:40] , ok=2 fail=0 total=1.5s
+[10:52:50] rollouts:  10%|█         | 3/30 [00:01<00:11] , ok=2 fail=0 total=1.5s
+[10:52:50] rollouts:  10%|█         | 3/30 [00:01<00:11] , ok=2 fail=0 total=1.5s
+[10:52:50] rollouts:  10%|█         | 3/30 [00:01<00:11] , ok=3 fail=0 total=1.6s---------- TextMessage (planner) ----------
+[10:52:52] rollouts:  13%|█▎        | 4/30 [00:04<00:11] , ok=3 fail=0 total=1.6s
+[10:52:52] rollouts:  13%|█▎        | 4/30 [00:04<00:11] , ok=4 fail=0 total=4.2s---------- TextMessage (solver) ----------
+[10:52:52] rollouts:  17%|█▋        | 5/30 [00:04<00:26] , ok=4 fail=0 total=4.2s
+[10:52:53] rollouts:  17%|█▋        | 5/30 [00:04<00:26] , ok=4 fail=0 total=4.2s
+[10:52:53] rollouts:  17%|█▋        | 5/30 [00:04<00:26] , ok=5 fail=0 total=4.9s---------- TextMessage (verifier) ----------
+[10:52:53] rollouts:  20%|██        | 6/30 [00:05<00:19] , ok=5 fail=0 total=4.9s
+[10:52:53] rollouts:  20%|██        | 6/30 [00:05<00:19] , ok=5 fail=0 total=4.9s
+[10:52:53] rollouts:  20%|██        | 6/30 [00:05<00:19] , ok=6 fail=0 total=5.1s---------- TextMessage (verifier) ----------
+[10:52:53] rollouts:  23%|██▎       | 7/30 [00:05<00:14] , ok=6 fail=0 total=5.1s
+[10:52:53] rollouts:  23%|██▎       | 7/30 [00:05<00:14] , ok=6 fail=0 total=5.1s
+[10:52:53] rollouts:  23%|██▎       | 7/30 [00:05<00:14] , ok=7 fail=0 total=5.2s---------- TextMessage (solver) ----------
+[10:52:53] rollouts:  27%|██▋       | 8/30 [00:05<00:11] , ok=7 fail=0 total=5.2s
+[10:52:53] rollouts:  27%|██▋       | 8/30 [00:05<00:11] , ok=7 fail=0 total=5.2s
+[10:52:53] rollouts:  27%|██▋       | 8/30 [00:05<00:11] , ok=8 fail=0 total=5.4s---------- TextMessage (revise) ----------
+[10:52:53] rollouts:  30%|███       | 9/30 [00:05<00:09] , ok=8 fail=0 total=5.4s
+[10:52:54] rollouts:  30%|███       | 9/30 [00:05<00:09] , ok=8 fail=0 total=5.4s
+[10:52:54] rollouts:  30%|███       | 9/30 [00:05<00:09] , ok=9 fail=0 total=5.7s---------- TextMessage (critique) ----------
+[10:52:54] rollouts:  33%|███▎      | 10/30 [00:05<00:07] , ok=9 fail=0 total=5.7s
+[10:52:54] rollouts:  33%|███▎      | 10/30 [00:05<00:07] , ok=9 fail=0 total=5.7s
+[10:52:54] rollouts:  33%|███▎      | 10/30 [00:05<00:07] , ok=10 fail=0 total=6.0s---------- TextMessage (verifier) ----------
+[10:52:54] rollouts:  37%|███▋      | 11/30 [00:06<00:05] , ok=10 fail=0 total=6.0s
+[10:52:54] rollouts:  37%|███▋      | 11/30 [00:06<00:05] , ok=10 fail=0 total=6.0s
+[10:52:54] rollouts:  37%|███▋      | 11/30 [00:06<00:05] , ok=11 fail=0 total=6.1s---------- TextMessage (verifier) ----------
+[10:52:54] rollouts:  40%|████      | 12/30 [00:06<00:05] , ok=11 fail=0 total=6.1s
+[10:52:54] rollouts:  40%|████      | 12/30 [00:06<00:05] , ok=12 fail=0 total=6.1s---------- TextMessage (solver) ----------
+[10:52:54] rollouts:  43%|████▎     | 13/30 [00:07<00:07] , ok=12 fail=0 total=6.1s
+[10:52:55] rollouts:  43%|████▎     | 13/30 [00:07<00:07] , ok=12 fail=0 total=6.1s
+[10:52:55] rollouts:  43%|████▎     | 13/30 [00:07<00:07] , ok=13 fail=0 total=7.2s---------- TextMessage (verifier) ----------
+[10:52:55] rollouts:  47%|████▋     | 14/30 [00:07<00:05] , ok=13 fail=0 total=7.2s
+[10:52:55] rollouts:  47%|████▋     | 14/30 [00:07<00:05] , ok=13 fail=0 total=7.2s
+[10:52:55] rollouts:  47%|████▋     | 14/30 [00:07<00:05] , ok=14 fail=0 total=7.4s---------- TextMessage (verifier) ----------
+[10:52:55] rollouts:  50%|█████     | 15/30 [00:07<00:05] , ok=14 fail=0 total=7.4s
+[10:52:56] rollouts:  50%|█████     | 15/30 [00:07<00:05] , ok=14 fail=0 total=7.4s
+[10:52:56] rollouts:  50%|█████     | 15/30 [00:07<00:05] , ok=15 fail=0 total=7.7s---------- TextMessage (solver) ----------
+[10:52:56] rollouts:  53%|█████▎    | 16/30 [00:08<00:06] , ok=15 fail=0 total=7.7s
+[10:52:56] rollouts:  53%|█████▎    | 16/30 [00:08<00:06] , ok=15 fail=0 total=7.7s
+[10:52:56] rollouts:  53%|█████▎    | 16/30 [00:08<00:06] , ok=16 fail=0 total=8.4s---------- TextMessage (verifier) ----------
+[10:52:56] rollouts:  57%|█████▋    | 17/30 [00:08<00:05] , ok=16 fail=0 total=8.4s
+[10:52:57] rollouts:  57%|█████▋    | 17/30 [00:08<00:05] , ok=16 fail=0 total=8.4s
+[10:52:57] rollouts:  57%|█████▋    | 17/30 [00:08<00:05] , ok=17 fail=0 total=8.8s---------- TextMessage (solver) ----------
+[10:52:57] rollouts:  60%|██████    | 18/30 [00:09<00:04] , ok=17 fail=0 total=8.8s
+[10:52:57] rollouts:  60%|██████    | 18/30 [00:09<00:04] , ok=17 fail=0 total=8.8s
+[10:52:57] rollouts:  60%|██████    | 18/30 [00:09<00:04] , ok=18 fail=0 total=9.1s---------- TextMessage (verifier) ----------
+[10:52:57] rollouts:  63%|██████▎   | 19/30 [00:09<00:03] , ok=18 fail=0 total=9.1s
+[10:52:57] rollouts:  63%|██████▎   | 19/30 [00:09<00:03] , ok=18 fail=0 total=9.1s
+[10:52:57] rollouts:  63%|██████▎   | 19/30 [00:09<00:03] , ok=19 fail=0 total=9.3s---------- TextMessage (verifier) ----------
+[10:52:57] rollouts:  67%|██████▋   | 20/30 [00:10<00:05] , ok=19 fail=0 total=9.3s
+[10:52:58] rollouts:  67%|██████▋   | 20/30 [00:10<00:05] , ok=19 fail=0 total=9.3s
+[10:52:58] rollouts:  67%|██████▋   | 20/30 [00:10<00:05] , ok=20 fail=0 total=10.5s---------- TextMessage (solver) ----------
+[10:52:58] rollouts:  70%|███████   | 21/30 [00:11<00:07] , ok=20 fail=0 total=10.5s
+[10:53:00] rollouts:  70%|███████   | 21/30 [00:11<00:07] , ok=20 fail=0 total=10.5s
+[10:53:00] rollouts:  70%|███████   | 21/30 [00:11<00:07] , ok=21 fail=0 total=11.7s---------- TextMessage (solver) ----------
+[10:53:00] rollouts:  73%|███████▎  | 22/30 [00:12<00:05] , ok=21 fail=0 total=11.7s
+[10:53:00] rollouts:  73%|███████▎  | 22/30 [00:12<00:05] , ok=21 fail=0 total=11.7s
+[10:53:00] rollouts:  73%|███████▎  | 22/30 [00:12<00:05] , ok=22 fail=0 total=12.1s---------- TextMessage (solver) ----------
+[10:53:00] rollouts:  77%|███████▋  | 23/30 [00:12<00:05] , ok=22 fail=0 total=12.1s
+[10:53:01] rollouts:  77%|███████▋  | 23/30 [00:12<00:05] , ok=22 fail=0 total=12.1s
+[10:53:01] rollouts:  77%|███████▋  | 23/30 [00:12<00:05] , ok=23 fail=0 total=13.0s---------- TextMessage (solver) ----------
+[10:53:01] rollouts:  80%|████████  | 24/30 [00:15<00:07] , ok=23 fail=0 total=13.0s
+[10:53:04] rollouts:  80%|████████  | 24/30 [00:15<00:07] , ok=23 fail=0 total=13.0s
+[10:53:04] rollouts:  80%|████████  | 24/30 [00:15<00:07] , ok=24 fail=0 total=15.6s---------- TextMessage (solver) ----------
+[10:53:04] rollouts:  83%|████████▎ | 25/30 [00:16<00:06] , ok=24 fail=0 total=15.6s
+[10:53:05] rollouts:  83%|████████▎ | 25/30 [00:16<00:06] , ok=24 fail=0 total=15.6s
+[10:53:05] rollouts:  83%|████████▎ | 25/30 [00:16<00:06] , ok=25 fail=0 total=16.6s---------- TextMessage (verifier) ----------
+[10:53:05] rollouts:  87%|████████▋ | 26/30 [00:16<00:03] , ok=25 fail=0 total=16.6s
+[10:53:05] rollouts:  87%|████████▋ | 26/30 [00:16<00:03] , ok=25 fail=0 total=16.6s
+[10:53:05] rollouts:  87%|████████▋ | 26/30 [00:16<00:03] , ok=26 fail=0 total=16.8s---------- TextMessage (solver) ----------
+[10:53:05] rollouts:  90%|█████████ | 27/30 [00:17<00:02] , ok=26 fail=0 total=16.8s
+[10:53:06] rollouts:  90%|█████████ | 27/30 [00:17<00:02] , ok=26 fail=0 total=16.8s
+[10:53:06] rollouts:  90%|█████████ | 27/30 [00:17<00:02] , ok=27 fail=0 total=17.7s---------- TextMessage (solver) ----------
+[10:53:06] rollouts:  93%|█████████▎| 28/30 [00:19<00:02] , ok=27 fail=0 total=17.7s
+[10:53:08] rollouts:  93%|█████████▎| 28/30 [00:19<00:02] , ok=27 fail=0 total=17.7s
+[10:53:08] rollouts:  93%|█████████▎| 28/30 [00:19<00:02] , ok=28 fail=0 total=19.8s---------- TextMessage (solver) ----------
+[10:53:08] rollouts:  97%|█████████▋| 29/30 [00:22<00:01] , ok=28 fail=0 total=19.8s
+[10:53:10] rollouts:  97%|█████████▋| 29/30 [00:22<00:01] , ok=28 fail=0 total=19.8s
+[10:53:10] rollouts:  97%|█████████▋| 29/30 [00:22<00:01] , ok=29 fail=0 total=22.3s---------- TextMessage (solver) ----------
+[10:53:10] rollouts: 100%|██████████| 30/30 [00:26<00:00] , ok=29 fail=0 total=22.3s
+[10:53:15] rollouts: 100%|██████████| 30/30 [00:26<00:00] , ok=29 fail=0 total=22.3s
+[10:53:15] rollouts: 100%|██████████| 30/30 [00:26<00:00] , ok=30 fail=0 total=26.9s
+[10:53:15] rollouts: 100%|██████████| 30/30 [00:26<00:00] , ok=30 fail=0 total=26.9s
+
+==================================================
+Run 2/3
+  BENCHMARK=AIME24
+  BASE_MODEL=Qwen/Qwen3-1.7B
+  TOTAL_ROLE_TOKEN_BUDGET=8192
+  ROLE_TOKEN_PLAN=0/1.0/0/0
+  PLAN_NAME=only_solver
+  EXPERIMENT_NAME=mas_graph_sweep_only_solver_AIME24_Qwen_Qwen3-1_7B_b8192_p0_1_0_0_0
+  FORCE_GENERATE=false
+  TP_SIZE=1
+==================================================
+[10:54:24] rollouts:   0%|          | 0/30 [00:00<?] ---------- TextMessage (user) ----------
+[10:54:24] rollouts:   3%|▎         | 1/30 [00:01<00:43] 
+[10:54:26] rollouts:   3%|▎         | 1/30 [00:01<00:43] 
+[10:54:26] rollouts:   3%|▎         | 1/30 [00:01<00:43] , ok=1 fail=0 total=1.5s
+[10:54:26] rollouts:   7%|▋         | 2/30 [00:01<00:42] , ok=1 fail=0 total=1.5s
+[10:54:26] rollouts:   7%|▋         | 2/30 [00:01<00:42] , ok=2 fail=0 total=1.6s---------- TextMessage (verifier) ----------
+[10:54:26] rollouts:  10%|█         | 3/30 [00:01<00:11] , ok=2 fail=0 total=1.6s
+[10:54:26] rollouts:  10%|█         | 3/30 [00:01<00:11] , ok=2 fail=0 total=1.6s
+[10:54:26] rollouts:  10%|█         | 3/30 [00:01<00:11] , ok=3 fail=0 total=1.6s---------- TextMessage (planner) ----------
+[10:54:28] rollouts:  13%|█▎        | 4/30 [00:03<00:11] , ok=3 fail=0 total=1.6s
+[10:54:28] rollouts:  13%|█▎        | 4/30 [00:03<00:11] , ok=4 fail=0 total=3.8s---------- TextMessage (solver) ----------
+[10:54:28] rollouts:  17%|█▋        | 5/30 [00:04<00:25] , ok=4 fail=0 total=3.8s
+[10:54:29] rollouts:  17%|█▋        | 5/30 [00:04<00:25] , ok=4 fail=0 total=3.8s
+[10:54:29] rollouts:  17%|█▋        | 5/30 [00:04<00:25] , ok=5 fail=0 total=4.7s---------- TextMessage (verifier) ----------
+[10:54:29] rollouts:  20%|██        | 6/30 [00:04<00:24] , ok=5 fail=0 total=4.7s
+[10:54:29] rollouts:  20%|██        | 6/30 [00:04<00:24] , ok=6 fail=0 total=4.7s---------- TextMessage (verifier) ----------
+[10:54:29] rollouts:  23%|██▎       | 7/30 [00:04<00:13] , ok=6 fail=0 total=4.7s
+[10:54:29] rollouts:  23%|██▎       | 7/30 [00:04<00:13] , ok=6 fail=0 total=4.7s
+[10:54:29] rollouts:  23%|██▎       | 7/30 [00:04<00:13] , ok=7 fail=0 total=4.8s---------- TextMessage (planner) ----------
+[10:54:29] rollouts:  27%|██▋       | 8/30 [00:04<00:13] , ok=7 fail=0 total=4.8s
+[10:54:29] rollouts:  27%|██▋       | 8/30 [00:04<00:13] , ok=8 fail=0 total=4.9s---------- TextMessage (verifier) ----------
+[10:54:29] rollouts:  30%|███       | 9/30 [00:05<00:08] , ok=8 fail=0 total=4.9s
+[10:54:29] rollouts:  30%|███       | 9/30 [00:05<00:08] , ok=8 fail=0 total=4.9s
+[10:54:29] rollouts:  30%|███       | 9/30 [00:05<00:08] , ok=9 fail=0 total=5.1s---------- TextMessage (verifier) ----------
+[10:54:30] rollouts:  33%|███▎      | 10/30 [00:05<00:08] , ok=9 fail=0 total=5.1s
+[10:54:30] rollouts:  33%|███▎      | 10/30 [00:05<00:08] , ok=10 fail=0 total=5.3s---------- TextMessage (solver) ----------
+[10:54:30] rollouts:  37%|███▋      | 11/30 [00:06<00:08] , ok=10 fail=0 total=5.3s
+[10:54:30] rollouts:  37%|███▋      | 11/30 [00:06<00:08] , ok=10 fail=0 total=5.3s
+[10:54:30] rollouts:  37%|███▋      | 11/30 [00:06<00:08] , ok=11 fail=0 total=6.2s---------- TextMessage (verifier) ----------
+[10:54:30] rollouts:  40%|████      | 12/30 [00:06<00:07] , ok=11 fail=0 total=6.2s
+[10:54:31] rollouts:  40%|████      | 12/30 [00:06<00:07] , ok=11 fail=0 total=6.2s
+[10:54:31] rollouts:  40%|████      | 12/30 [00:06<00:07] , ok=12 fail=0 total=6.3s---------- TextMessage (solver) ----------
+[10:54:31] rollouts:  43%|████▎     | 13/30 [00:07<00:08] , ok=12 fail=0 total=6.3s
+[10:54:31] rollouts:  43%|████▎     | 13/30 [00:07<00:08] , ok=12 fail=0 total=6.3s
+[10:54:31] rollouts:  43%|████▎     | 13/30 [00:07<00:08] , ok=13 fail=0 total=7.1s---------- TextMessage (solver) ----------
+[10:54:31] rollouts:  47%|████▋     | 14/30 [00:07<00:07] , ok=13 fail=0 total=7.1s
+[10:54:32] rollouts:  47%|████▋     | 14/30 [00:07<00:07] , ok=13 fail=0 total=7.1s
+[10:54:32] rollouts:  47%|████▋     | 14/30 [00:07<00:07] , ok=14 fail=0 total=7.4s---------- TextMessage (solver) ----------
+[10:54:32] rollouts:  50%|█████     | 15/30 [00:07<00:05] , ok=14 fail=0 total=7.4s
+[10:54:32] rollouts:  50%|█████     | 15/30 [00:07<00:05] , ok=14 fail=0 total=7.4s
+[10:54:32] rollouts:  50%|█████     | 15/30 [00:07<00:05] , ok=15 fail=0 total=7.6s---------- TextMessage (solver) ----------
+[10:54:32] rollouts:  53%|█████▎    | 16/30 [00:08<00:06] , ok=15 fail=0 total=7.6s
+[10:54:33] rollouts:  53%|█████▎    | 16/30 [00:08<00:06] , ok=15 fail=0 total=7.6s
+[10:54:33] rollouts:  53%|█████▎    | 16/30 [00:08<00:06] , ok=16 fail=0 total=8.2s---------- TextMessage (solver) ----------
+[10:54:33] rollouts:  57%|█████▋    | 17/30 [00:08<00:04] , ok=16 fail=0 total=8.2s
+[10:54:33] rollouts:  57%|█████▋    | 17/30 [00:08<00:04] , ok=16 fail=0 total=8.2s
+[10:54:33] rollouts:  57%|█████▋    | 17/30 [00:08<00:04] , ok=17 fail=0 total=8.3s---------- TextMessage (critique) ----------
+[10:54:33] rollouts:  60%|██████    | 18/30 [00:08<00:04] , ok=17 fail=0 total=8.3s
+[10:54:33] rollouts:  60%|██████    | 18/30 [00:08<00:04] , ok=18 fail=0 total=8.4s---------- TextMessage (verifier) ----------
+[10:54:33] rollouts:  63%|██████▎   | 19/30 [00:08<00:03] , ok=18 fail=0 total=8.4s
+[10:54:33] rollouts:  63%|██████▎   | 19/30 [00:08<00:03] , ok=18 fail=0 total=8.4s
+[10:54:33] rollouts:  63%|██████▎   | 19/30 [00:08<00:03] , ok=19 fail=0 total=8.7s---------- TextMessage (verifier) ----------
+[10:54:33] rollouts:  67%|██████▋   | 20/30 [00:09<00:03] , ok=19 fail=0 total=8.7s
+[10:54:34] rollouts:  67%|██████▋   | 20/30 [00:09<00:03] , ok=19 fail=0 total=8.7s
+[10:54:34] rollouts:  67%|██████▋   | 20/30 [00:09<00:03] , ok=20 fail=0 total=9.2s---------- TextMessage (verifier) ----------
+[10:54:34] rollouts:  70%|███████   | 21/30 [00:09<00:03] , ok=20 fail=0 total=9.2s
+[10:54:34] rollouts:  70%|███████   | 21/30 [00:09<00:03] , ok=20 fail=0 total=9.2s
+[10:54:34] rollouts:  70%|███████   | 21/30 [00:09<00:03] , ok=21 fail=0 total=9.7s---------- TextMessage (solver) ----------
+[10:54:34] rollouts:  73%|███████▎  | 22/30 [00:10<00:03] , ok=21 fail=0 total=9.7s
+[10:54:35] rollouts:  73%|███████▎  | 22/30 [00:10<00:03] , ok=21 fail=0 total=9.7s
+[10:54:35] rollouts:  73%|███████▎  | 22/30 [00:10<00:03] , ok=22 fail=0 total=10.2s---------- TextMessage (verifier) ----------
+[10:54:35] rollouts:  77%|███████▋  | 23/30 [00:10<00:02] , ok=22 fail=0 total=10.2s
+[10:54:35] rollouts:  77%|███████▋  | 23/30 [00:10<00:02] , ok=23 fail=0 total=10.2s---------- TextMessage (verifier) ----------
+[10:54:35] rollouts:  80%|████████  | 24/30 [00:10<00:01] , ok=23 fail=0 total=10.2s
+[10:54:35] rollouts:  80%|████████  | 24/30 [00:10<00:01] , ok=23 fail=0 total=10.2s
+[10:54:35] rollouts:  80%|████████  | 24/30 [00:10<00:01] , ok=24 fail=0 total=10.4s---------- TextMessage (solver) ----------
+[10:54:35] rollouts:  83%|████████▎ | 25/30 [00:11<00:02] , ok=24 fail=0 total=10.4s
+[10:54:36] rollouts:  83%|████████▎ | 25/30 [00:11<00:02] , ok=24 fail=0 total=10.4s
+[10:54:36] rollouts:  83%|████████▎ | 25/30 [00:11<00:02] , ok=25 fail=0 total=11.9s---------- TextMessage (solver) ----------
+[10:54:36] rollouts:  87%|████████▋ | 26/30 [00:20<00:09] , ok=25 fail=0 total=11.9s
+[10:54:44] rollouts:  87%|████████▋ | 26/30 [00:20<00:09] , ok=25 fail=0 total=11.9s
+[10:54:44] rollouts:  87%|████████▋ | 26/30 [00:20<00:09] , ok=26 fail=0 total=20.0s---------- TextMessage (solver) ----------
+[10:54:44] rollouts:  90%|█████████ | 27/30 [00:36<00:18] , ok=26 fail=0 total=20.0s
+[10:55:01] rollouts:  90%|█████████ | 27/30 [00:36<00:18] , ok=26 fail=0 total=20.0s
+[10:55:01] rollouts:  90%|█████████ | 27/30 [00:36<00:18] , ok=27 fail=0 total=37.0s---------- TextMessage (verifier) ----------
+[10:55:01] rollouts:  93%|█████████▎| 28/30 [00:37<00:09] , ok=27 fail=0 total=37.0s
+[10:55:02] rollouts:  93%|█████████▎| 28/30 [00:37<00:09] , ok=27 fail=0 total=37.0s
+[10:55:02] rollouts:  93%|█████████▎| 28/30 [00:37<00:09] , ok=28 fail=0 total=37.4s---------- TextMessage (solver) ----------
+[10:55:02] rollouts:  97%|█████████▋| 29/30 [00:42<00:04] , ok=28 fail=0 total=37.4s
+[10:55:07] rollouts:  97%|█████████▋| 29/30 [00:42<00:04] , ok=28 fail=0 total=37.4s
+[10:55:07] rollouts:  97%|█████████▋| 29/30 [00:42<00:04] , ok=29 fail=0 total=42.8s---------- TextMessage (solver) ----------
+[10:55:07] rollouts: 100%|██████████| 30/30 [00:43<00:00] , ok=29 fail=0 total=42.8s
+[10:55:08] rollouts: 100%|██████████| 30/30 [00:43<00:00] , ok=29 fail=0 total=42.8s
+[10:55:08] rollouts: 100%|██████████| 30/30 [00:43<00:00] , ok=30 fail=0 total=43.5s
+[10:55:08] rollouts: 100%|██████████| 30/30 [00:43<00:00] , ok=30 fail=0 total=43.5s
+
+==================================================
+Run 3/3
+  BENCHMARK=AIME24
+  BASE_MODEL=Qwen/Qwen3-1.7B
+  TOTAL_ROLE_TOKEN_BUDGET=16384
+  ROLE_TOKEN_PLAN=0/1.0/0/0
+  PLAN_NAME=only_solver
+  EXPERIMENT_NAME=mas_graph_sweep_only_solver_AIME24_Qwen_Qwen3-1_7B_b16384_p0_1_0_0_0
+  FORCE_GENERATE=false
+  TP_SIZE=1
+==================================================
+[10:56:15] rollouts:   0%|          | 0/30 [00:00<?] ---------- TextMessage (user) ----------
+[10:56:15] rollouts:   3%|▎         | 1/30 [00:01<00:45] 
+[10:56:17] rollouts:   3%|▎         | 1/30 [00:01<00:45] 
+[10:56:17] rollouts:   3%|▎         | 1/30 [00:01<00:45] , ok=1 fail=0 total=1.6s---------- TextMessage (verifier) ----------
+[10:56:17] rollouts:   7%|▋         | 2/30 [00:02<00:26] , ok=1 fail=0 total=1.6s
+[10:56:17] rollouts:   7%|▋         | 2/30 [00:02<00:26] , ok=1 fail=0 total=1.6s
+[10:56:17] rollouts:   7%|▋         | 2/30 [00:02<00:26] , ok=2 fail=0 total=2.1s---------- TextMessage (solver) ----------
+[10:56:17] rollouts:  10%|█         | 3/30 [00:04<00:42] , ok=2 fail=0 total=2.1s
+[10:56:20] rollouts:  10%|█         | 3/30 [00:04<00:42] , ok=2 fail=0 total=2.1s
+[10:56:20] rollouts:  10%|█         | 3/30 [00:04<00:42] , ok=3 fail=0 total=4.4s---------- TextMessage (verifier) ----------
+[10:56:20] rollouts:  13%|█▎        | 4/30 [00:04<00:27] , ok=3 fail=0 total=4.4s
+[10:56:20] rollouts:  13%|█▎        | 4/30 [00:04<00:27] , ok=3 fail=0 total=4.4s
+[10:56:20] rollouts:  13%|█▎        | 4/30 [00:04<00:27] , ok=4 fail=0 total=4.7s---------- TextMessage (solver) ----------
+[10:56:20] rollouts:  17%|█▋        | 5/30 [00:05<00:27] , ok=4 fail=0 total=4.7s
+[10:56:21] rollouts:  17%|█▋        | 5/30 [00:05<00:27] , ok=4 fail=0 total=4.7s
+[10:56:21] rollouts:  17%|█▋        | 5/30 [00:05<00:27] , ok=5 fail=0 total=5.8s---------- TextMessage (critique) ----------
+[10:56:21] rollouts:  20%|██        | 6/30 [00:06<00:20] , ok=5 fail=0 total=5.8s
+[10:56:22] rollouts:  20%|██        | 6/30 [00:06<00:20] , ok=5 fail=0 total=5.8s
+[10:56:22] rollouts:  20%|██        | 6/30 [00:06<00:20] , ok=6 fail=0 total=6.2s---------- TextMessage (critique) ----------
+[10:56:22] rollouts:  23%|██▎       | 7/30 [00:06<00:14] , ok=6 fail=0 total=6.2s
+[10:56:22] rollouts:  23%|██▎       | 7/30 [00:06<00:14] , ok=6 fail=0 total=6.2s
+[10:56:22] rollouts:  23%|██▎       | 7/30 [00:06<00:14] , ok=7 fail=0 total=6.4s---------- TextMessage (verifier) ----------
+[10:56:22] rollouts:  27%|██▋       | 8/30 [00:06<00:14] , ok=7 fail=0 total=6.4s
+[10:56:22] rollouts:  27%|██▋       | 8/30 [00:06<00:14] , ok=8 fail=0 total=6.5s---------- TextMessage (revise) ----------
+[10:56:22] rollouts:  30%|███       | 9/30 [00:06<00:08] , ok=8 fail=0 total=6.5s
+[10:56:22] rollouts:  30%|███       | 9/30 [00:06<00:08] , ok=8 fail=0 total=6.5s
+[10:56:22] rollouts:  30%|███       | 9/30 [00:06<00:08] , ok=9 fail=0 total=6.7s---------- TextMessage (verifier) ----------
+[10:56:22] rollouts:  33%|███▎      | 10/30 [00:06<00:08] , ok=9 fail=0 total=6.7s
+[10:56:22] rollouts:  33%|███▎      | 10/30 [00:06<00:08] , ok=10 fail=0 total=6.8s---------- TextMessage (critique) ----------
+[10:56:22] rollouts:  37%|███▋      | 11/30 [00:07<00:06] , ok=10 fail=0 total=6.8s
+[10:56:22] rollouts:  37%|███▋      | 11/30 [00:07<00:06] , ok=10 fail=0 total=6.8s
+[10:56:22] rollouts:  37%|███▋      | 11/30 [00:07<00:06] , ok=11 fail=0 total=7.1s---------- TextMessage (solver) ----------
+[10:56:22] rollouts:  40%|████      | 12/30 [00:07<00:05] , ok=11 fail=0 total=7.1s
+[10:56:23] rollouts:  40%|████      | 12/30 [00:07<00:05] , ok=11 fail=0 total=7.1s
+[10:56:23] rollouts:  40%|████      | 12/30 [00:07<00:05] , ok=12 fail=0 total=7.3s---------- TextMessage (solver) ----------
+[10:56:23] rollouts:  43%|████▎     | 13/30 [00:07<00:04] , ok=12 fail=0 total=7.3s
+[10:56:23] rollouts:  43%|████▎     | 13/30 [00:07<00:04] , ok=12 fail=0 total=7.3s
+[10:56:23] rollouts:  43%|████▎     | 13/30 [00:07<00:04] , ok=13 fail=0 total=7.5s
+[10:56:23] rollouts:  47%|████▋     | 14/30 [00:07<00:04] , ok=13 fail=0 total=7.5s
+[10:56:23] rollouts:  47%|████▋     | 14/30 [00:07<00:04] , ok=14 fail=0 total=7.5s---------- TextMessage (revise) ----------
+[10:56:23] rollouts:  50%|█████     | 15/30 [00:07<00:04] , ok=14 fail=0 total=7.5s
+[10:56:23] rollouts:  50%|█████     | 15/30 [00:07<00:04] , ok=15 fail=0 total=7.6s---------- TextMessage (revise) ----------
+[10:56:23] rollouts:  53%|█████▎    | 16/30 [00:07<00:02] , ok=15 fail=0 total=7.6s
+[10:56:23] rollouts:  53%|█████▎    | 16/30 [00:07<00:02] , ok=15 fail=0 total=7.6s
+[10:56:23] rollouts:  53%|█████▎    | 16/30 [00:07<00:02] , ok=16 fail=0 total=7.9s---------- TextMessage (revise) ----------
+[10:56:23] rollouts:  57%|█████▋    | 17/30 [00:08<00:04] , ok=16 fail=0 total=7.9s
+[10:56:24] rollouts:  57%|█████▋    | 17/30 [00:08<00:04] , ok=16 fail=0 total=7.9s
+[10:56:24] rollouts:  57%|█████▋    | 17/30 [00:08<00:04] , ok=17 fail=0 total=8.7s---------- TextMessage (verifier) ----------
+[10:56:24] rollouts:  60%|██████    | 18/30 [00:09<00:03] , ok=17 fail=0 total=8.7s
+[10:56:24] rollouts:  60%|██████    | 18/30 [00:09<00:03] , ok=17 fail=0 total=8.7s
+[10:56:24] rollouts:  60%|██████    | 18/30 [00:09<00:03] , ok=18 fail=0 total=9.1s---------- TextMessage (verifier) ----------
+[10:56:24] rollouts:  63%|██████▎   | 19/30 [00:09<00:03] , ok=18 fail=0 total=9.1s
+[10:56:25] rollouts:  63%|██████▎   | 19/30 [00:09<00:03] , ok=18 fail=0 total=9.1s
+[10:56:25] rollouts:  63%|██████▎   | 19/30 [00:09<00:03] , ok=19 fail=0 total=9.3s---------- TextMessage (verifier) ----------
+[10:56:25] rollouts:  67%|██████▋   | 20/30 [00:09<00:02] , ok=19 fail=0 total=9.3s
+[10:56:25] rollouts:  67%|██████▋   | 20/30 [00:09<00:02] , ok=20 fail=0 total=9.3s---------- TextMessage (solver) ----------
+[10:56:25] rollouts:  70%|███████   | 21/30 [00:10<00:03] , ok=20 fail=0 total=9.3s
+[10:56:26] rollouts:  70%|███████   | 21/30 [00:10<00:03] , ok=20 fail=0 total=9.3s
+[10:56:26] rollouts:  70%|███████   | 21/30 [00:10<00:03] , ok=21 fail=0 total=10.5s---------- TextMessage (solver) ----------
+[10:56:26] rollouts:  73%|███████▎  | 22/30 [00:10<00:03] , ok=21 fail=0 total=10.5s
+[10:56:26] rollouts:  73%|███████▎  | 22/30 [00:10<00:03] , ok=21 fail=0 total=10.5s
+[10:56:26] rollouts:  73%|███████▎  | 22/30 [00:10<00:03] , ok=22 fail=0 total=10.8s---------- TextMessage (verifier) ----------
+[10:56:26] rollouts:  77%|███████▋  | 23/30 [00:10<00:02] , ok=22 fail=0 total=10.8s
+[10:56:26] rollouts:  77%|███████▋  | 23/30 [00:10<00:02] , ok=23 fail=0 total=10.8s---------- TextMessage (solver) ----------
+[10:56:26] rollouts:  80%|████████  | 24/30 [00:11<00:02] , ok=23 fail=0 total=10.8s
+[10:56:27] rollouts:  80%|████████  | 24/30 [00:11<00:02] , ok=23 fail=0 total=10.8s
+[10:56:27] rollouts:  80%|████████  | 24/30 [00:11<00:02] , ok=24 fail=0 total=11.3s---------- TextMessage (solver) ----------
+[10:56:27] rollouts:  83%|████████▎ | 25/30 [00:12<00:02] , ok=24 fail=0 total=11.3s
+[10:56:28] rollouts:  83%|████████▎ | 25/30 [00:12<00:02] , ok=24 fail=0 total=11.3s
+[10:56:28] rollouts:  83%|████████▎ | 25/30 [00:12<00:02] , ok=25 fail=0 total=12.8s---------- TextMessage (solver) ----------
+[10:56:28] rollouts:  87%|████████▋ | 26/30 [00:13<00:02] , ok=25 fail=0 total=12.8s
+[10:56:29] rollouts:  87%|████████▋ | 26/30 [00:13<00:02] , ok=25 fail=0 total=12.8s
+[10:56:29] rollouts:  87%|████████▋ | 26/30 [00:13<00:02] , ok=26 fail=0 total=13.8s---------- TextMessage (solver) ----------
+[10:56:29] rollouts:  90%|█████████ | 27/30 [00:19<00:06] , ok=26 fail=0 total=13.8s
+[10:56:35] rollouts:  90%|█████████ | 27/30 [00:19<00:06] , ok=26 fail=0 total=13.8s
+[10:56:35] rollouts:  90%|█████████ | 27/30 [00:19<00:06] , ok=27 fail=0 total=19.8s---------- TextMessage (solver) ----------
+[10:56:35] rollouts:  93%|█████████▎| 28/30 [01:07<00:28] , ok=27 fail=0 total=19.8s
+[10:57:23] rollouts:  93%|█████████▎| 28/30 [01:07<00:28] , ok=27 fail=0 total=19.8s
+[10:57:23] rollouts:  93%|█████████▎| 28/30 [01:07<00:28] , ok=28 fail=0 total=67.7s---------- TextMessage (solver) ----------
+[10:57:23] rollouts:  97%|█████████▋| 29/30 [01:12<00:11] , ok=28 fail=0 total=67.7s
+[10:57:28] rollouts:  97%|█████████▋| 29/30 [01:12<00:11] , ok=28 fail=0 total=67.7s
+[10:57:28] rollouts:  97%|█████████▋| 29/30 [01:12<00:11] , ok=29 fail=0 total=72.5s---------- TextMessage (solver) ----------
+[10:57:28] rollouts: 100%|██████████| 30/30 [01:15<00:00] , ok=29 fail=0 total=72.5s
+[10:57:30] rollouts: 100%|██████████| 30/30 [01:15<00:00] , ok=29 fail=0 total=72.5s
+[10:57:30] rollouts: 100%|██████████| 30/30 [01:15<00:00] , ok=30 fail=0 total=75.0s
+[10:57:30] rollouts: 100%|██████████| 30/30 [01:15<00:00] , ok=30 fail=0 total=75.0s
+
+Sweep completed: 3 runs
