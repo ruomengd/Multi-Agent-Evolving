@@ -41,7 +41,7 @@ PLAN_NAME="${PLAN_NAME:?PLAN_NAME must be set}"
 EXPERIMENT_PREFIX="${EXPERIMENT_PREFIX:-mas_graph_sweep_${PLAN_NAME}}"
 FORCE_GENERATE="${FORCE_GENERATE:-false}"
 TP_SIZE="${TP_SIZE:-1}"
-SWEEP_LOG_DIR="${SWEEP_LOG_DIR:-/home/ruomeng/PettingLLMs/logs/mas_graph_sweeps}"
+SWEEP_LOG_DIR="${SWEEP_LOG_DIR:-${SCRIPT_DIR}/../../../logs/mas_graph_sweeps}"
 TIMESTAMP="$(date +%m-%d_%H-%M-%S)"
 SWEEP_LOG_FILE="${SWEEP_LOG_DIR}/${EXPERIMENT_PREFIX}_${TIMESTAMP}.log"
 
@@ -90,7 +90,6 @@ for base_model in "${BASE_MODELS[@]}"; do
             log_msg "=================================================="
 
             (
-                # cd /home/ruomeng/PettingLLMs
                 BASE_MODEL="${base_model}" \
                 TOTAL_ROLE_TOKEN_BUDGET="${total_budget}" \
                 ROLE_TOKEN_PLAN="${ROLE_TOKEN_PLAN}" \
