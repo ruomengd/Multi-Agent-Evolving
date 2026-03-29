@@ -1,0 +1,1201 @@
+[2026-03-28 10:48:43] [ROLLOUT:GLOBAL] {
+  "event_type": "rollout_tracking_summary",
+  "message": "Rollout tracking data collected",
+  "timestamp": "2026-03-28T10:48:43.424375",
+  "extra_data": {
+    "total_rollouts": 30,
+    "rollout_tracking": {
+      "0": {
+        "env_idx": 0,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "41dec2d5-b179-4edb-bb5f-3825e0f8c166"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "b0aa3531-e6bd-4816-b242-220653fee074"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "2a8da689-85cc-4c1f-b3ca-47d45bb6b2e8"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "e1b484e0-c386-43dd-872e-51db93d89bc6"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "480c63fd-0514-4cd3-8734-cb5727bf744f"
+          }
+        ]
+      },
+      "1": {
+        "env_idx": 1,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "07b21d74-741c-4a47-8897-f2d9895939fd"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "d7cae8b8-ba82-42c5-b211-c3f26a7b4abc"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "f6486ce1-7d86-45b2-8813-67cd6af151bd"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "d56bb359-aa35-4ee1-a5fa-9a6ca74af9f3"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "9bb12751-8b2d-40a2-a24d-282aa475a04f"
+          }
+        ]
+      },
+      "2": {
+        "env_idx": 2,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "12ce357e-5710-406e-b47b-dcc04f689cc1"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "2e6cf44e-287c-4ead-8222-c72fe93ec5fb"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "96275d93-7261-426f-8e51-6e9b252d953b"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "83bd1318-c692-4dd2-b2c0-e7f10cbcbe43"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "656ac6b1-3f2b-4ca1-8963-160b4bf0e0e4"
+          }
+        ]
+      },
+      "3": {
+        "env_idx": 3,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "82072767-308c-4f82-a3ec-fde50a54d82c"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "a53dc089-41a7-435f-aac1-dfcbf87f145f"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "acd369f5-476b-4218-bb71-a7d41d9212b9"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "58e0c81a-fa62-4769-978a-6b82fc7f1b16"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "fd5ed302-3a58-4a22-8e44-718b1a2d0cec"
+          }
+        ]
+      },
+      "4": {
+        "env_idx": 4,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "1a6562df-4646-4fdb-b6b6-b2acff5478e5"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "1fc83e8d-e90c-45a6-bbe6-a69e326ad18b"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "bd35209c-5e06-40a2-8719-1573e584f417"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "20769807-e904-4035-ba16-dcf78b4ae802"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "c837d56a-2e58-43dc-9dc2-febd15d7a6f1"
+          }
+        ]
+      },
+      "5": {
+        "env_idx": 5,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "1b47cf42-1a8a-4b8e-8a0b-41e41b50e827"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "0ef70bac-d9b3-4b0e-a580-0096a54e4020"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "ea6ca1b7-19dd-43ae-95e3-d56eb4706da1"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "b0447051-3b55-487e-bc80-96a6fc6a2fdc"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "f55ecca2-1e74-462a-b682-aeed5a9f9a58"
+          }
+        ]
+      },
+      "6": {
+        "env_idx": 6,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "b50597a3-28be-4b19-9269-d6f660bb58d0"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "b62c32bf-8fa8-46e8-83b6-df10f072a7bb"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "3100fbdc-e184-4eb4-8b25-c7863cc3f5a5"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "f52b964b-2934-4016-93e8-897508e080d1"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "5f4fa839-0c8e-457b-8b72-52d9382411a9"
+          }
+        ]
+      },
+      "7": {
+        "env_idx": 7,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "1b5dc089-bdb3-4d01-b853-268afd43f45d"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "ec791386-3778-4476-b6f0-e3a40834a83f"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "ab94044d-7406-47ce-93dd-4d4547b829ae"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "8b947dbb-7207-4126-8966-b7632e4a4b3f"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "ee1808d7-1ed8-4552-8b7d-49841439b495"
+          }
+        ]
+      },
+      "8": {
+        "env_idx": 8,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "8d1f794b-cc88-43c9-ad71-754b89fee34a"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "4137e8b6-7fd1-4e14-b036-767adfa67e34"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "74018a8d-2d4f-4485-af0d-19115e72d0a8"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "56a272af-cf48-431c-a009-4be183610022"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "5c51ac94-0eee-4d32-b2fb-a81a8ead7b2c"
+          }
+        ]
+      },
+      "9": {
+        "env_idx": 9,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "1240edd1-2f82-445b-bd1c-614ba789c749"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "367e9085-50b0-49ab-85d0-867c0204e678"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "0fa7b04c-fa21-4d21-8415-e6a2644d38c5"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "b394a73d-4798-490f-bf69-fc11116cf87f"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "b3c138d0-9a87-4d5b-becb-1cd2884a2937"
+          }
+        ]
+      },
+      "10": {
+        "env_idx": 10,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "908d71c1-eebe-4fcb-b390-43b02e6ad967"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "a5f0f9eb-50ef-4441-810d-ddea209bb1f1"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "a93f9903-e13d-417c-8447-f72824672ac9"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "e7bb36cc-d455-4fd5-8f39-1899e5d17532"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "6dd1511f-38a8-412f-87a0-73e9732f9b5d"
+          }
+        ]
+      },
+      "11": {
+        "env_idx": 11,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "7e1c3964-ac0b-4749-839a-c4aac9a48a1b"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "58f52bc0-6be0-4fc6-9a7c-1657a4687e3f"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "259bff50-1ac5-47f0-bc44-b29da1aa5096"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "d85d0ad9-6240-48d9-95b9-0e8fb206b689"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "4fa6152b-67e9-4615-bc94-4faa09684b63"
+          }
+        ]
+      },
+      "12": {
+        "env_idx": 12,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "375e8082-0af6-4786-a45c-a09b4867eff8"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "7f25bbe2-578c-441c-b3a2-15a8740b30af"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "fd9a9be3-8e9f-4044-af1d-1233d15be867"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "76cebbf7-4e5f-47f0-8128-3b17016959b2"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "320470c6-487e-490b-b005-484ed348d44f"
+          }
+        ]
+      },
+      "13": {
+        "env_idx": 13,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "c0143683-25de-428c-8d06-0448be888ff4"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "7d51aa05-48ad-4ac5-992f-2295203d1bdc"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "f01d9f8b-60b9-4609-91da-90930f3ae30d"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "de7964c7-cf19-4926-bf33-4922c041632e"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "75aba7cc-812e-4710-986e-9498662ee04e"
+          }
+        ]
+      },
+      "14": {
+        "env_idx": 14,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "1837364a-74d6-4c32-b6dc-9dce5c81d806"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "f321421f-a882-4243-9e12-f61de6959afc"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "f2e63ab4-d5b8-44a9-be0a-7e02360aee2e"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "9bcffe78-ab0e-40f0-8b02-ff85554ae275"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "6d1ca0b9-5908-44eb-ac50-18c86352b6cf"
+          }
+        ]
+      },
+      "15": {
+        "env_idx": 15,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "09f3b53d-0385-4824-8be9-9067da82df8a"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "3279668d-e777-466c-a2ff-c369948b3d70"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "3469556a-12da-48b2-bf76-ce2051fb4d9c"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "c644bf7d-730a-475b-9fb9-2de15ecc96cc"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "2f1304d4-7e7f-4106-ac24-8a726ca0722b"
+          }
+        ]
+      },
+      "16": {
+        "env_idx": 16,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "3c92c43c-a5e6-4f3a-8ecb-5fb5af6acd2d"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "01d64fec-81e8-4a89-a5c4-0e1086fb700e"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "9dfeabe8-c7da-4bf0-bec2-6af847a0c188"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "acd22300-92cf-4efb-9124-428026b45a06"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "a8c7deb8-d6a5-4eec-90d8-0c570a8d2b3d"
+          }
+        ]
+      },
+      "17": {
+        "env_idx": 17,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "47a8fa37-46f8-493c-b3f0-849623135930"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "be1cda96-2efd-4baf-b4ad-ce8419b01496"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "7f46ae83-dc10-4d27-91d2-1ddecf7dae24"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "d47e74e7-169d-4881-9532-a7e3f8bd2678"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "c382a096-0221-4891-a9c1-73da8b3ced0b"
+          }
+        ]
+      },
+      "18": {
+        "env_idx": 18,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "a4354dad-4dff-4c33-871c-6fbebac13974"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "4150bcb2-6369-4552-ab74-81d3da79ceb6"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "c701a054-78f3-46c4-a21e-43c6c7d73d19"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "5b3a2f1e-68ef-4507-888b-47f8bdf7b4b3"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "db088a4c-3036-4642-a51f-e583b15069e3"
+          }
+        ]
+      },
+      "19": {
+        "env_idx": 19,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "b4dd64fc-d720-40c5-a9ac-5b7c8f4c5ba8"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "87fab9ae-a4f7-4ae1-9ac7-0de7dd4b2517"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "b9b35dba-9dab-45af-809c-4ba2c8c8fefa"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "094b9237-4819-4dbb-976d-bc0c21294131"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "e2b8d6ba-21e6-447d-ada6-582b6e762ed2"
+          }
+        ]
+      },
+      "20": {
+        "env_idx": 20,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "206a14fc-9a4d-4072-97ef-3e7de4bd5e6b"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "6d575b2e-14b9-474c-abc8-0166b7f3356d"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "cb76542f-8a11-4ab7-b685-5cd92c745997"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "69d7389c-21e1-4614-858f-3f0b67e1c48e"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "02bc211c-fabc-4df7-9713-1580803191a9"
+          }
+        ]
+      },
+      "21": {
+        "env_idx": 21,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "6860f4ca-41f5-4d98-afbf-fae55f965924"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "6c5ad1d8-0e1c-4d6a-a3ea-75326af83ff9"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "8c25404e-9085-4068-80d4-eec1e85a33c6"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "c683fd28-f377-4f7b-a9d0-e03640eb891d"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "1a372193-0515-4a10-a36c-8be51e1bbbd8"
+          }
+        ]
+      },
+      "22": {
+        "env_idx": 22,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "57cfb832-9fb4-4308-8e65-c2c96cb358fb"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "58047418-76fa-49fd-a1af-8a8a53a61fbc"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "f3100923-ed41-4925-a493-e6ec648a3d88"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "c5048592-5d21-4ceb-b448-d49bf56b0e90"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "f5244a94-4050-4aee-8fda-c95c544ac77a"
+          }
+        ]
+      },
+      "23": {
+        "env_idx": 23,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "96a896a6-fde0-459d-85c4-dcefde5b25a7"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "baf78b96-4d00-44bc-bff5-f34d2cb3ede1"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "989cef31-1a2e-4666-a1c2-e7e639296271"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "590d8c9b-6c62-4549-b162-7dea6f466534"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "3c3c2682-f014-4ccd-8431-af7cc7f69319"
+          }
+        ]
+      },
+      "24": {
+        "env_idx": 24,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "a23463bb-2016-455a-8815-c26f1e987788"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "208d4c16-cabf-468b-9bef-eeedbb4777f5"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "82f4ed9d-2f7f-4718-ad6b-1e4adc32f9c8"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "610bca10-5a9b-4214-b87a-181de409e7d9"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "9e8e5f62-bd92-4332-9848-7afc5d480808"
+          }
+        ]
+      },
+      "25": {
+        "env_idx": 25,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "a04159e0-d54d-463d-863e-7cf70cfd72b9"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "d3d8200a-3cf8-4ab2-9fb3-a9ede5ba1942"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "8b5cd899-15be-4d34-86f5-e24a4b262dc2"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "9290dd03-8880-4e94-89eb-cf32ad264335"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "4ee6ab7a-4745-4f99-9d3a-ccf6a7e0a6e9"
+          }
+        ]
+      },
+      "26": {
+        "env_idx": 26,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "ce9dbb42-a4f4-48ca-b90c-5a5d93ae37f4"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "e6910b4c-4e25-4195-a999-dba848339cbe"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "0f9343e1-e178-4382-a8e6-02840b675f0a"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "659dd04a-be64-44f0-9465-2c05884f6ebb"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "56dcb7df-67d9-493d-93c3-72d2afa2d479"
+          }
+        ]
+      },
+      "27": {
+        "env_idx": 27,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "e81c81fa-c4db-45e3-9b43-6ef6b8f3996c"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "5e1a7b0a-13da-4c5c-860b-ec95ff4d48c5"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "be97e1a1-0ddf-4bc2-93af-2d299e299394"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "5d36ae48-f36a-419f-9127-a66bb4402fcd"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "032edf3a-7f0d-4e65-bf2b-c5f75710d0e8"
+          }
+        ]
+      },
+      "28": {
+        "env_idx": 28,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "b9050967-651c-43c3-8522-7eb9388d4439"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "2eade097-9bb3-4918-a85c-b09070c89ba9"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "512214a0-385c-43f3-8c04-21524c971fb9"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "6bfd8c2a-9506-467e-a8bf-fc3f6a9a504c"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "da3e041a-abe3-4278-ad1f-2355b49f8b96"
+          }
+        ]
+      },
+      "29": {
+        "env_idx": 29,
+        "total_hops": 5,
+        "hops": [
+          {
+            "hop_idx": 0,
+            "agent_name": "planner",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "001120b0-e017-45d1-a45c-50a669ac75a8"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "solver",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "2fee266b-dbdf-421b-855b-455e33664b05"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "critique",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "fe4cb3b4-d59e-49d6-b255-6b09f3d533de"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "revise",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "ced1c32d-fe50-4312-99a1-9b35c3b91ecf"
+          },
+          {
+            "hop_idx": 0,
+            "agent_name": "verifier",
+            "policy_name": "math_solver_model",
+            "dataproto_uuid": "a9694413-6ffb-40ab-aa48-10972d557fa1"
+          }
+        ]
+      }
+    }
+  }
+}
+[2026-03-28 10:48:43] [ROLLOUT:-1] {
+  "env_idx": -1,
+  "rollout_idx": -1,
+  "agent_rewards": {
+    "planner": 0.0
+  },
+  "termination_reason": "validate_finished",
+  "timestamp": "2026-03-28T10:48:43.428395",
+  "extra_data": {
+    "success_rate": 0.0
+  }
+}
+[2026-03-28 10:48:43] [ROLLOUT:-1] {
+  "env_idx": -1,
+  "rollout_idx": -1,
+  "agent_rewards": {
+    "solver": 0.0
+  },
+  "termination_reason": "validate_finished",
+  "timestamp": "2026-03-28T10:48:43.429611",
+  "extra_data": {
+    "success_rate": 0.0
+  }
+}
+[2026-03-28 10:48:43] [ROLLOUT:-1] {
+  "env_idx": -1,
+  "rollout_idx": -1,
+  "agent_rewards": {
+    "critique": 0.0
+  },
+  "termination_reason": "validate_finished",
+  "timestamp": "2026-03-28T10:48:43.430612",
+  "extra_data": {
+    "success_rate": 0.0
+  }
+}
+[2026-03-28 10:48:43] [ROLLOUT:-1] {
+  "env_idx": -1,
+  "rollout_idx": -1,
+  "agent_rewards": {
+    "revise": 0.0
+  },
+  "termination_reason": "validate_finished",
+  "timestamp": "2026-03-28T10:48:43.431433",
+  "extra_data": {
+    "success_rate": 0.0
+  }
+}
+[2026-03-28 10:48:43] [ROLLOUT:-1] {
+  "env_idx": -1,
+  "rollout_idx": -1,
+  "agent_rewards": {
+    "verifier": 0.0
+  },
+  "termination_reason": "validate_finished",
+  "timestamp": "2026-03-28T10:48:43.432014",
+  "extra_data": {
+    "success_rate": 0.0
+  }
+}
+[2026-03-28 10:48:43] [ROLLOUT:GLOBAL] {
+  "event_type": "concurrent_batch_complete",
+  "message": "Concurrent execution completed",
+  "timestamp": "2026-03-28T10:48:43.432639",
+  "extra_data": {
+    "successfully_processed": 30,
+    "total_env_groups": 30,
+    "total_rollouts": 30,
+    "failed": 0,
+    "success_rate": "30/30",
+    "aggregated_policies": [
+      "math_solver_model"
+    ]
+  }
+}
+[2026-03-28 10:48:43] [ROLLOUT:N/A] {
+  "event_type": "ray_status_check",
+  "context": "after_concurrent_batch",
+  "timestamp": "2026-03-28T10:48:43.433437",
+  "ray_status": {
+    "ray_available": true,
+    "ray_initialized": false,
+    "ray_address": null,
+    "ray_namespace": null,
+    "ray_cluster_resources": null,
+    "ray_nodes": null,
+    "ray_error": null
+  }
+}
+[2026-03-28 10:48:43] [ROLLOUT:SUMMARY] {
+  "event_type": "evaluation_summary",
+  "mode": "validate",
+  "timestamp": "2026-03-28T10:48:43.439552",
+  "evaluation_summary": {
+    "model_path": "Qwen/Qwen3-1.7B",
+    "benchmark": "AIME24",
+    "env_success_rollout_idxs": [],
+    "env_success_rate": 0.0,
+    "sample_success_rate": 0.0,
+    "success_env_idxs": [],
+    "env_pass_at_k": 0.0,
+    "pass_at_k_k": 1,
+    "agent_enable_thinking": {
+      "planner": false,
+      "solver": false,
+      "critique": false,
+      "revise": false,
+      "verifier": false
+    }
+  }
+}

@@ -16,6 +16,12 @@ export CUDA_HOME=${CUDA_HOME:-/usr/local/cuda}
 export LD_LIBRARY_PATH=$CUDA_HOME/targets/x86_64-linux/lib:${LD_LIBRARY_PATH}
 export LD_LIBRARY_PATH=$CUDA_HOME/lib64:${LD_LIBRARY_PATH}
 
+TMP_BASE_DIR="${TMP_BASE_DIR:-${HOME}/tmp}"
+export RAY_TMPDIR="${RAY_TMPDIR:-${TMP_BASE_DIR}}"
+export TMPDIR="${TMPDIR:-${TMP_BASE_DIR}}"
+export WANDB_MODE=offline
+mkdir -p "${RAY_TMPDIR}"
+
 GPU_num=$(echo $CUDA_VISIBLE_DEVICES | tr ',' '\n' | wc -l)
 
 model_0_config_path="models.model_0.ppo_trainer_config"
@@ -27,7 +33,7 @@ python3 -m pettingllms.trainer.train \
   $model_0_resource \
   base_models.policy_0.path="Qwen/Qwen3-1.7B" \
   training.experiment_name=math_single_agent \
-  training.total_training_steps=200 \
+  training.total_training_steps=10 \
   training.train_batch_size=32 \
   training.train_sample_num=8 \
   training.validate_sample_num=1 \
